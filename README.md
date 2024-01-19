@@ -6,3 +6,4 @@ task-based chatbot for pizza ordering, drink recommendations and table booking o
 + [Best practices for NLU data generation](https://rasa.com/docs/rasa/generating-nlu-data/)
 + [WHen to use rules or stories and checkpoints](https://rasa.com/docs/rasa/writing-stories/) (TL;DR: rules can be used for form filling as well)
 + [Conversation Patterns](https://rasa.com/docs/rasa/chitchat-faqs)
++ [Lookup Tables](https://rasa.com/docs/rasa/training-data-format/#lookup-tables)
