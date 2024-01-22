@@ -1,0 +1,43 @@
+version: '3.1'
+intents:
+- affirm
+- deny
+- faq
+- goodbye
+- greet
+- inform
+- mood_great
+- mood_unhappy
+
+responses:
+  utter_greet:
+  - text: Welcome to DoughVinci, where art meets appetite. How can I assist you today?
+  utter_cheer_up:
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_faq/bot_challenge:
+  - text: I am DoughVinci's bot Micheal, supporting the restaurant in taking orders for takeaway and making table bookings.
+  utter_faq/ask_bot_tasks:
+  - text: My tasks include taking orders for pizza and drinks for takeaway as well as making table bookings for our restaurant.
+  utter_faq/request_restaurant_location:
+  - text: DoughVinci is located in Via dei Solteri 35, in Trento.
+  utter_out_of_scope:
+  - text: Sorry, but I can't handle this request. I am a bot for ordering and table bookings in our restaurant DoughVinci. 
+  - text: Unfortunately I am not created to answer these kind of requests. But I would love to help you with ordering from our restaurant or to book a table there.
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+  
+actions:
+- utter_did_that_help
+- utter_faq
+- utter_goodbye
+- utter_greet
+- utter_happy
+- utter_out_of_scope
