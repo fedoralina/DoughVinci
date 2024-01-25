@@ -11,6 +11,7 @@ nlu:
     - yeah
     - yes thanks
     - eah
+    - thanks bye
 - intent: deny
   examples: |
     - no
@@ -72,98 +73,39 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+- intent: buy_pizza
+  examples: |
+    - i'd like to buy a pizza
+    - i want a pizza
+    - can i buy a pizza
+    - I'm interested in a savory round flattened bread of Italian origin
+    - i want to buy a pizza
 - intent: inform
   examples: |
-    - i want to buy a pizza
-    - i want to order [olives](pizza_type) and [onion](pizza_type) pizza
-    - I want pizza
-    - I want to order a pizza
-    - want to order pizza
-    - pizza
-    - Pizza please
-    - Pizza will do
-    - Pizza
-    - I want to order [large](pizza_size) pizza with [olives](pizza_type)
-    - I want [large](pizza_size) [tomatoes](pizza_type) pizza
-    - I want a [medium](pizza_size) [cheese](pizza_type) pizza
-    - I like [small](pizza_size) [olives](pizza_type) pizza
-    - [pepperoni](pizza_type)  [small](pizza_size) pizza
-    - [large](pizza_size) [onions](pizza_type)
-    - My favorite pizza is [Small](pizza_size) corn
-    - my favorite pizza is [small](pizza_size) corn
-    - [cheese](pizza_type) and SMALL
-    - [medium](pizza_size) and [olives](pizza_type)
-    - peperoni, large
-    - [small](pizza_size) pizza with [tomatoes](pizza_type) topping
-    - [medium](pizza_size) with [onion](pizza_type)
-    - [large](pizza_size) corns
-    - want to oder [large](pizza_size) [cheese](pizza_type) pizza
-    - want to order [medium](pizza_size) [tomatoes](pizza_type) pizza
-    - want to order least [carnivore](pizza_type)  pizza
-    - need [large](pizza_size) [pepperoni](pizza_type)  pizza
-    - want [medium](pizza_size) [onions](pizza_type)  pizza
-    - want [large](pizza_size) [pepper](pizza_type) pizza
-    - I want [two](pizza_amount) [small](pizza_size) [Funghi](pizza_type) pizza
-    - I want [one](pizza_amount) [Funghi](pizza_type) [small](pizza_size) pizza
-    - I want [Funghi](pizza_type) pizza
-    - I want [Funghi](pizza_type) pizza please
-    - I [hawaii](pizza_type) pizza small
-    - I want [Funghi](pizza_type) [small](pizza_size) pizza [three](pizza_amount)
-    - I want [four](pizza_amount) [small](pizza_size) pizza [Funghi](pizza_type)
-    - I want [2](pizza_amount) [medium](pizza_size) pizza [hawaii](pizza_type) please
-    - [two](pizza_amount) [small](pizza_size) [Funghi](pizza_type) pizza
-    - [two](pizza_amount) [medium](pizza_size) [Margherita](pizza_type) pizza
-    - [2](pizza_amount) [large](pizza_size) [Hawaii](pizza_type) pizza
-    - [two](pizza_amount) [medium](pizza_size) [Pepperoni](pizza_type) pizza
-    - [4](pizza_amount) [small](pizza_size) [Vegetarian](pizza_type) pizza pizza
-    - [four](pizza_amount) [small](pizza_size) pizza [Funghi](pizza_type)
-    - [two](pizza_amount) [large](pizza_size) pizza [hawaii](pizza_type)
-    - [four](pizza_amount) [medium](pizza_size) pizza [Margherita](pizza_type)
-    - [4](pizza_amount) [large](pizza_size) pizza [Hawaii](pizza_type)
-    - [four](pizza_amount) [medium](pizza_size) pizza [Pepperoni](pizza_type)
-    - [four](pizza_amount) [small](pizza_size) pizza [Vegetarian](pizza_type)
-    - [one](pizza_amount) [Funghi](pizza_type) [small](pizza_size) pizza
-    - [one](pizza_amount) [Margherita](pizza_type) [medium](pizza_size) pizza
-    - [1](pizza_amount) [Hawaii](pizza_type) [large](pizza_size) pizza
-    - [one](pizza_amount) [Pepperoni](pizza_type) [medium](pizza_size) pizza
-    - [3](pizza_amount) [Vegetarian](pizza_type) [small](pizza_size) pizza
-    - [one](pizza_amount) [Funghi](pizza_type) pizza [small](pizza_size)
-    - [one](pizza_amount) [Margherita](pizza_type) pizza [medium](pizza_size)
-    - [1](pizza_amount) [Hawaii](pizza_type) pizza [large](pizza_size)
-    - [one](pizza_amount) [Pepperoni](pizza_type) pizza [medium](pizza_size)
-    - [3](pizza_amount) [Vegetarian](pizza_type) pizza [small](pizza_size)
-    - [Funghi](pizza_type) [small](pizza_size) pizza [three](pizza_amount)
-    - [Margherita](pizza_type) [medium](pizza_size) pizza [6](pizza_amount)
-    - [Hawaii](pizza_type) [large](pizza_size) pizza [9](pizza_amount)
-    - [Pepperoni](pizza_type) [medium](pizza_size) pizza  [4](pizza_amount)
-    - [Vegetarian](pizza_type) [small](pizza_size) pizza [two](pizza_amount)
-    - [Funghi](pizza_type) pizza [small](pizza_size)  [three](pizza_amount)
-    - [Margherita](pizza_type) pizza [medium](pizza_size)  [6](pizza_amount)
-    - [Hawaii](pizza_type) pizza [large](pizza_size)  [9](pizza_amount)
-    - [Pepperoni](pizza_type) pizza [medium](pizza_size)   [4](pizza_amount)
-    - [Vegetarian](pizza_type) pizza [small](pizza_size)  [two](pizza_amount)
-    - [Funghi](pizza_type) pizza
-    - [Margherita](pizza_type) pizza
-    - [Hawaii](pizza_type) pizza
-    - [Pepperoni](pizza_type) pizza
-    - [Vegetarian](pizza_type) pizza pizza
-    - [Funghi](pizza_type)
-    - [Margherita](pizza_type)
-    - [Hawaii](pizza_type)
-    - [Pepperoni](pizza_type)
-    - [Vegetarian](pizza_type)
-    - [hawaii](pizza_type) pizza small
-    - [hawaii](pizza_type) pizza [small](pizza_size) please
-    - [small](pizza_size) [hawaii](pizza_type) pizza
-    - [two](pizza_amount) [medium](pizza_size) pizza [margherita](pizza_type) please
-    - [jumbo](pizza_type)
-    - [one](pizza_amount) pizza [funghi](pizza_type)
-    - i'd like [three](pizza_amount) [medium](pizza_size) pizza [margherita](pizza_type)
-    - I'd like to order [3](pizza_amount)  [small](pizza_size) [hawaii](pizza_type) please
-    - i want to order a [large](pizza_size) [margherita](pizza_type) pizza
-    - i want to buy a [large](pizza_size) pizza
-    - i want to buy a [margherita](pizza_type) pizza
-    - I want to buy a [margherita](pizza_type) pizza
+    - i'd like a [large](pizza_size) pizza
+    - i want to order a [xl](pizza_size) [hawai](pizza_type) pizza
+    - [medium](pizza_size) pizza
+    - [xl](pizza_size)
+    - [small](pizza_size)
+    - [s](pizza_size)
+    - [pepperoni](pizza_type)
+    - give me a [mozerella](pizza_type) pizza
+    - [hawaii](pizza_type) pizza
+    - [smol](pizza_size)
+    - [hawaii](pizza_type)
+    - i want a [large](pizza_size) pizza
+    - [mozzarella](pizza_type)
+    - [hawai](pizza_type)
+    - [veggie](pizza_type)
+    - [fungi](pizza_type)
+    - [vegggie](pizza_type)
+    - i'd like a [laaarge](pizza_size) pizza
+    - [vegggie](pizza_type) pizza
+    - a [veggie](pizza_type) pizza
+    - i want a [small](pizza_size) [funghi](pizza_type)
+    - [large](pizza_size)
+    - [vegggie](pizza_type)
+    - [veggie](pizza_type)
 - intent: out_of_scope
   examples: |
     - what is your favorite color?
@@ -177,3 +119,4 @@ nlu:
     - how far is the square
     - give me the directions to time square
     - do you want a hug?
+    - where are you living

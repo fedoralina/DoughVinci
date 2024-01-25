@@ -11,7 +11,39 @@ rules:
 #  - intent: bot_challenge
 #  - action: utter_iamabot
 
+#TODO: copied from repo
+- rule: Activate Pizza Form
+  steps:
+  - intent: buy_pizza
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+
+- rule: Submit Pizza Form
+  condition:
+  - active_loop: pizza_order_form
+  steps:
+  - action: pizza_order_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
+  - action: utter_pizza_slots
+
+# continues the form after bot challange
+# - rule: Interruption in Pizza Form
+#   condition:
+#   # Condition that form is active.
+#   - active_loop: pizza_order_form
+#   steps:
+#   # This unhappy path handles the case of an intent `bot_challenge`.
+#   - intent: bot_challenge
+#   - action: utter_iamabot
+#   # Return to form after handling the `bot_challenge` intent
+#   - action: pizza_order_form
+#   - active_loop: pizza_order_form
+
 #TODO add response for faq and chitchat like here: https://rasa.com/docs/rasa/chitchat-faqs
+#TODO think about making intent and actions not grouped, otherwise domain.yml changes config a bit
 - rule: respond to FAQs
   steps:
   - intent: faq
