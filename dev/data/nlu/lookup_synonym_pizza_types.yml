@@ -26,10 +26,6 @@ nlu:
     - spicy
     - pepperoni
     - pepp
-- synonym: Burrata
-  examples: |
-    - Burrata
-    - Mediterranea
 
 #### lookup
 - lookup: pizza_type
@@ -39,4 +35,3 @@ nlu:
     - Prosciutto
     - Vegetariana
     - Diavola
-    - Burrata

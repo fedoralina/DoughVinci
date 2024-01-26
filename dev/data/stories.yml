@@ -18,10 +18,105 @@ stories:
 
 
 #TODO all stories from pizza bot should be somehow included here
-
-- story: happy path
+# trying out all current features
+- story: interactive_story_1
   steps:
   - intent: greet
   - action: utter_greet
+  - intent: buy_pizza
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+  - slot_was_set:
+    - requested_slot: pizza_size
+  - intent: inform
+    entities:
+    - pizza_size: small
+  - slot_was_set:
+    - pizza_size: small
+  - action: pizza_order_form
+  - slot_was_set:
+    - pizza_size: small
+  - slot_was_set:
+    - requested_slot: pizza_type
+  - intent: inform
+    entities:
+    - pizza_type: Vegetariana
+  - slot_was_set:
+    - pizza_type: Vegetariana
+  - action: pizza_order_form
+  - slot_was_set:
+    - pizza_type: Vegetariana
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_pizza_slots
+  - intent: goodbye
+  - action: utter_goodbye
 
-# trying out all current features
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: buy_pizza
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+  - slot_was_set:
+    - requested_slot: pizza_size
+  - intent: faq
+  - action: utter_faq
+  - action: pizza_order_form
+  - slot_was_set:
+    - requested_slot: pizza_size
+  - intent: inform
+    entities:
+    - pizza_size: large
+  - slot_was_set:
+    - pizza_size: large
+  - action: pizza_order_form
+  - slot_was_set:
+    - pizza_size: large
+  - slot_was_set:
+    - requested_slot: pizza_type
+  - intent: inform
+    entities:
+    - pizza_type: vegggie
+  - slot_was_set:
+    - pizza_type: vegggie
+  - action: pizza_order_form
+  - slot_was_set:
+    - pizza_type: null
+  - slot_was_set:
+    - requested_slot: pizza_type
+  - intent: inform
+    entities:
+    - pizza_type: Vegetariana
+  - slot_was_set:
+    - pizza_type: Vegetariana
+  - action: pizza_order_form
+  - slot_was_set:
+    - pizza_type: Vegetariana
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_pizza_slots
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: inform
+    entities:
+    - pizza_size: small
+    - pizza_type: Funghi
+  - slot_was_set:
+    - pizza_size: small
+  - slot_was_set:
+    - pizza_type: Funghi
+  - action: utter_submit
+  - action: utter_pizza_slots
+  - intent: goodbye
+  - action: utter_goodbye

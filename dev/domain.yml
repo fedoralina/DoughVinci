@@ -10,8 +10,8 @@ intents:
 - out_of_scope
 - pizza_order_form
 entities:
-- pizza_type
 - pizza_size
+- pizza_type
 slots:
   pizza_size:
     type: text
@@ -28,8 +28,8 @@ slots:
 forms:
   pizza_order_form:
     required_slots:
-    - pizza_size
     - pizza_type
+    - pizza_size
 responses:
   utter_greet:
   - text: Welcome to DoughVinci, where art meets appetite. How can I assist you today?
@@ -62,12 +62,12 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 actions:
-- utter_out_of_scope
-- utter_greet
-- utter_submit
-- utter_pizza_slots
-- utter_faq
 - utter_goodbye
+- utter_greet
+- utter_pizza_slots
+- utter_submit
+- utter_faq
+- utter_out_of_scope
 - utter_did_that_help
 - utter_happy
 - utter_ask_continue

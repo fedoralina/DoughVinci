@@ -6,7 +6,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 
 ALLOWED_PIZZA_SIZES = ["small", "medium", "large", "family-size"]
-ALLOWED_PIZZA_TYPES = ["Margherita", "Funghi", "Prosciutto", "Vegetariana", "Diavola", "Burrata"]
+ALLOWED_PIZZA_TYPES = ["Margherita", "Funghi", "Prosciutto", "Vegetariana", "Diavola"]
 
 class ValidatePizzaOrderForm(FormValidationAction):
     def name(self) -> Text:
@@ -47,3 +47,5 @@ class ValidatePizzaOrderForm(FormValidationAction):
         return {"pizza_type": slot_value}
     
     #TODO: set validation for when both slots are set the same time
+
+    #TODO: add list type as well, i.e. when user orders more than one pizza -> use list and isinstance

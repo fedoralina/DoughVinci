@@ -1,6 +1,11 @@
 version: "3.1"
 
 rules:
+- rule: Greet anytime the user greets
+  steps:
+  - intent: greet
+  - action: utter_greet
+
 - rule: Say goodbye anytime the user says goodbye
   steps:
   - intent: goodbye
@@ -24,23 +29,35 @@ rules:
   - action: utter_submit
   - action: utter_pizza_slots
 
+#### continues the form after bot challange
+- rule: Interruption in Pizza Form
+  condition:
+  # Condition that form is active.
+  - active_loop: pizza_order_form
+  steps:
+  # This unhappy path handles logic for bot challange and restaurant info
+  - intent: faq
+  - action: utter_faq
+  # Return to form after handling the faq intent
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+
+#### continues the form after bot challange
+- rule: Out of Scope in Pizza Form
+  condition:
+  # Condition that form is active.
+  - active_loop: pizza_order_form
+  steps:
+  # This unhappy path handles logic for bot challange and restaurant info
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+  # Return to form after handling the faq intent
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+
 #TODO add a bit more complex rule, e.g. anything else? etc.
-
-# continues the form after bot challange
-# - rule: Interruption in Pizza Form
-#   condition:
-#   # Condition that form is active.
-#   - active_loop: pizza_order_form
-#   steps:
-#   # This unhappy path handles the case of an intent `bot_challenge`.
-#   - intent: bot_challenge
-#   - action: utter_iamabot
-#   # Return to form after handling the `bot_challenge` intent
-#   - action: pizza_order_form
-#   - active_loop: pizza_order_form
-
-#TODO add response for faq and chitchat like here: https://rasa.com/docs/rasa/chitchat-faqs
 #TODO think about making intent and actions not grouped, otherwise domain.yml changes config a bit
+#TODO add response for faq and chitchat like here: https://rasa.com/docs/rasa/chitchat-faqs
 - rule: respond to FAQs
   steps:
   - intent: faq
