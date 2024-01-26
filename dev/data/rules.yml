@@ -6,11 +6,6 @@ rules:
   - intent: goodbye
   - action: utter_goodbye
 
-#- rule: Say 'I am a bot' anytime the user challenges
-#  steps:
-#  - intent: bot_challenge
-#  - action: utter_iamabot
-
 #TODO: copied from repo
 - rule: Activate Pizza Form
   steps:
@@ -28,6 +23,8 @@ rules:
     - requested_slot: null
   - action: utter_submit
   - action: utter_pizza_slots
+
+#TODO add a bit more complex rule, e.g. anything else? etc.
 
 # continues the form after bot challange
 # - rule: Interruption in Pizza Form

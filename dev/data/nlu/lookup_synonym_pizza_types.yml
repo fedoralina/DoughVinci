@@ -1,0 +1,42 @@
+version: "3.1"
+nlu:
+- synonym: Margherita
+  examples: |
+    - Margherita
+    - margherita
+    - cheese
+- synonym: Funghi
+  examples: |
+    - fungi
+    - champignon
+    - mushroom
+    - funghi
+- synonym: Prosciutto
+  examples: |
+    - ham
+    - Prosciutto
+- synonym: Vegetariana
+  examples: |
+    - Vegetariana
+    - vegetables
+    - vegetarian
+    - veggie
+- synonym: Diavola
+  examples: |
+    - spicy
+    - pepperoni
+    - pepp
+- synonym: Burrata
+  examples: |
+    - Burrata
+    - Mediterranea
+
+#### lookup
+- lookup: pizza_type
+  examples: |
+    - Margherita
+    - Funghi
+    - Prosciutto
+    - Vegetariana
+    - Diavola
+    - Burrata

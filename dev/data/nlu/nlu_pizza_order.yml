@@ -1,0 +1,57 @@
+version: "3.1"
+nlu:
+- intent: buy_pizza
+  examples: |
+    - i'd like to buy a pizza
+    - i want a pizza
+    - can i buy a pizza
+    - I'm interested in a savory round flattened bread of Italian origin
+    - i want to buy a pizza
+- intent: inform
+  examples: |    
+    - [small](pizza_size)
+    - size [s](pizza_size) please
+    - I want a size [m](pizza_size) please
+    - [large](pizza_size)
+    - I want to order [large](pizza_size) pizza
+    - I want a [large](pizza_size) pizza
+    - I think it's [large](pizza_size)
+    - [medium](pizza_size) pizza
+    - [huge](pizza_size) pizza
+    - [Little](pizza_size) pizza
+    - Probably [avg](pizza_size)
+    - [medium](pizza_size)
+    - [large](pizza_size) please
+    - [family](pizza_size)
+    - i'd like a [large](pizza_size) pizza
+    - i want to order a [xl](pizza_size) [vegetariana](pizza_type) pizza
+    - [medium](pizza_size) pizza
+    - [xl](pizza_size)
+    - [small](pizza_size)
+    - [s](pizza_size)
+    - [veggie](pizza_type)
+    - [margherita](pizza_type) pizza
+    - a [Margherita](pizza_type) one
+    - [Prosciutto](pizza_type) pizza
+    - [Pepperoni](pizza_type) pizza
+    - [Vegetarian](pizza_type) pizza pizza
+    - [Funghi](pizza_type)
+    - [Margherita](pizza_type)
+    - [burrata](pizza_type)
+    - [Vegetarian](pizza_type)
+    - give me a [diavola](pizza_type) pizza
+    - a [spicy] pizza for me please
+    - [prosciutto](pizza_type) pizza
+    - [smol](pizza_size)
+    - [diavola](pizza_type)
+    - i want a [large](pizza_size) pizza
+    - [burrata](pizza_type)
+    - [margherita](pizza_type) please
+    - I want a [medium](pizza_size) [cheese](pizza_type) pizza
+    - I like [small](pizza_size) [fungi](pizza_type) pizza
+    - [pepperoni](pizza_type) [small](pizza_size) pizza
+    - want to oder [large](pizza_size) [cheese](pizza_type) pizza
+    - want to order [medium](pizza_size) [pepp](pizza_type) pizza
+    - want to order least [ham](pizza_type) pizza
+
+#TODO: test all pizza types and sizes for synonyms

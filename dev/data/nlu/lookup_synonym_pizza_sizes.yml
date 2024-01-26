@@ -1,0 +1,36 @@
+version: "3.1"
+nlu:
+- synonym: small
+  examples: |
+    - s
+    - little
+    - small
+    - smol
+- synonym: medium
+  examples: |
+    - m
+    - normal
+    - medium
+    - avg
+    - average
+- synonym: large
+  examples: |
+    - l
+    - big
+    - large
+- synonym: family-size
+  examples: |
+    - xl
+    - extra large
+    - extra-large
+    - family
+    - family-size
+    - huge
+
+#### lookup
+- lookup: pizza_size
+  examples: |
+    - small
+    - medium
+    - large
+    - family-size
