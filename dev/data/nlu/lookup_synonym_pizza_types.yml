@@ -1,5 +1,14 @@
 version: "3.1"
 nlu:
+#### lookup
+- lookup: pizza_type
+  examples: |
+    - Margherita
+    - Funghi
+    - Prosciutto
+    - Vegetariana
+    - Diavola
+
 - synonym: Margherita
   examples: |
     - Margherita
@@ -27,11 +36,3 @@ nlu:
     - pepperoni
     - pepp
 
-#### lookup
-- lookup: pizza_type
-  examples: |
-    - Margherita
-    - Funghi
-    - Prosciutto
-    - Vegetariana
-    - Diavola

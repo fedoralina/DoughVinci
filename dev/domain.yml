@@ -1,42 +1,62 @@
 version: '3.1'
 intents:
+# general
 - affirm
-- buy_pizza
 - deny
 - faq
 - goodbye
 - greet
-- inform
 - out_of_scope
+# pizza order
+- buy_pizza
+- inform
+# table booking
+# ...
+# forms
 - pizza_order_form
+
 entities:
-- pizza_size
 - pizza_type
+- pizza_size
+
+
 slots:
-  pizza_size:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: pizza_size
   pizza_type:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: pizza_type
+  
+  pizza_size:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_size
+  
+
 forms:
   pizza_order_form:
     required_slots:
     - pizza_type
     - pizza_size
+
+actions:
+# responses
+- utter_goodbye
+- utter_greet
+- utter_pizza_slots
+- utter_submit
+- utter_faq
+- utter_out_of_scope
+- utter_ask_continue
+# custom actions
+- validate_pizza_order_form
+
 responses:
   utter_greet:
   - text: Welcome to DoughVinci, where art meets appetite. How can I assist you today?
-  utter_did_that_help:
-  - text: Did that help you?
-  utter_happy:
-  - text: Great, carry on!
   utter_goodbye:
   - text: Bye
   utter_faq/bot_challenge:
@@ -58,17 +78,9 @@ responses:
   - text: What size would you like your pizza to be?
   utter_ask_pizza_type:
   - text: What kind of pizza would you like to buy?
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
-actions:
-- utter_goodbye
-- utter_greet
-- utter_pizza_slots
-- utter_submit
-- utter_faq
-- utter_out_of_scope
-- utter_did_that_help
-- utter_happy
-- utter_ask_continue
-- validate_pizza_order_form
+
+

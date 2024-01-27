@@ -1,5 +1,13 @@
 version: "3.1"
 nlu:
+#### lookup
+- lookup: pizza_size
+  examples: |
+    - small
+    - medium
+    - large
+    - family-size
+
 - synonym: small
   examples: |
     - s
@@ -27,10 +35,3 @@ nlu:
     - family-size
     - huge
 
-#### lookup
-- lookup: pizza_size
-  examples: |
-    - small
-    - medium
-    - large
-    - family-size
