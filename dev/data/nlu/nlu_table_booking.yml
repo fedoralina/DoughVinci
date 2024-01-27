@@ -1,6 +1,47 @@
-#version: "3.1"
-#nlu:
-#- intent: ...
-#  examples: |
-#    - ...
-#    - ...
+version: "3.1"
+nlu:
+- intent: book_table
+  examples: |
+    - i want a table
+    - i want to book a table
+    - can i book a table
+    - can i have a table
+    - i need a table
+    - i want a table this evening
+    - i want to book a table this evening
+    - do you have a free table
+    - can i eat at your place
+
+- intent: inform_table_booking
+  examples: |
+    - for [two](num_people)
+    - for [two](num_people) people
+    - for [two](num_people) people, please
+    - for [2](num_people)
+    - for [2](num_people) people
+    - for [2](num_people) people, please
+    - we are [two](num_people)
+    - we are [2](num_people) people
+    - a table for [two](num_people)
+    - a table for [two](num_people) people
+    - a table for [two](num_people) people, please
+    - at [7](booking_time)
+    - at [7](booking_time), please
+    - at [7](booking_time) o clock
+    - at [7](booking_time) o clock, please
+    - at [7](booking_time) pm
+    - at [7](booking_time) pm, please
+    - at [seven](booking_time) pm
+    - at [seven](booking_time) pm, please
+    - [inside](inside_outside)
+    - [inside](inside_outside), please
+    - i want to sit [inside](inside_outside)
+    - we want to sit [inside](inside_outside)
+    - [outside](inside_outside)
+    - [outside](inside_outside), please
+    - i want to sit [outside](inside_outside)
+    - we want to sit [outside](inside_outside)
+    - my name is [John](client_name)
+    - the name is [John](client_name)
+    - its [John](client_name)
+    - [John](client_name)

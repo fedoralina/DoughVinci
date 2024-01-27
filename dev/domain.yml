@@ -11,13 +11,19 @@ intents:
 - buy_pizza
 - inform
 # table booking
-# ...
+- book_table
+- inform_table_booking
 # forms
 - pizza_order_form
+- table_booking_form
 
 entities:
 - pizza_type
 - pizza_size
+- num_people
+- booking_time
+- inside_outside
+- client_name
 
 
 slots:
@@ -35,24 +41,67 @@ slots:
     - type: from_entity
       entity: pizza_size
   
+  num_people:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: num_people
+
+  booking_time:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: booking_time
+  
+  inside_outside:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: inside_outside
+  
+  client_name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: client_name
 
 forms:
   pizza_order_form:
     required_slots:
     - pizza_type
     - pizza_size
+  
+  table_booking_form:
+    required_slots:
+    - num_people
+    - booking_time
+    - inside_outside
+    - client_name
 
 actions:
 # responses
 - utter_goodbye
 - utter_greet
 - utter_pizza_slots
+- utter_table_slots
 - utter_submit
+- utter_submit_table_booking
 - utter_faq
 - utter_out_of_scope
 - utter_ask_continue
+- utter_ask_pizza_size
+- utter_ask_pizza_type
+- utter_ask_num_people
+- utter_ask_booking_time
+- utter_ask_inside_outside
+- utter_ask_client_name
 # custom actions
 - validate_pizza_order_form
+- validate_table_booking_form
 
 responses:
   utter_greet:
@@ -70,14 +119,26 @@ responses:
   - text: Unfortunately I am not created to answer these kind of requests. But I would love to help you with ordering from our restaurant or to book a table there.
   utter_submit:
   - text: I will now order a pizza for you!
+  utter_submit_table_booking:
+  - text: I will now book a table for you!
   utter_pizza_slots:
   - text: I will order a {pizza_size} {pizza_type} pizza.
+  utter_table_slots:
+  - text: I will book a table for {num_people} people at {booking_time} o'clock for the name {client_name}. You will sit {inside_outside}.
   utter_ask_continue:
   - text: Are you sure you want to stop the form?
   utter_ask_pizza_size:
   - text: What size would you like your pizza to be?
   utter_ask_pizza_type:
   - text: What kind of pizza would you like to buy?
+  utter_ask_num_people:
+  - text: For how many people do you want to book the table?
+  utter_ask_booking_time:
+  - text: At what time do you want to book the table?
+  utter_ask_inside_outside:
+  - text: Do you want to sit inside or outside?
+  utter_ask_client_name:
+  - text: Can you give me your name, please?
 
 session_config:
   session_expiration_time: 60
