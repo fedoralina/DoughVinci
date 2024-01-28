@@ -23,17 +23,37 @@ entities:
 slots:
   pizza_type:
     type: text
-    influence_conversation: true
+    #influence_conversation: true
     mappings:
     - type: from_entity
       entity: pizza_type
+      conditions:
+      - active_loop: pizza_order_form
+        requested_slot: pizza_type
   
   pizza_size:
     type: text
-    influence_conversation: true
+    #influence_conversation: true
     mappings:
     - type: from_entity
       entity: pizza_size
+      conditions:
+      - active_loop: pizza_order_form
+        requested_slot: pizza_size
+  # get order one by one
+  total_order:
+    type: any
+    mappings:
+      - type: custom
+
+  #requested_slot:
+  #  type: categorical
+  #  values:
+  #  - pizza_type
+  #  - pizza_size
+  #  mappings:
+  #  - type: custom
+  #  influence_conversation: true
   
 
 forms:
@@ -53,6 +73,7 @@ actions:
 - utter_ask_continue
 # custom actions
 - validate_pizza_order_form
+- action_total_order_add
 
 responses:
   utter_greet:
@@ -79,6 +100,8 @@ responses:
   utter_ask_pizza_type:
   - text: What kind of pizza would you like to buy?
 
+#TODO: add total order summary
+#TODO: add "you want anything else?"
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

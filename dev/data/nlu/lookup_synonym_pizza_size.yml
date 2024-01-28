@@ -21,6 +21,7 @@ nlu:
     - medium
     - avg
     - average
+    - standard
 - synonym: large
   examples: |
     - l
