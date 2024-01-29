@@ -2,20 +2,261 @@ version: "3.1"
 
 stories:
 
+### pizza order
+# default start for rest of stories
+# - story: beginning of flow
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - checkpoint: after_greet
+
+- story: what else?
+  steps:  
+  - action: utter_anything_else
+  - checkpoint: anything_else
+
+- story: nothing else
+  steps:
+  - checkpoint: anything_else
+  - intent: deny
+  - action: utter_all_set
+  - action: utter_order_final
+
+- story: something else
+  steps:
+  - checkpoint: anything_else
+  - or:
+    - intent: affirm
+    - intent: add_more_pizza
+  - action: action_reset_slots
+  - action: action_listen
+
+#TODO: check, dass nach reset dann auch action_listen macht
+
+
+
+# - story: trigger order directly
+#   steps:
+#   - checkpoint: after_greet
+#   - intent: inform_pizza_order
+#   - action: pizza_order_form
+#   - active_loop: pizza_order_form
+#   - slot_was_set:
+#     - requested_slot: pizza_type
+#   - slot_was_set:
+#     - requested_slot: pizza_size
+#   - action: action_total_order_add
+#   - action: utter_anything_else
+#   - checkpoint: anything_else
+
+
+# - story: pizza happy path (one pizza only)
+#   steps:
+#     - checkpoint: anything_else
+#     - intent: deny
+#     - action: utter_all_set
+
+
+# - story: pizza multiple orders
+#   steps:
+#     - checkpoint: anything_else
+#     - intent: affirm
+#     - action: action_reset_slots
+#     - checkpoint: after_greet
+
 # order overinformative user
+# - story: interactive_story_1
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: inform_pizza_order
+#     entities:
+#     - pizza_size: small
+#     - pizza_type: Funghi
+#   - slot_was_set:
+#     - pizza_size: small
+#   - slot_was_set:
+#     - pizza_type: Funghi
+#   - action: utter_submit
+#   - action: utter_pizza_slots
+#   - intent: goodbye
+#   - action: utter_goodbye
+
+# - story: interactive_story_1
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: faq
+#   - action: utter_faq
+#   - intent: faq
+#   - action: utter_faq
+#   - intent: buy_pizza
+#   - action: pizza_order_form
+#   - active_loop: pizza_order_form
+#   - slot_was_set:
+#     - requested_slot: pizza_type
+#   - intent: inform_pizza_order
+#     entities:
+#     - pizza_size: small
+#     - pizza_type: Margherita
+#   - slot_was_set:
+#     - pizza_type: Margherita
+#   - action: pizza_order_form
+#   - active_loop: pizza_order_form
+#   - slot_was_set:
+#     - pizza_type: Margherita
+#   - slot_was_set:
+#     - requested_slot: pizza_size
+#   - intent: inform_pizza_order
+#     entities:
+#     - pizza_size: small
+#   - slot_was_set:
+#     - pizza_size: small
+#   - action: pizza_order_form
+#   - slot_was_set:
+#     - pizza_size: small
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: action_total_order_add
+#   - slot_was_set:
+#     - total_order:
+#         '1':
+#           pizza_size: small
+#           pizza_type: Margherita
+#   - slot_was_set:
+#     - order_readable: small Margherita
+#   - action: utter_anything_else
+#   - intent: affirm
+#   - action: action_reset_slots
+#   - slot_was_set:
+#     - pizza_type: null
+#   - slot_was_set:
+#     - pizza_size: null
+#   - intent: add_more_pizza
+#   - action: pizza_order_form
+#   - active_loop: pizza_order_form
+#   - slot_was_set:
+#     - requested_slot: pizza_type
+#   - intent: inform_pizza_order
+#     entities:
+#     - pizza_type: Diavola
+#   - slot_was_set:
+#     - pizza_type: Diavola
+#   - action: pizza_order_form
+#   - slot_was_set:
+#     - pizza_type: Diavola
+#   - slot_was_set:
+#     - requested_slot: pizza_size
+#   - intent: inform_pizza_order
+#     entities:
+#     - pizza_size: large
+#   - slot_was_set:
+#     - pizza_size: large
+#   - action: pizza_order_form
+#   - slot_was_set:
+#     - pizza_size: large
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: action_total_order_add
+#   - slot_was_set:
+#     - total_order:
+#         '1':
+#           pizza_size: small
+#           pizza_type: Margherita
+#         '2':
+#           pizza_size: large
+#           pizza_type: Diavola
+#   - slot_was_set:
+#     - order_readable: small Margherita, and large Diavola
+#   - action: utter_anything_else
+#   - intent: deny
+#   - action: utter_all_set
+#   - action: utter_order_final
+
+
+### deny and affirm adding of pizza
 - story: interactive_story_1
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: inform
+  - intent: inform_pizza_order
+    entities:
+    - pizza_size: large
+    - pizza_type: Diavola
+  - slot_was_set:
+    - pizza_type: Diavola
+  - slot_was_set:
+    - pizza_size: large
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+  - slot_was_set:
+    - pizza_type: Diavola
+  - slot_was_set:
+    - pizza_size: large
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_total_order_add
+  - slot_was_set:
+    - total_order:
+        '1':
+          pizza_size: large
+          pizza_type: Diavola
+  - slot_was_set:
+    - order_readable: large Diavola
+  - action: utter_anything_else
+  - intent: affirm
+  - intent: add_more_pizza
+  - action: action_reset_slots
+  - slot_was_set:
+    - pizza_type: null
+  - slot_was_set:
+    - pizza_size: null
+  - intent: inform_pizza_order
     entities:
     - pizza_size: small
-    - pizza_type: Funghi
+    - pizza_type: vegggie
+  - slot_was_set:
+    - pizza_type: vegggie
+  - slot_was_set:
+    - pizza_size: small
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+  - slot_was_set:
+    - pizza_type: null
   - slot_was_set:
     - pizza_size: small
   - slot_was_set:
-    - pizza_type: Funghi
-  - action: utter_submit
-  - action: utter_pizza_slots
+    - requested_slot: pizza_type
+  - intent: buy_pizza
+  - intent: nlu_fallback
+  - intent: inform_pizza_order
+    entities:
+    - pizza_type: Diavola
+  - slot_was_set:
+    - pizza_type: Diavola
+  - action: pizza_order_form
+  - slot_was_set:
+    - pizza_type: Diavola
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_total_order_add
+  - slot_was_set:
+    - total_order:
+        '1':
+          pizza_size: large
+          pizza_type: Diavola
+        '2':
+          pizza_size: small
+          pizza_type: Diavola
+  - slot_was_set:
+    - order_readable: large Diavola, and small Diavola
+  - action: utter_anything_else
+  - intent: deny
+  - action: utter_all_set
+  - action: utter_order_final
   - intent: goodbye
   - action: utter_goodbye

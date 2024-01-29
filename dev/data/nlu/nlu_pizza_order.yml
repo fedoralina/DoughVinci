@@ -56,10 +56,18 @@ nlu:
     - [pepperoni](pizza_type) [small](pizza_size) pizza
     - want to oder [large](pizza_size) [cheese](pizza_type) pizza
     - want to order [medium](pizza_size) [pepp](pizza_type) pizza
-    - QWERT [small]{"entity": "pizza_size", "group": "1"} [funghi]{"entity": "pizza_type", "group": "1"}
+### - QWERT [small]{"entity": "pizza_size", "group": "1"} [funghi]{"entity": "pizza_type", "group": "1"}
 ###    - Give me a [small]{"entity": "pizza_size", "group": "1"} [margherita]{"entity": "pizza_type", "group": "1"} and a [large]{"entity": "pizza_size", "group": "2"} [pepperoni]{"entity": "pizza_type", "group": "2"} one
 ###    - Can I get a size [m]{"entity": "pizza_size", "group": "1"} [funghi]{"entity": "pizza_type", "group": "1"} and a [family-size]{"entity": "pizza_size", "group": "2"} [prosciutto]{"entity": "pizza_type", "group": "2"}
 ###    - I'd like a [big]{"entity": "pizza_size", "group": "1"} sized [veggie]{"entity": "pizza_type", "group": "1"} and a [large]{"entity": "pizza_size", "group": "2"} [diavola]{"entity": "pizza_type", "group": "2"} pizza please
 ###    - For the first order, give me a [huge]{"entity": "pizza_size", "group": "1"} [vegetariana]{"entity": "pizza_type", "group": "1"}. Then, for the second order, a [medium]{"entity": "pizza_size", "group": "2"} [prosciutto]{"entity": "pizza_type", "group": "2"} and finally, a [family-size]{"entity": "pizza_size", "group": "3"} [margherita]{"entity": "pizza_type", "group": "3"}
 ###    - I'd like a [small]{"entity": "pizza_size", "group": "1"} [funghi]{"entity": "pizza_type", "group": "1"}, a [large]{"entity": "pizza_size", "group": "2"} [pepperoni]{"entity": "pizza_type", "group": "2"}, and a [medium]{"entity": "pizza_size", "group": "3"} [diavola]{"entity": "pizza_type", "group": "3"}
 ### I'd like a small funghi, a large pepperoni and a medium diavola
+
+- intent: add_more_pizza
+  examples: |
+    - yeah, actually i want to add another pizza
+    - i want to extend the order
+    - i want to add a pizza
+    - more pizza
+    - another one

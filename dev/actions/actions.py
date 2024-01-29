@@ -73,17 +73,59 @@ class ValidatePizzaOrderForm(FormValidationAction):
         #         return {"pizza_type": None}
         
 class ActionTotalOrderAdd(Action):
+    order_str = ""
     def name(self):
         return 'action_total_order_add'
     
+    # get order elements in spoken form
+    def print_order(self, order):
+        order_elements = []
+        total_orders = len(order)
+        
+        for index, (_, pizza) in enumerate(order.items(), 1):
+            pizza_info = f"{pizza['pizza_size']} {pizza['pizza_type']}"
+            if total_orders == 1:
+                order_elements.append(pizza_info)
+            elif index < total_orders:
+                order_elements.append(pizza_info + ",")
+            else:
+                order_elements.append("and " + pizza_info)
+            
+            self.order_str = " ".join(order_elements)
+    
     def run(self, dispatcher, tracker, domain):
-        pizza_size = tracker.get_slot("pizza_size")
         pizza_type = tracker.get_slot("pizza_type")
+        pizza_size = tracker.get_slot("pizza_size")
 	    #pizza_amount = tracker.get_slot("pizza_amount")
         if pizza_size is None:
             pizza_size = "medium"
+
+        # safe order structured in a dict
+        total_order_dict = tracker.get_slot("total_order")
+
+        # todo: er schreibt nicht die order hin sondern nur leeres dict
+        if total_order_dict is None:
+            # dictionary never used
+            total_order_dict = {}
+
+        print(f"{total_order_dict} is here")
+        order_key = len(total_order_dict) + 1
+        total_order_dict[order_key] = {"pizza_size": pizza_size, "pizza_type": pizza_type}
         
-        old_order = tracker.get_slot("total_order")
-        order_details =  str(pizza_size + " " + pizza_type)
-		#order_details =  str(pizza_amount + " "+pizza_type + " is of "+pizza_size )
-        return[SlotSet("total_order", [order_details]) if old_order is None else SlotSet("total_order", [old_order[0]+' and '+ order_details])]
+        print(f"{total_order_dict} is included")
+        
+
+        self.print_order(total_order_dict)
+        #TODO: trigger here a message with the total order so far!! 
+        dispatcher.utter_message(f"Your total order contains {self.order_str}.")
+        
+        return[SlotSet("total_order", total_order_dict), SlotSet("order_readable", self.order_str)]
+    
+class ResetSlots(Action):
+    def name(self):
+        return 'action_reset_slots'
+    
+    def run(self, dispatcher, tracker, domain):
+        dispatcher.utter_message("Sure, tell me what you want to add.")
+        # remove existing pizza_type and pizza_size slots
+        return[SlotSet("pizza_type", None), SlotSet("pizza_size", None)]

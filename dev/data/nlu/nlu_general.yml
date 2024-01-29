@@ -11,10 +11,13 @@ nlu:
     - yeah
     - yes thanks
     - eah
-    - thanks bye
+    - yes pls
+    - yes please
 - intent: deny
   examples: |
     - no
+    - no thanks
+    - thank you, no
     - n
     - never
     - I don't think so
@@ -58,6 +61,7 @@ nlu:
     - see you around
     - bye bye
     - see you later
+    - thanks bye
 - intent: greet
   examples: |
     - hey

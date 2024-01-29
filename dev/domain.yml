@@ -1,80 +1,58 @@
 version: '3.1'
 intents:
-# general
+- add_more_pizza
 - affirm
+- buy_pizza
 - deny
 - faq
 - goodbye
 - greet
+- inform_pizza_order
+- order_readable
 - out_of_scope
-# pizza order
-- buy_pizza
-- inform
-# table booking
-# ...
-# forms
 - pizza_order_form
-
+- total_order
 entities:
 - pizza_type
 - pizza_size
-
-
 slots:
   pizza_type:
     type: text
-    #influence_conversation: true
     mappings:
     - type: from_entity
       entity: pizza_type
-      conditions:
-      - active_loop: pizza_order_form
-        requested_slot: pizza_type
-  
   pizza_size:
     type: text
-    #influence_conversation: true
     mappings:
     - type: from_entity
       entity: pizza_size
-      conditions:
-      - active_loop: pizza_order_form
-        requested_slot: pizza_size
-  # get order one by one
   total_order:
     type: any
     mappings:
-      - type: custom
-
-  #requested_slot:
-  #  type: categorical
-  #  values:
-  #  - pizza_type
-  #  - pizza_size
-  #  mappings:
-  #  - type: custom
-  #  influence_conversation: true
-  
-
+    - type: custom
+  order_readable:
+    type: any
+    mappings:
+    - type: custom
 forms:
   pizza_order_form:
     required_slots:
     - pizza_type
     - pizza_size
-
 actions:
-# responses
-- utter_goodbye
+- utter_all_set
 - utter_greet
+- utter_goodbye
+- action_reset_slots
+- action_total_order_add
+- utter_anything_else
+- utter_order_final
+- utter_faq
 - utter_pizza_slots
 - utter_submit
-- utter_faq
 - utter_out_of_scope
 - utter_ask_continue
-# custom actions
 - validate_pizza_order_form
-- action_total_order_add
-
 responses:
   utter_greet:
   - text: Welcome to DoughVinci, where art meets appetite. How can I assist you today?
@@ -99,11 +77,14 @@ responses:
   - text: What size would you like your pizza to be?
   utter_ask_pizza_type:
   - text: What kind of pizza would you like to buy?
-
-#TODO: add total order summary
-#TODO: add "you want anything else?"
+  utter_anything_else:
+  - text: Do you want anything else?
+  - text: So, can I support you with something else?
+  utter_all_set:
+  - text: Perfect, you're all set then!
+  - text: Alright, you're all set!
+  utter_order_final:
+  - text: Alright, your final order is {order_readable}
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
-
-
