@@ -3,15 +3,13 @@ nlu:
 #### lookup
 - lookup: booking_time
   examples: |
-    - 700
-    - 730
-    - 800
-    - 830
-    - 900
-    - 930
-    - 1000
+    - 7:00
+    - 7:30
+    - 8:00
+    - 8:30
+    - 9:00
 
-- synonym: '700'
+- synonym: '7:00'
   examples: |
     - seven
     - 7
@@ -21,17 +19,16 @@ nlu:
     - 7pm
     - 7 pm
 
-- synonym: '730'
+- synonym: '7:30'
   examples: |
     - seven thirty
     - 7 30
-    - 7:30
     - half past seven
     - half past 7
     - 7 30 pm
     - 7:30 pm
 
-- synonym: '800'
+- synonym: '8:00'
   examples: |
     - eight
     - 8
@@ -41,17 +38,16 @@ nlu:
     - 8pm
     - 8 pm
 
-- synonym: '830'
+- synonym: '8:30'
   examples: |
     - eight thirty
     - 8 30
-    - 8:30
     - half past eight
     - half past 8
     - 8 30 pm
     - 8:30 pm
 
-- synonym: '900'
+- synonym: '9:00'
   examples: |
     - nine
     - 9
@@ -60,23 +56,3 @@ nlu:
     - 9 o'clock
     - 9pm
     - 9 pm
-
-- synonym: '930'
-  examples: |
-    - nine thirty
-    - 9 30
-    - 9:30
-    - half past nine
-    - half past 9
-    - 9 30 pm
-    - 9:30 pm
-
-- synonym: '1000'
-  examples: |
-    - ten
-    - 10
-    - 10 o clock
-    - 10 oclock
-    - 10 o'clock
-    - 10pm
-    - 10 pm

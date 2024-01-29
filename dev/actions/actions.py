@@ -8,8 +8,8 @@ from rasa_sdk.types import DomainDict
 ALLOWED_PIZZA_SIZES = ["small", "medium", "large", "family-size"]
 ALLOWED_PIZZA_TYPES = ["Margherita", "Funghi", "Prosciutto", "Vegetariana", "Diavola"]
 
-ALLOWED_NUM_PEOPLE = [2,3,4,5,6,7,8]
-ALLOWED_BOOKING_TIME = [700, 730, 800, 830, 900, 930, 1000]
+ALLOWED_NUM_PEOPLE = ["2","3","4","5","6"]
+ALLOWED_BOOKING_TIME = ["7:00", "7:30", "8:00", "8:30", "9:00"]
 
 class ValidatePizzaOrderForm(FormValidationAction):
     def name(self) -> Text:
@@ -73,6 +73,21 @@ class ValidateTableBookingForm(FormValidationAction):
         return {"num_people": slot_value}
     
     # TODO: validate booking time
+    def validate_booking_time(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate `booking_time` value."""
+
+        if slot_value not in ALLOWED_NUM_PEOPLE:
+            dispatcher.utter_message(text=f"Please be aware: We only offer table from 2 to 8 people.")
+            return {"num_people": None}
+        dispatcher.utter_message(text=f"OK! I will reserve a table for {slot_value} people.")
+        return {"num_people": slot_value}
+    
     # TODO: validate inside outside
     # TODO: validate client name
 

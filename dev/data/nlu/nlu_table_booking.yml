@@ -14,33 +14,89 @@ nlu:
 
 - intent: inform_table_booking
   examples: |
+    - [two](num_people)
     - for [two](num_people)
     - for [two](num_people) people
-    - for [two](num_people) people, please
+    - [2](num_people)
     - for [2](num_people)
     - for [2](num_people) people
-    - for [2](num_people) people, please
     - we are [two](num_people)
     - we are [2](num_people) people
-    - a table for [two](num_people)
-    - a table for [two](num_people) people
-    - a table for [two](num_people) people, please
+    - for [my wife and me](num_people)
+    - for [my son and me](num_people)
+    - for [my daughter and me](num_people)    
+    - [three](num_people)
+    - for [three](num_people)
+    - for [three](num_people) people
+    - [3](num_people)
+    - for [3](num_people)
+    - for [3](num_people) people
+    - we are [three](num_people)
+    - we are [three](num_people) people
+    - [four](num_people)
+    - for [four](num_people)
+    - for [four](num_people) people
+    - [4](num_people)
+    - for [4](num_people)
+    - for [4](num_people) people
+    - we are [four](num_people)
+    - we are [four](num_people) people
+    - [five](num_people)
+    - for [five](num_people)
+    - for [five](num_people) people
+    - [5](num_people)
+    - for [5](num_people)
+    - for [5](num_people) people
+    - we are [five](num_people)
+    - we are [five](num_people) people
+    - [six](num_people)
+    - for [six](num_people)
+    - for [six](num_people) people
+    - [6](num_people)
+    - for [6](num_people)
+    - for [6](num_people) people
+    - we are [six](num_people)
+    - we are [six](num_people) people
+
+    - [7](booking_time)
     - at [7](booking_time)
-    - at [7](booking_time), please
-    - at [7](booking_time) o clock
-    - at [7](booking_time) o clock, please
     - at [7](booking_time) pm
-    - at [7](booking_time) pm, please
+    - [seven](booking_time)
+    - at [seven](booking_time)
     - at [seven](booking_time) pm
-    - at [seven](booking_time) pm, please
+    - [7:30](booking_time)
+    - at [7:30](booking_time)
+    - at [7:30](booking_time) pm
+    - [half past 7](booking_time)
+    - at [half past 7](booking_time)
+    - at [half past 7](booking_time) pm
+    - [8](booking_time)
+    - at [8](booking_time)
+    - at [8](booking_time) pm
+    - [eight](booking_time)
+    - at [eight](booking_time)
+    - at [eight](booking_time) pm
+    - [8:30](booking_time)
+    - at [8:30](booking_time)
+    - at [8:30](booking_time) pm
+    - [half past 8](booking_time)
+    - at [half past 8](booking_time)
+    - at [half past 8](booking_time) pm
+    - [9](booking_time)
+    - at [9](booking_time)
+    - at [9](booking_time) pm
+    - [nine](booking_time)
+    - at [nine](booking_time)
+    - at [nine](booking_time) pm
+
+   
     - [inside](inside_outside)
-    - [inside](inside_outside), please
     - i want to sit [inside](inside_outside)
     - we want to sit [inside](inside_outside)
     - [outside](inside_outside)
-    - [outside](inside_outside), please
     - i want to sit [outside](inside_outside)
     - we want to sit [outside](inside_outside)
+
     - my name is [John](client_name)
     - the name is [John](client_name)
     - its [John](client_name)

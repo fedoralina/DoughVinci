@@ -8,27 +8,21 @@ nlu:
     - 4
     - 5
     - 6
-    - 7
-    - 8
 
 - synonym: '2'
   examples: |
     - two
-    - me and my wife
     - my wife and me
-    - me and my son
     - my son and me
-    - me and my daughter
+    - my daughter and me
 
 - synonym: '3'
   examples: |
     - three
-    - thre
 
 - synonym: '4'
   examples: |
     - four
-    - fuor
 
 - synonym: '5'
   examples: |
@@ -37,12 +31,3 @@ nlu:
 - synonym: '6'
   examples: |
     - six
-
-- synonym: '7'
-  examples: |
-    - seven
-
-- synonym: '8'
-  examples: |
-    - eight
-    - eigt

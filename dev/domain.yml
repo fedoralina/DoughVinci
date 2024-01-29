@@ -47,6 +47,9 @@ slots:
     mappings:
     - type: from_entity
       entity: num_people
+      conditions:
+      - active_loop: table_booking_form
+        requested_slot: num_people
 
   booking_time:
     type: text
@@ -54,6 +57,9 @@ slots:
     mappings:
     - type: from_entity
       entity: booking_time
+      conditions:
+      - active_loop: table_booking_form
+        requested_slot: booking_time
   
   inside_outside:
     type: text
@@ -61,6 +67,9 @@ slots:
     mappings:
     - type: from_entity
       entity: inside_outside
+      conditions:
+      - active_loop: table_booking_form
+        requested_slot: inside_outside
   
   client_name:
     type: text
@@ -68,6 +77,9 @@ slots:
     mappings:
     - type: from_entity
       entity: client_name
+      conditions:
+      - active_loop: table_booking_form
+        requested_slot: client_name
 
 forms:
   pizza_order_form:
