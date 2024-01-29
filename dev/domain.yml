@@ -132,11 +132,11 @@ responses:
   utter_submit:
   - text: I will now order a pizza for you!
   utter_submit_table_booking:
-  - text: I will now book a table for you!
+  - text: TABLE FORM COMPLETE!
   utter_pizza_slots:
   - text: I will order a {pizza_size} {pizza_type} pizza.
   utter_table_slots:
-  - text: I will book a table for {num_people} people at {booking_time} o'clock for the name {client_name}. You will sit {inside_outside}.
+  - text: I will book a table for {num_people} people at {booking_time} pm for the name {client_name}. You will sit {inside_outside}.
   utter_ask_continue:
   - text: Are you sure you want to stop the form?
   utter_ask_pizza_size:

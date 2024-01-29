@@ -10,6 +10,7 @@ ALLOWED_PIZZA_TYPES = ["Margherita", "Funghi", "Prosciutto", "Vegetariana", "Dia
 
 ALLOWED_NUM_PEOPLE = ["2","3","4","5","6"]
 ALLOWED_BOOKING_TIME = ["7:00", "7:30", "8:00", "8:30", "9:00"]
+ALLOWED_SITTING_OPTIONS = ["inside", "outside"]
 
 class ValidatePizzaOrderForm(FormValidationAction):
     def name(self) -> Text:
@@ -67,12 +68,11 @@ class ValidateTableBookingForm(FormValidationAction):
         """Validate `num_people` value."""
 
         if slot_value not in ALLOWED_NUM_PEOPLE:
-            dispatcher.utter_message(text=f"Please be aware: We only offer table from 2 to 8 people.")
+            dispatcher.utter_message(text=f"I'm sorry that's not possible. Please be aware: We only offer table from 2 to 6 people. For how many persons you want me to reserve?")
             return {"num_people": None}
-        dispatcher.utter_message(text=f"OK! I will reserve a table for {slot_value} people.")
+        dispatcher.utter_message(text=f"OK! I will check for a table for {slot_value} people.")
         return {"num_people": slot_value}
     
-    # TODO: validate booking time
     def validate_booking_time(
         self,
         slot_value: Any,
@@ -82,13 +82,40 @@ class ValidateTableBookingForm(FormValidationAction):
     ) -> Dict[Text, Any]:
         """Validate `booking_time` value."""
 
-        if slot_value not in ALLOWED_NUM_PEOPLE:
-            dispatcher.utter_message(text=f"Please be aware: We only offer table from 2 to 8 people.")
-            return {"num_people": None}
-        dispatcher.utter_message(text=f"OK! I will reserve a table for {slot_value} people.")
-        return {"num_people": slot_value}
+        if slot_value not in ALLOWED_BOOKING_TIME:
+            dispatcher.utter_message(text=f"I'm sorry that's not possible. Please be aware: A table can ne booked only from 7pm to 9pm every half hour.")
+            return {"booking_time": None}
+        dispatcher.utter_message(text=f"Got it! For {slot_value} pm we have a free table.")
+        return {"booking_time": slot_value}
     
-    # TODO: validate inside outside
-    # TODO: validate client name
+    def validate_inside_outside(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate `inside_outside` value."""
 
+        if slot_value not in ALLOWED_SITTING_OPTIONS:
+            dispatcher.utter_message(text=f"Please specify if you want to sit inside or outside.")
+            return {"inside_outside": None}
+        dispatcher.utter_message(text=f"Good choice! We have beautiful spots {slot_value}.")
+        return {"inside_outside": slot_value}
+    
+    # TODO: validate client name
+    def validate_client_name(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate `client_name` value."""
+
+        if not isinstance(slot_value, str):
+            dispatcher.utter_message(text=f"Please provide me your name for the reservation.")
+            return {"client_name": None}
+        dispatcher.utter_message(text=f"Thank you for your reservation, {slot_value}!.")
+        return {"client_name": slot_value}
     
