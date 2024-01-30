@@ -19,23 +19,6 @@ rules:
   - action: utter_submit
   - action: utter_pizza_slots
 
-- rule: Activate Table Booking Form
-  steps:
-  - intent: book_table
-  - action: table_booking_form
-  - active_loop: table_booking_form
-
-- rule: Submit Table Booking Form
-  condition:
-  - active_loop: table_booking_form
-  steps:
-  - action: table_booking_form
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-  - action: utter_submit_table_booking
-  - action: utter_table_slots
-
   #### continues the form after bot challange
 - rule: Interruption in Pizza Form
   condition:

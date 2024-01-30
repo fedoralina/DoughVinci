@@ -17,3 +17,4 @@ rules:
     - requested_slot: null
   - action: utter_submit_table_booking
   - action: utter_table_slots
+
