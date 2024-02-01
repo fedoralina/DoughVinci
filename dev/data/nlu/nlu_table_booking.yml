@@ -19,6 +19,14 @@ nlu:
     - i want to celebrate my birthday
     - i want your place for an event
     - i want to celebrate a big party
+    - can your place be booked for a party
+    - can i book your restaurant for a party
+    - can i book your restaurant for a birhtday
+    - can we celebrate a birthday at your place
+    - can we celebrate an anniversary at your place
+    - do you have space for a larger party
+    - do you have the option for a private party
+    - do you have capacity for a large event
 
 
 - intent: inform_table_booking
@@ -355,3 +363,5 @@ nlu:
     - [Emma](client_name)
     - [Hannah](client_name)
     - [Grace](client_name)
+
+

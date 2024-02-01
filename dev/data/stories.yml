@@ -68,7 +68,6 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
-  - action: utter_submit_table_booking
   - action: utter_table_slots
 
 - story: interactive_story_1
@@ -119,7 +118,6 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
-  - action: utter_submit_table_booking
   - action: utter_table_slots
 
 - story: interactive_story_1
@@ -170,7 +168,6 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
-  - action: utter_submit_table_booking
   - action: utter_table_slots
 
 - story: interactive_story_1
@@ -221,7 +218,6 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
-  - action: utter_submit_table_booking
   - action: utter_table_slots
 
 - story: interactive_story_1
@@ -272,7 +268,6 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
-  - action: utter_submit_table_booking
   - action: utter_table_slots
 
 - story: interactive_story_1
@@ -314,5 +309,4 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
-  - action: utter_submit_table_booking
   - action: utter_table_slots
