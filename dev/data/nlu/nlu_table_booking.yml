@@ -12,6 +12,15 @@ nlu:
     - do you have a free table
     - can i eat at your place
 
+- intent: book_event
+  examples: |
+    - i want an event
+    - i want to book all your tables
+    - i want to celebrate my birthday
+    - i want your place for an event
+    - i want to celebrate a big party
+
+
 - intent: inform_table_booking
   examples: |
     - [two](num_people)
@@ -68,6 +77,8 @@ nlu:
     - at [7:30](booking_time)
     - at [7:30](booking_time) pm
     - [half past 7](booking_time)
+    - at [half past seven]{"entity": "booking_time", "value": "7:30"}
+    - [half past seven]{"entity": "booking_time", "value": "7:30"}
     - at [half past 7](booking_time)
     - at [half past 7](booking_time) pm
     - [8](booking_time)
@@ -82,13 +93,14 @@ nlu:
     - [half past 8](booking_time)
     - at [half past 8](booking_time)
     - at [half past 8](booking_time) pm
+    - at [half past eight]{"entity": "booking_time", "value": "8:30"}
+    - [half past eight]{"entity": "booking_time", "value": "8:30"}
     - [9](booking_time)
     - at [9](booking_time)
     - at [9](booking_time) pm
     - [nine](booking_time)
     - at [nine](booking_time)
     - at [nine](booking_time) pm
-
    
     - [inside](inside_outside)
     - i want to sit [inside](inside_outside)
@@ -97,7 +109,249 @@ nlu:
     - i want to sit [outside](inside_outside)
     - we want to sit [outside](inside_outside)
 
+    - i want a table at [7](booking_time) for [2](num_people) 
+    - i want a table at [7](booking_time) for [3](num_people) 
+    - i want a table at [7](booking_time) for [4](num_people) 
+    - i want a table at [7](booking_time) for [5](num_people) 
+    - i want a table at [7](booking_time) for [6](num_people) 
+    - i want a table at [half past 7](booking_time) for [2](num_people) 
+    - i want a table at [half past 7](booking_time) for [3](num_people) 
+    - i want a table at [half past 7](booking_time) for [4](num_people) 
+    - i want a table at [half past 7](booking_time) for [5](num_people) 
+    - i want a table at [half past 7](booking_time) for [6](num_people) 
+    - i want a table at [8](booking_time) for [2](num_people) 
+    - i want a table at [8](booking_time) for [3](num_people) 
+    - i want a table at [8](booking_time) for [4](num_people) 
+    - i want a table at [8](booking_time) for [5](num_people) 
+    - i want a table at [8](booking_time) for [6](num_people) 
+    - i want a table at [half past 8](booking_time) for [2](num_people) 
+    - i want a table at [half past 8](booking_time) for [3](num_people) 
+    - i want a table at [half past 8](booking_time) for [4](num_people) 
+    - i want a table at [half past 8](booking_time) for [5](num_people) 
+    - i want a table at [half past 8](booking_time) for [6](num_people) 
+    - i want a table at [9](booking_time) for [2](num_people) 
+    - i want a table at [9](booking_time) for [3](num_people) 
+    - i want a table at [9](booking_time) for [4](num_people) 
+    - i want a table at [9](booking_time) for [5](num_people) 
+    - i want a table at [9](booking_time) for [6](num_people) 
+    - i want a table at [7](booking_time) pm for [2](num_people) people
+    - i want a table at [7](booking_time) pm for [3](num_people) people
+    - i want a table at [7](booking_time) pm for [4](num_people) people
+    - i want a table at [7](booking_time) pm for [5](num_people) people
+    - i want a table at [7](booking_time) pm for [6](num_people) people
+    - i want a table at [half past 7](booking_time) pm for [2](num_people) people 
+    - i want a table at [half past 7](booking_time) pm for [3](num_people) people 
+    - i want a table at [half past 7](booking_time) pm for [4](num_people) people 
+    - i want a table at [half past 7](booking_time) pm for [5](num_people) people 
+    - i want a table at [half past 7](booking_time) pm for [6](num_people) people 
+    - i want a table at [8](booking_time) pm for [2](num_people) people 
+    - i want a table at [8](booking_time) pm for [3](num_people) people 
+    - i want a table at [8](booking_time) pm for [4](num_people) people 
+    - i want a table at [8](booking_time) pm for [5](num_people) people 
+    - i want a table at [8](booking_time) pm for [6](num_people) people 
+    - i want a table at [half past 8](booking_time) pm for [2](num_people) people 
+    - i want a table at [half past 8](booking_time) pm for [3](num_people) people 
+    - i want a table at [half past 8](booking_time) pm for [4](num_people) people 
+    - i want a table at [half past 8](booking_time) pm for [5](num_people) people 
+    - i want a table at [half past 8](booking_time) pm for [6](num_people) people 
+    - i want a table at [9](booking_time) pm for [2](num_people) people 
+    - i want a table at [9](booking_time) pm for [3](num_people) people 
+    - i want a table at [9](booking_time) pm for [4](num_people) people 
+    - i want a table at [9](booking_time) pm for [5](num_people) people 
+    - i want a table at [9](booking_time) pm for [6](num_people) people 
+    
+
+    - i want a table for [two](num_people)
+    - i want a table for [three](num_people)
+    - i want a table for [four](num_people)
+    - i want a table for [five](num_people)
+    - i want a table for [six](num_people)
+    - i want a table for [2](num_people)
+    - i want a table for [3](num_people)
+    - i want a table for [4](num_people)
+    - i want a table for [5](num_people)
+    - i want a table for [6](num_people)
+    - i want a table for [two](num_people) people
+    - i want a table for [three](num_people) people
+    - i want a table for [four](num_people) people
+    - i want a table for [five](num_people) people
+    - i want a table for [six](num_people) people
+    - i want a table for [2](num_people) people
+    - i want a table for [3](num_people) people
+    - i want a table for [4](num_people) people
+    - i want a table for [5](num_people) people
+    - i want a table for [6](num_people) people
+    - i want a table for [two](num_people) people at [7](booking_time)
+    - i want a table for [three](num_people) people at [7](booking_time)
+    - i want a table for [four](num_people) people at [7](booking_time)
+    - i want a table for [five](num_people) people at [7](booking_time)
+    - i want a table for [six](num_people) people at [7](booking_time)
+    - i want a table for [2](num_people) people at [7](booking_time)
+    - i want a table for [3](num_people) people at [7](booking_time)
+    - i want a table for [4](num_people) people at [7](booking_time)
+    - i want a table for [5](num_people) people at [7](booking_time)
+    - i want a table for [6](num_people) people at [7](booking_time)
+    - i want a table for [two](num_people) people at [half past 7](booking_time)
+    - i want a table for [three](num_people) people at [half past 7](booking_time)
+    - i want a table for [four](num_people) people at [half past 7](booking_time)
+    - i want a table for [five](num_people) people at [half past 7](booking_time)
+    - i want a table for [six](num_people) people at [half past 7](booking_time)
+    - i want a table for [2](num_people) people at [half past 7](booking_time)
+    - i want a table for [3](num_people) people at [half past 7](booking_time)
+    - i want a table for [4](num_people) people at [half past 7](booking_time)
+    - i want a table for [5](num_people) people at [half past 7](booking_time)
+    - i want a table for [6](num_people) people at [half past 7](booking_time)
+    - i want a table for [two](num_people) people at [8](booking_time)
+    - i want a table for [three](num_people) people at [8](booking_time)
+    - i want a table for [four](num_people) people at [8](booking_time)
+    - i want a table for [five](num_people) people at [8](booking_time)
+    - i want a table for [six](num_people) people at [8](booking_time)
+    - i want a table for [2](num_people) people at [8](booking_time)
+    - i want a table for [3](num_people) people at [8](booking_time)
+    - i want a table for [4](num_people) people at [8](booking_time)
+    - i want a table for [5](num_people) people at [8](booking_time)
+    - i want a table for [6](num_people) people at [8](booking_time)
+    - i want a table for [two](num_people) people at [half past 8](booking_time)
+    - i want a table for [three](num_people) people at [half past 8](booking_time)
+    - i want a table for [four](num_people) people at [half past 8](booking_time)
+    - i want a table for [five](num_people) people at [half past 8](booking_time)
+    - i want a table for [six](num_people) people at [half past 8](booking_time)
+    - i want a table for [2](num_people) people at [half past 8](booking_time)
+    - i want a table for [3](num_people) people at [half past 8](booking_time)
+    - i want a table for [4](num_people) people at [half past 8](booking_time)
+    - i want a table for [5](num_people) people at [half past 8](booking_time)
+    - i want a table for [6](num_people) people at [half past 8](booking_time)
+    - i want a table for [two](num_people) people at [9](booking_time)
+    - i want a table for [three](num_people) people at [9](booking_time)
+    - i want a table for [four](num_people) people at [9](booking_time)
+    - i want a table for [five](num_people) people at [9](booking_time)
+    - i want a table for [six](num_people) people at [9](booking_time)
+    - i want a table for [2](num_people) people at [9](booking_time)
+    - i want a table for [3](num_people) people at [9](booking_time)
+    - i want a table for [4](num_people) people at [9](booking_time)
+    - i want a table for [5](num_people) people at [9](booking_time)
+    - i want a table for [6](num_people) people at [9](booking_time)
+
+
+- intent: inform_client_name
+  examples: |
     - my name is [John](client_name)
-    - the name is [John](client_name)
-    - its [John](client_name)
+    - my name is [Francesca](client_name)
+    - my name is [Mario](client_name)
+    - my name is [Anna](client_name)
+    - my name is [Lena](client_name)
+    - my name is [Malik](client_name)
+    - my name is [Deniz](client_name)
+    - my name is [Chris](client_name)
+    - my name is [Egidia](client_name)
+    - my name is [Carlos](client_name)
+    - my name is [Toni](client_name)
+    - my name is [Giuliano](client_name)
+    - my name is [Raul](client_name)
+    - my name is [Leo](client_name)
+    - my name is [Vincent](client_name)
+    - my name is [Alex](client_name)
+    - my name is [Nina](client_name)
+    - my name is [Nora](client_name)
+    - my name is [Oscar](client_name)
+    - my name is [Elena](client_name)
+    - my name is [Elisa](client_name)
+    - my name is [Brian](client_name)
+    - my name is [James](client_name)
+    - my name is [Robert](client_name)
+    - my name is [Michael](client_name)
+    - my name is [William](client_name)
+    - my name is [David](client_name)
+    - my name is [Richard](client_name)
+    - my name is [Joseph](client_name)
+    - my name is [Thomas](client_name)
+    - my name is [Charles](client_name)
+    - my name is [Christopher](client_name)
+    - my name is [Daniel](client_name)
+    - my name is [Matthew](client_name)
+    - my name is [Anthony](client_name)
+    - my name is [Mark](client_name)
+    - my name is [Donald](client_name)
+    - my name is [Brian](client_name)
+    - my name is [Kevin](client_name)
+    - my name is [Edward](client_name)
+    - my name is [George](client_name)
+    - my name is [Mary](client_name)
+    - my name is [Patricia](client_name)
+    - my name is [Jennifer](client_name)
+    - my name is [Linda](client_name)
+    - my name is [Elizabeth](client_name)
+    - my name is [Barbara](client_name)
+    - my name is [Susan](client_name)
+    - my name is [Jessica](client_name)
+    - my name is [Sarah](client_name)
+    - my name is [Karen](client_name)
+    - my name is [Nancy](client_name)
+    - my name is [Lisa](client_name)
+    - my name is [Betty](client_name)
+    - my name is [Dorothy](client_name)
+    - my name is [Emily](client_name)
+    - my name is [Megan](client_name)
+    - my name is [Emma](client_name)
+    - my name is [Hannah](client_name)
+    - my name is [Grace](client_name)
     - [John](client_name)
+    - [Francesca](client_name)
+    - [Mario](client_name)
+    - [Anna](client_name)
+    - [Lena](client_name)
+    - [Malik](client_name)
+    - [Deniz](client_name)
+    - [Chris](client_name)
+    - [Egidia](client_name)
+    - [Carlos](client_name)
+    - [Toni](client_name)
+    - [Giuliano](client_name)
+    - [Raul](client_name)
+    - [Leo](client_name)
+    - [Vincent](client_name)
+    - [Alex](client_name)
+    - [Nina](client_name)
+    - [Nora](client_name)
+    - [Oscar](client_name)
+    - [Elena](client_name)
+    - [Elisa](client_name)
+    - [Brian](client_name)
+    - [James](client_name)
+    - [Robert](client_name)
+    - [Michael](client_name)
+    - [William](client_name)
+    - [David](client_name)
+    - [Richard](client_name)
+    - [Joseph](client_name)
+    - [Thomas](client_name)
+    - [Charles](client_name)
+    - [Christopher](client_name)
+    - [Daniel](client_name)
+    - [Matthew](client_name)
+    - [Anthony](client_name)
+    - [Mark](client_name)
+    - [Donald](client_name)
+    - [Brian](client_name)
+    - [Kevin](client_name)
+    - [Edward](client_name)
+    - [George](client_name)
+    - [Mary](client_name)
+    - [Patricia](client_name)
+    - [Jennifer](client_name)
+    - [Linda](client_name)
+    - [Elizabeth](client_name)
+    - [Barbara](client_name)
+    - [Susan](client_name)
+    - [Jessica](client_name)
+    - [Sarah](client_name)
+    - [Karen](client_name)
+    - [Nancy](client_name)
+    - [Lisa](client_name)
+    - [Betty](client_name)
+    - [Dorothy](client_name)
+    - [Emily](client_name)
+    - [Megan](client_name)
+    - [Emma](client_name)
+    - [Hannah](client_name)
+    - [Grace](client_name)

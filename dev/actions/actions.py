@@ -103,7 +103,6 @@ class ValidateTableBookingForm(FormValidationAction):
         dispatcher.utter_message(text=f"Good choice! We have beautiful spots {slot_value}.")
         return {"inside_outside": slot_value}
     
-    # TODO: validate client name
     def validate_client_name(
         self,
         slot_value: Any,

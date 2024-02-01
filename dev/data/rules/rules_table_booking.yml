@@ -3,7 +3,9 @@ version: "3.1"
 rules:
 - rule: Activate Table Booking Form
   steps:
-  - intent: book_table
+  - or:
+    - intent: book_table
+    - intent: inform_table_booking
   - action: table_booking_form
   - active_loop: table_booking_form
 
@@ -18,3 +20,22 @@ rules:
   - action: utter_submit_table_booking
   - action: utter_table_slots
 
+
+
+- rule: Interruption in Table Booking Form
+  condition:
+  - active_loop: table_booking_form
+  steps:
+  - intent: faq
+  - action: utter_faq
+  - action: table_booking_form
+  - active_loop: table_booking_form
+
+- rule: Out of Scope in Table Booking Form
+  condition:
+  - active_loop: table_booking_form
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+  - action: table_booking_form
+  - active_loop: table_booking_form

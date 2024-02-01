@@ -38,7 +38,7 @@ rules:
   # Condition that form is active.
   - active_loop: pizza_order_form
   steps:
-  # This unhappy path handles logic for bot challange and restaurant info
+  # This unhappy path handles logic for out of scope user input
   - intent: out_of_scope
   - action: utter_out_of_scope
   # Return to form after handling the faq intent
