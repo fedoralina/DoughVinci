@@ -1,39 +1,20 @@
 version: "3.1"
 
 rules:
-#TODO: copied from repo
 - rule: Activate Pizza Form
   steps:
-  - intent: buy_pizza
+  - or:
+    - intent: inform_pizza_order
+    - intent: buy_pizza
   - action: pizza_order_form
   - active_loop: pizza_order_form
   - slot_was_set:
     - requested_slot: pizza_type
   - slot_was_set:
     - requested_slot: pizza_size
+    
 
-- rule: Activate Pizza Form part 2
-  steps: 
-  - intent: inform_pizza_order
-  - action: pizza_order_form
-  - active_loop: pizza_order_form
-  - slot_was_set:
-    - requested_slot: pizza_type
-  - slot_was_set:
-    - requested_slot: pizza_size
-
-# - rule: Submit Pizza Form
-#   condition:
-#   - active_loop: pizza_order_form
-#   steps:
-#   - action: pizza_order_form
-#   - active_loop: null
-#   - slot_was_set:
-#     - requested_slot: null
-#   - action: utter_submit
-#   - action: utter_pizza_slots
-
-
+#### sumit pizza order form by adding all to total_order, ask for more orders
 - rule: Submit Pizza Form
   condition:
   - active_loop: pizza_order_form
@@ -42,12 +23,10 @@ rules:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
+    - multiple_order_flag: null
   - action: action_total_order_add
   - action: utter_anything_else
-  # - intent: deny
-  # - action: utter_all_set
-  #- action: utter_submit
-  #- action: utter_pizza_slots
+
 
   #### continues the form after bot challange
 - rule: Interruption in Pizza Form

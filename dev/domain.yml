@@ -12,6 +12,7 @@ intents:
 - out_of_scope
 - pizza_order_form
 - total_order
+- multiple_orders
 entities:
 - pizza_type
 - pizza_size
@@ -34,6 +35,12 @@ slots:
     type: any
     mappings:
     - type: custom
+  # should be triggered only in pizza inform intent, set to true and only in pizza form
+  multiple_order_flag:
+    type: any
+    mappings:
+    - type: custom
+
 forms:
   pizza_order_form:
     required_slots:
@@ -43,8 +50,6 @@ actions:
 - utter_all_set
 - utter_greet
 - utter_goodbye
-- action_reset_slots
-- action_total_order_add
 - utter_anything_else
 - utter_order_final
 - utter_faq
@@ -52,16 +57,23 @@ actions:
 - utter_submit
 - utter_out_of_scope
 - utter_ask_continue
+- utter_do_one_by_one
 - validate_pizza_order_form
+- action_reset_slots
+- action_reset_all_slots
+- action_total_order_add
 responses:
   utter_greet:
   - text: Welcome to DoughVinci, where art meets appetite. How can I assist you today?
   utter_goodbye:
   - text: Bye
   utter_faq/bot_challenge:
-  - text: I am DoughVinci's bot Micheal, supporting the restaurant in taking orders for takeaway and making table bookings.
+  - text: I am Micheal, DoughVinci's assistant with the aim to support the restaurant in taking orders for takeaway and making table bookings.
   utter_faq/ask_bot_tasks:
   - text: My tasks include taking orders for pizza and drinks for takeaway as well as making table bookings for our restaurant.
+  utter_faq/whats_my_order:
+  - text: So far, your order contains {order_readable}.
+  - text: For now your order includes {order_readable}.
   utter_faq/request_restaurant_location:
   - text: DoughVinci is located in Via dei Solteri 35, in Trento.
   utter_out_of_scope:
@@ -84,7 +96,9 @@ responses:
   - text: Perfect, you're all set then!
   - text: Alright, you're all set!
   utter_order_final:
-  - text: Alright, your final order is {order_readable}
+  - text: Alright, your final order is {order_readable}.
+  utter_do_one_by_one:
+  - text: Unfortunately I am just a small town assistant, living in a complex world. I cannot process multiple orders at once. Please give me your orders again one by one.
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

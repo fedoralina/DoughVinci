@@ -49,6 +49,13 @@ nlu:
     - where are you guys?
     - where's my pizza?
     - what's your address?
+- intent: faq/whats_my_order
+  examples: |
+    - can you repeat my order so far?
+    - whats my order
+    - what's my order
+    - summarize order
+    - what did i order so far
 - intent: goodbye
   examples: |
     - cu

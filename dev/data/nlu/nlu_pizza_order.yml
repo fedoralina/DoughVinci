@@ -56,6 +56,8 @@ nlu:
     - [pepperoni](pizza_type) [small](pizza_size) pizza
     - want to oder [large](pizza_size) [cheese](pizza_type) pizza
     - want to order [medium](pizza_size) [pepp](pizza_type) pizza
+    - give me a [small](pizza_size) [margherita](pizza_type) and a [large](pizza_size) [pepperoni](pizza_type) one
+    - can I get a size [m](pizza_size) [funghi](pizza_type), a [family-size](pizza_size) [prosciutto](pizza_type) [and](multiple_order_flag) a [diavola](pizza_type)
 ### - QWERT [small]{"entity": "pizza_size", "group": "1"} [funghi]{"entity": "pizza_type", "group": "1"}
 ###    - Give me a [small]{"entity": "pizza_size", "group": "1"} [margherita]{"entity": "pizza_type", "group": "1"} and a [large]{"entity": "pizza_size", "group": "2"} [pepperoni]{"entity": "pizza_type", "group": "2"} one
 ###    - Can I get a size [m]{"entity": "pizza_size", "group": "1"} [funghi]{"entity": "pizza_type", "group": "1"} and a [family-size]{"entity": "pizza_size", "group": "2"} [prosciutto]{"entity": "pizza_type", "group": "2"}
