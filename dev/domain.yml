@@ -13,6 +13,8 @@ intents:
 - pizza_order_form
 - total_order
 - multiple_orders
+- what_pizza_you_have
+- what_size_you_have
 entities:
 - pizza_type
 - pizza_size
@@ -27,6 +29,11 @@ slots:
     mappings:
     - type: from_entity
       entity: pizza_size
+  #requested_slot:
+  #  type: categorical
+  #  mappings:
+  #  - type: custom
+  #  influence_conversation: true
   total_order:
     type: any
     mappings:
@@ -36,10 +43,10 @@ slots:
     mappings:
     - type: custom
   # should be triggered only in pizza inform intent, set to true and only in pizza form
-  multiple_order_flag:
-    type: any
-    mappings:
-    - type: custom
+  # multiple_order_flag:
+  #   type: any
+  #   mappings:
+  #   - type: custom
 
 forms:
   pizza_order_form:
@@ -62,6 +69,8 @@ actions:
 - action_reset_slots
 - action_reset_all_slots
 - action_total_order_add
+- action_pizza_type_information
+- action_pizza_size_information
 responses:
   utter_greet:
   - text: Welcome to DoughVinci, where art meets appetite. How can I assist you today?
@@ -87,8 +96,10 @@ responses:
   - text: Are you sure you want to stop the form?
   utter_ask_pizza_size:
   - text: What size would you like your pizza to be?
+  - text: What pizza size would you like?
   utter_ask_pizza_type:
   - text: What kind of pizza would you like to buy?
+  - text: Which pizza do you want?
   utter_anything_else:
   - text: Do you want anything else?
   - text: So, can I support you with something else?

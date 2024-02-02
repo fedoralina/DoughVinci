@@ -15,14 +15,13 @@ class ValidatePizzaOrderForm(FormValidationAction):
     def run(self, dispatcher, tracker, domain):
         user_message = tracker.latest_message.get('text')
 
-        #TODO: remove order flag if not required in the future - bc now just for debugging
+        #TODO: does user want to be asked "anything else" when bot says order one by one and user already made two orders?
+        #TODO: so should we add another rule for this kind of flow or too complex?
         # trigger logic to make user order one by one
         if "and" in user_message:
             # deactivate loop to not just continue again, use action_listen to continue with user input after utterance of information
             dispatcher.utter_message(response="utter_do_one_by_one")
-            return[SlotSet("pizza_type", None), SlotSet("pizza_size", None), SlotSet("multiple_order_flag", True), ActiveLoop(None), FollowupAction("action_listen")]
-        
-        return[SlotSet("multiple_order_flag", None)]
+            return[SlotSet("pizza_type", None), SlotSet("pizza_size", None), ActiveLoop(None), FollowupAction("action_listen")]
 
            
     def validate_pizza_size(
@@ -100,6 +99,29 @@ class ActionTotalOrderAdd(Action):
         dispatcher.utter_message(f"Your total order contains {self.order_str}.")
         
         return[SlotSet("total_order", total_order_dict), SlotSet("order_readable", self.order_str)]
+
+class ActionPizzaTypeInformation(Action):
+
+    def name(self):
+        return "action_pizza_type_information"
+    
+    def run(self, dispatcher, tracker, domain):
+        # give information and trigger question again
+        pizza_offer = ", ".join(pizza for pizza in ALLOWED_PIZZA_TYPES[:-1]) + ", and " + ALLOWED_PIZZA_TYPES[-1]
+        dispatcher.utter_message(f"We offer {pizza_offer}.")
+        return []
+    
+class ActionPizzaSizeInformation(Action):
+
+    def name(self):
+        return "action_pizza_size_information"
+    
+    def run(self, dispatcher, tracker, domain):
+        # give information and trigger question again
+        size_offer = ", ".join(size for size in ALLOWED_PIZZA_SIZES[:-1]) + ", and " + ALLOWED_PIZZA_SIZES[-1]
+        dispatcher.utter_message(f"We offer {size_offer}.")
+        return []
+
 
 class ActionResetAllSlots(Action):
 
