@@ -365,3 +365,45 @@ nlu:
     - [Grace](client_name)
 
 
+- intent: change_table_booking
+  examples: |
+    - actually, change the table size to [2](num_people) people
+    - actually, change the table size to [3](num_people) people
+    - actually, change the table size to [4](num_people) people
+    - actually, change the table size to [5](num_people) people
+    - actually, change the table size to [6](num_people) people
+    - can i change the amount of people to [2](num_people)
+    - can i change the amount of people to [3](num_people)
+    - can i change the amount of people to [4](num_people)
+    - can i change the amount of people to [5](num_people)
+    - can i change the amount of people to [6](num_people)
+    - please change the table size to [2](num_people) people
+    - please change the table size to [3](num_people) people
+    - please change the table size to [4](num_people) people
+    - please change the table size to [5](num_people) people
+    - please change the table size to [6](num_people) people
+
+    - actually, change the time to [7](booking_time) pm
+    - actually, change the time to [7:30](booking_time) pm
+    - actually, change the time to [8](booking_time) pm
+    - actually, change the time to [8:30](booking_time) pm
+    - actually, change the time to [9](booking_time) pm
+    - can i change the booking time to [7](booking_time) pm
+    - can i change the booking time to [7:30](booking_time) pm
+    - can i change the booking time to [8](booking_time) pm
+    - can i change the booking time to [8:30](booking_time) pm
+    - can i change the booking time to [9](booking_time) pm
+    - please change the booking time to [7](booking_time) pm
+    - please change the booking time to [7:30](booking_time) pm
+    - please change the booking time to [8](booking_time) pm
+    - please change the booking time to [8:30](booking_time) pm
+    - please change the booking time to [9](booking_time) pm
+
+    - can we sit [outside](inside_outside) instead
+    - can we sit [inside](inside_outside) instead
+    - i want to change to a table [outside](inside_outside)
+    - i want to change to a table [inside](inside_outside)
+    - please change the table location to [outside](inside_outside)
+    - please change the table location to [inside](inside_outside)
+
+

@@ -49,45 +49,45 @@ nlu:
 
 - intent: faq/dogs_allowed
   examples: |
-  - can we bring our dog
-  - can our dog also come
-  - are dogs allowed
-  - can i bring my dog with me
-  - i have a dog
-  - i want to bring my dog
+    - can we bring our dog
+    - can our dog also come
+    - are dogs allowed
+    - can i bring my dog with me
+    - i have a dog
+    - i want to bring my dog
 
 - intent: faq/how_many_people
   examples: |
-  - what is your biggest table
-  - for how many people can we book
-  - how many seats do you have
-  - what is the maximum capacity
-  - how many people can sit on one table
-  - how many people can sit
-  - how many seats
+    - what is your biggest table
+    - for how many people can we book
+    - how many seats do you have
+    - what is the maximum capacity
+    - how many people can sit on one table
+    - how many people can sit
+    - how many seats
 
 - intent: faq/opening_hours
   examples: |
-  - what are your opening hours
-  - when are you open
-  - when can i come to eat
-  - when can i book a table
-  - how long are you open
-  - when do you close
-  - when do you open
-  - are you open
-  - are you closed
+    - what are your opening hours
+    - when are you open
+    - when can i come to eat
+    - when can i book a table
+    - how long are you open
+    - when do you close
+    - when do you open
+    - are you open
+    - are you closed
 
 - intent: faq/outside_tables
   examples: |
-  - can we eat outside
-  - do you have tables outside
-  - is it possible to eat outside
-  - are your tables outside nice
-  - are the tables outside roofed
-  - is it cold if we sit outside
-  - are threre heaters for the places outside
-  - can we sit outside
+    - can we eat outside
+    - do you have tables outside
+    - is it possible to eat outside
+    - are your tables outside nice
+    - are the tables outside roofed
+    - is it cold if we sit outside
+    - are threre heaters for the places outside
+    - can we sit outside
 
 - intent: goodbye
   examples: |

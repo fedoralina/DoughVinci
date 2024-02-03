@@ -12,9 +12,10 @@ intents:
 - inform
 # table booking
 - book_table
-- book event
+- book_event
 - inform_table_booking
 - inform_client_name
+- change_table_booking
 # forms
 - pizza_order_form
 - table_booking_form
@@ -117,6 +118,7 @@ actions:
 # custom actions
 - validate_pizza_order_form
 - validate_table_booking_form
+- action_change_table_booking
 
 responses:
   utter_greet:

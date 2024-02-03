@@ -1,7 +1,7 @@
 from typing import Text, List, Any, Dict
 
 from rasa_sdk import Tracker, FormValidationAction, Action
-from rasa_sdk.events import EventType
+from rasa_sdk.events import EventType, FollowupAction, SlotSet, ActiveLoop
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 
@@ -11,6 +11,11 @@ ALLOWED_PIZZA_TYPES = ["Margherita", "Funghi", "Prosciutto", "Vegetariana", "Dia
 ALLOWED_NUM_PEOPLE = ["2","3","4","5","6"]
 ALLOWED_BOOKING_TIME = ["7:00", "7:30", "8:00", "8:30", "9:00"]
 ALLOWED_SITTING_OPTIONS = ["inside", "outside"]
+
+
+
+class SharedVariables:
+    table_booking_changed = False
 
 class ValidatePizzaOrderForm(FormValidationAction):
     def name(self) -> Text:
@@ -57,6 +62,13 @@ class ValidatePizzaOrderForm(FormValidationAction):
 class ValidateTableBookingForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_table_booking_form"
+    
+    def run(self, dispatcher, tracker, domain):
+        user_intent = tracker.latest_message.get('intent')['name']
+        if user_intent == 'change_table_booking' and SharedVariables.table_booking_changed == False:
+            return[ActiveLoop(None), FollowupAction("action_change_table_booking")]
+        SharedVariables.table_booking_changed = False
+
 
     def validate_num_people(
         self,
@@ -68,7 +80,7 @@ class ValidateTableBookingForm(FormValidationAction):
         """Validate `num_people` value."""
 
         if slot_value not in ALLOWED_NUM_PEOPLE:
-            dispatcher.utter_message(text=f"I'm sorry that's not possible. Please be aware: We only offer table from 2 to 6 people. For how many persons you want me to reserve?")
+            dispatcher.utter_message(text=f"I'm sorry that's not possible. Please be aware: We only offer table from 2 to 6 people. For how many people you want me to reserve?")
             return {"num_people": None}
         dispatcher.utter_message(text=f"OK! I will check for a table for {slot_value} people.")
         return {"num_people": slot_value}
@@ -118,3 +130,29 @@ class ValidateTableBookingForm(FormValidationAction):
         dispatcher.utter_message(text=f"Thank you for your reservation, {slot_value}!.")
         return {"client_name": slot_value}
     
+class ChangeTableBookingSlots(Action):
+    def name(self):
+        return 'action_change_table_booking'
+    
+    def run(self, dispatcher, tracker, domain):
+        try:
+            user_entity_name = tracker.latest_message.get('entities')[0]['entity']
+            user_entity_value = tracker.latest_message.get('entities')[0]['value']
+        except IndexError:
+            return
+        
+        if user_entity_name == 'num_people':
+            dispatcher.utter_message(text=f"Got it! I changed your reservation to a table for {user_entity_value} people!")
+            SharedVariables.table_booking_changed = True
+            return[SlotSet("num_people", user_entity_value), ActiveLoop("table_booking_form"), FollowupAction("table_booking_form")]
+        
+        if user_entity_name == 'booking_time':
+            dispatcher.utter_message(text=f"Got it! I changed the reservation time to {user_entity_value} pm!")
+            SharedVariables.table_booking_changed = True
+            return[SlotSet("booking_time", user_entity_value), ActiveLoop("table_booking_form"), FollowupAction("table_booking_form")]
+        
+        if user_entity_name == 'inside_outside':
+            dispatcher.utter_message(text=f"Got it! I changed your reservation to a table {user_entity_value}!")
+            SharedVariables.table_booking_changed = True
+            return[SlotSet("inside_outside", user_entity_value), ActiveLoop("table_booking_form"), FollowupAction("table_booking_form")]
+         

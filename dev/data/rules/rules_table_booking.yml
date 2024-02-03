@@ -43,3 +43,10 @@ rules:
   steps:
   - intent: book_event
   - action: utter_event_information
+
+# - rule: User changes mind in Table Booking Form
+#   condition:
+#   - active_loop: table_booking_form
+#   steps:
+#   - intent: change_table_booking
+#   - action: action_change_table_booking
