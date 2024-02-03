@@ -96,7 +96,7 @@ class ActionTotalOrderAdd(Action):
         total_order_dict[order_key] = {"pizza_size": pizza_size, "pizza_type": pizza_type}
         
         self.print_order(total_order_dict)
-        dispatcher.utter_message(f"Your total order contains {self.order_str}.")
+        #dispatcher.utter_message(f"Your total order contains {self.order_str}.")
         
         return[SlotSet("total_order", total_order_dict), SlotSet("order_readable", self.order_str)]
 
@@ -117,8 +117,10 @@ class ActionPizzaSizeInformation(Action):
         return "action_pizza_size_information"
     
     def run(self, dispatcher, tracker, domain):
-        # give information and trigger question again
-        size_offer = ", ".join(size for size in ALLOWED_PIZZA_SIZES[:-1]) + ", and " + ALLOWED_PIZZA_SIZES[-1]
+        # utter size details for size options 
+        ADDITIONAL_SIZE_INFO = ["25 cm", "30 cm", "35 cm", "40 cm"]
+        size_offer = ", ".join(f"{size} ({info})" for size, info in zip(ALLOWED_PIZZA_SIZES[:-1], ADDITIONAL_SIZE_INFO[:-1])) + ", and " + f"{ALLOWED_PIZZA_SIZES[-1]} ({ADDITIONAL_SIZE_INFO[-1]})"
+
         dispatcher.utter_message(f"We offer {size_offer}.")
         return []
 

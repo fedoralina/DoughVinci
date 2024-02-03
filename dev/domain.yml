@@ -101,8 +101,8 @@ responses:
   - text: What kind of pizza would you like to buy?
   - text: Which pizza do you want?
   utter_anything_else:
-  - text: Do you want anything else?
-  - text: So, can I support you with something else?
+  - text: Alright, do you want anything else?
+  - text: Alright! What else do you want to add?
   utter_all_set:
   - text: Perfect, you're all set then!
   - text: Alright, you're all set!

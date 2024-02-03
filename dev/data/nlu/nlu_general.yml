@@ -20,6 +20,9 @@ nlu:
     - thank you, no
     - n
     - never
+    - nothing
+    - none
+    - nothing else
     - I don't think so
     - don't like that
     - no way

@@ -50,6 +50,8 @@ rules:
   - action: pizza_order_form
   - active_loop: pizza_order_form
 
+#TODO: think of general grouping like faq for size, type and crust?
+
 #### continues the form after bot challange
 - rule: Out of Scope in Pizza Form
   condition:

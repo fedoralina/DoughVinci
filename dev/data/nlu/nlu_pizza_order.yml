@@ -59,7 +59,6 @@ nlu:
     - give me a [small](pizza_size) [margherita](pizza_type) and a [large](pizza_size) [pepperoni](pizza_type) one
     - can I get a size [m](pizza_size) [funghi](pizza_type), a [family-size](pizza_size) [prosciutto](pizza_type) and a [diavola](pizza_type)
 
-
 - intent: add_more_pizza
   examples: |
     - yeah, actually i want to add another pizza
@@ -84,7 +83,6 @@ nlu:
     - tell me your size offers
     - what size is [small](pizza_size)
     - what size is [small](pizza_size)
-
 
 #TODO: questions on pizza ordering like do you have a certain pizza type etc
 #TODO: include the specific questions in new intent
