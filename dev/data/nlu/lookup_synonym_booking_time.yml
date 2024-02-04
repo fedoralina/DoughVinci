@@ -1,58 +1,58 @@
-version: "3.1"
-nlu:
-#### lookup
-- lookup: booking_time
-  examples: |
-    - 7:00
-    - 7:30
-    - 8:00
-    - 8:30
-    - 9:00
+# version: "3.1"
+# nlu:
+# #### lookup
+# - lookup: time
+#   examples: |
+#     - 7:00
+#     - 7:30
+#     - 8:00
+#     - 8:30
+#     - 9:00
 
-- synonym: '7:00'
-  examples: |
-    - seven
-    - 7
-    - 7 o clock
-    - 7 oclock
-    - 7 o'clock
-    - 7pm
-    - 7 pm
+# - synonym: '7:00'
+#   examples: |
+#     - seven
+#     - 7
+#     - 7 o clock
+#     - 7 oclock
+#     - 7 o'clock
+#     - 7pm
+#     - 7 pm
 
-- synonym: '7:30'
-  examples: |
-    - seven thirty
-    - 7 30
-    - half past seven
-    - half past 7
-    - 7 30 pm
-    - 7:30 pm
+# - synonym: '7:30'
+#   examples: |
+#     - seven thirty
+#     - 7 30
+#     - half past seven
+#     - half past 7
+#     - 7 30 pm
+#     - 7:30 pm
 
-- synonym: '8:00'
-  examples: |
-    - eight
-    - 8
-    - 8 o clock
-    - 8 oclock
-    - 8 o'clock
-    - 8pm
-    - 8 pm
+# - synonym: '8:00'
+#   examples: |
+#     - eight
+#     - 8
+#     - 8 o clock
+#     - 8 oclock
+#     - 8 o'clock
+#     - 8pm
+#     - 8 pm
 
-- synonym: '8:30'
-  examples: |
-    - eight thirty
-    - 8 30
-    - half past eight
-    - half past 8
-    - 8 30 pm
-    - 8:30 pm
+# - synonym: '8:30'
+#   examples: |
+#     - eight thirty
+#     - 8 30
+#     - half past eight
+#     - half past 8
+#     - 8 30 pm
+#     - 8:30 pm
 
-- synonym: '9:00'
-  examples: |
-    - nine
-    - 9
-    - 9 o clock
-    - 9 oclock
-    - 9 o'clock
-    - 9pm
-    - 9 pm
+# - synonym: '9:00'
+#   examples: |
+#     - nine
+#     - 9
+#     - 9 o clock
+#     - 9 oclock
+#     - 9 o'clock
+#     - 9pm
+#     - 9 pm

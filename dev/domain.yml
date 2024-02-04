@@ -25,9 +25,9 @@ entities:
 - pizza_type
 - pizza_size
 - num_people
-- booking_time
 - inside_outside
 - client_name
+- time
 
 
 slots:
@@ -55,15 +55,21 @@ slots:
       # - active_loop: table_booking_form
       #   requested_slot: num_people
 
-  booking_time:
+  date:
+    type: text
+    mappings:
+    - type: custom
+      action: action_validate_slot_mappings
+  
+  time:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
-      entity: booking_time
+      entity: time
       # conditions:
       # - active_loop: table_booking_form
-      #   requested_slot: booking_time
+      #   requested_slot: time
   
   inside_outside:
     type: text
@@ -85,6 +91,7 @@ slots:
       # - active_loop: table_booking_form
       #   requested_slot: client_name
 
+  
 
 forms:
   pizza_order_form:
@@ -95,7 +102,7 @@ forms:
   table_booking_form:
     required_slots:
     - num_people
-    - booking_time
+    - time
     - inside_outside
     - client_name
 
@@ -113,14 +120,14 @@ actions:
 - utter_ask_pizza_size
 - utter_ask_pizza_type
 - utter_ask_num_people
-- utter_ask_booking_time
+- utter_ask_time
 - utter_ask_inside_outside
 - utter_ask_client_name
 - utter_event_information
 # custom actions
 - validate_pizza_order_form
 - validate_table_booking_form
-- action_change_table_booking
+- action_validate_slot_mappings
 
 responses:
   utter_greet:
@@ -154,7 +161,7 @@ responses:
   utter_pizza_slots:
   - text: I will order a {pizza_size} {pizza_type} pizza.
   utter_table_slots:
-  - text: I will book a table for {num_people} people at {booking_time} pm for the name {client_name}. You will sit {inside_outside}. Anything else I can help you with?
+  - text: I will book a table for {num_people} people at {time} pm for the name {client_name}. You will sit {inside_outside}. Anything else I can help you with?
   utter_ask_continue:
   - text: Are you sure you want to stop the form?
   utter_ask_pizza_size:
@@ -163,7 +170,7 @@ responses:
   - text: What kind of pizza would you like to buy?
   utter_ask_num_people:
   - text: For how many people do you want to book the table?
-  utter_ask_booking_time:
+  utter_ask_time:
   - text: At what time do you want to book the table?
   utter_ask_inside_outside:
   - text: Do you want to sit inside or outside?
@@ -172,6 +179,7 @@ responses:
   utter_event_information:
   - text: I'm sorry, your request for an event can't be handled directly here by me. Please call us under 0123456789, we are happy to help you with your request!
   - text: I'm sorry, I can't handle this request, but my colleagues can! Please call us under 0123456789 for your event!
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

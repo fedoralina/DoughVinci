@@ -36,15 +36,15 @@ stories:
   - slot_was_set:
     - num_people: '5'
   - slot_was_set:
-    - requested_slot: booking_time
+    - requested_slot: time
   - intent: inform_table_booking
     entities:
-    - booking_time: 7:30
+    - time: 7:30
   - slot_was_set:
-    - booking_time: 7:30
+    - time: 7:30
   - action: table_booking_form
   - slot_was_set:
-    - booking_time: 7:30
+    - time: 7:30
   - slot_was_set:
     - requested_slot: inside_outside
   - intent: inform_table_booking
@@ -86,15 +86,15 @@ stories:
   - slot_was_set:
     - num_people: '4'
   - slot_was_set:
-    - requested_slot: booking_time
+    - requested_slot: time
   - intent: inform_table_booking
     entities:
-    - booking_time: 7:30
+    - time: 7:30
   - slot_was_set:
-    - booking_time: 7:30
+    - time: 7:30
   - action: table_booking_form
   - slot_was_set:
-    - booking_time: 7:30
+    - time: 7:30
   - slot_was_set:
     - requested_slot: inside_outside
   - intent: inform_table_booking
@@ -136,15 +136,15 @@ stories:
   - slot_was_set:
     - num_people: '6'
   - slot_was_set:
-    - requested_slot: booking_time
+    - requested_slot: time
   - intent: inform_table_booking
     entities:
-    - booking_time: 8:30
+    - time: 8:30
   - slot_was_set:
-    - booking_time: 8:30
+    - time: 8:30
   - action: table_booking_form
   - slot_was_set:
-    - booking_time: 8:30
+    - time: 8:30
   - slot_was_set:
     - requested_slot: inside_outside
   - intent: inform_table_booking
@@ -186,15 +186,15 @@ stories:
   - slot_was_set:
     - num_people: '3'
   - slot_was_set:
-    - requested_slot: booking_time
+    - requested_slot: time
   - intent: inform_table_booking
     entities:
-    - booking_time: 9:00
+    - time: 9:00
   - slot_was_set:
-    - booking_time: 9:00
+    - time: 9:00
   - action: table_booking_form
   - slot_was_set:
-    - booking_time: 9:00
+    - time: 9:00
   - slot_was_set:
     - requested_slot: inside_outside
   - intent: inform_table_booking
@@ -236,15 +236,15 @@ stories:
   - slot_was_set:
     - num_people: '2'
   - slot_was_set:
-    - requested_slot: booking_time
+    - requested_slot: time
   - intent: inform_table_booking
     entities:
-    - booking_time: 7:00
+    - time: 7:00
   - slot_was_set:
-    - booking_time: 7:00
+    - time: 7:00
   - action: table_booking_form
   - slot_was_set:
-    - booking_time: 7:00
+    - time: 7:00
   - slot_was_set:
     - requested_slot: inside_outside
   - intent: inform_table_booking
