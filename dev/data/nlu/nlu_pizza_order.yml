@@ -8,6 +8,7 @@ nlu:
     - i want to order pizzas
     - I'm interested in a savory round flattened bread of Italian origin
     - i want to buy a pizza
+
 - intent: inform_pizza_order
   examples: |    
     - [small](pizza_size)
@@ -50,11 +51,13 @@ nlu:
     - a [spicy](pizza_type) pizza for me please
     - give me a [diavola](pizza_type) pizza
     - [pepp](pizza_type)
+    - i want two [xl](pizza_size) [vegetariana](pizza_type) pizzas
+    - i want 3 [huge](pizza_size) [funghi](pizza_type)
     - i want to order a [xl](pizza_size) [vegetariana](pizza_type) pizza
     - I want a [medium](pizza_size) [cheese](pizza_type) pizza
     - I like [small](pizza_size) [fungi](pizza_type) pizza
     - [pepperoni](pizza_type) [small](pizza_size) pizza
-    - want to oder [large](pizza_size) [cheese](pizza_type) pizza
+    - want to order [large](pizza_size) [cheese](pizza_type) pizza
     - want to order [medium](pizza_size) [pepp](pizza_type) pizza
     - give me a [small](pizza_size) [margherita](pizza_type) and a [large](pizza_size) [pepperoni](pizza_type) one
     - can I get a size [m](pizza_size) [funghi](pizza_type), a [family-size](pizza_size) [prosciutto](pizza_type) and a [diavola](pizza_type)

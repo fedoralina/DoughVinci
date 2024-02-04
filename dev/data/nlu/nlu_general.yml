@@ -28,6 +28,8 @@ nlu:
     - no way
     - not really
     - no I don't want it
+    - no thanks i'm fine
+    - no thanks i'm good
 - intent: faq/ask_bot_tasks
   examples: |
     - why do you exist?

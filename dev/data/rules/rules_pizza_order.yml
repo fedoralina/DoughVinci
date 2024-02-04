@@ -7,11 +7,7 @@ rules:
     - intent: inform_pizza_order
     - intent: buy_pizza
   - action: pizza_order_form
-  - active_loop: pizza_order_form
-  # - slot_was_set:
-  #   - requested_slot: pizza_type
-  # - slot_was_set:
-  #   - requested_slot: pizza_size   
+  - active_loop: pizza_order_form 
     
 
 #### sumit pizza order form by adding all to total_order, ask for more orders

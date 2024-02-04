@@ -29,11 +29,11 @@ slots:
     mappings:
     - type: from_entity
       entity: pizza_size
-  #requested_slot:
-  #  type: categorical
-  #  mappings:
-  #  - type: custom
-  #  influence_conversation: true
+  pizza_amount:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: pizza_amount
   total_order:
     type: any
     mappings:
@@ -42,16 +42,13 @@ slots:
     type: any
     mappings:
     - type: custom
-  # should be triggered only in pizza inform intent, set to true and only in pizza form
-  # multiple_order_flag:
-  #   type: any
-  #   mappings:
-  #   - type: custom
 
+#TODO: check if ok to set slot in form if not required
 forms:
   pizza_order_form:
     required_slots:
     - pizza_type
+    - pizza_amount
     - pizza_size
 actions:
 - utter_all_set
@@ -71,6 +68,7 @@ actions:
 - action_total_order_add
 - action_pizza_type_information
 - action_pizza_size_information
+- action_validate_slot_mappings
 responses:
   utter_greet:
   - text: Welcome to DoughVinci, where art meets appetite. How can I assist you today?

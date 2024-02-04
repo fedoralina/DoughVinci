@@ -1,14 +1,7 @@
 version: "3.1"
 
 stories:
-
-### pizza order
-# default start for rest of stories
-# - story: beginning of flow
-#   steps:
-#   - intent: greet
-#   - action: utter_greet
-#   - checkpoint: after_greet
+#? no story required so far for pizza logic (without the change logic) -> it does not detect actions correctly after using stories as well -> therefore we will just leave it like that
 
 #### give pizza type information: now works that I put requested_slot back in the end
 - story: pizza default
@@ -45,34 +38,3 @@ stories:
   - action: action_reset_slots
   - action: action_listen
 
-
-
-
-# - story: trigger order directly
-#   steps:
-#   - checkpoint: after_greet
-#   - intent: inform_pizza_order
-#   - action: pizza_order_form
-#   - active_loop: pizza_order_form
-#   - slot_was_set:
-#     - requested_slot: pizza_type
-#   - slot_was_set:
-#     - requested_slot: pizza_size
-#   - action: action_total_order_add
-#   - action: utter_anything_else
-#   - checkpoint: anything_else
-
-
-# - story: pizza happy path (one pizza only)
-#   steps:
-#     - checkpoint: anything_else
-#     - intent: deny
-#     - action: utter_all_set
-
-
-# - story: pizza multiple orders
-#   steps:
-#     - checkpoint: anything_else
-#     - intent: affirm
-#     - action: action_reset_slots
-#     - checkpoint: after_greet

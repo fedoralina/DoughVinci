@@ -14,25 +14,30 @@ nlu:
     - Margherita
     - margherita
     - cheese
+    - margheritas
 - synonym: Funghi
   examples: |
     - fungi
     - champignon
     - mushroom
     - funghi
+    - funghis
 - synonym: Prosciutto
   examples: |
     - ham
     - Prosciutto
+    - prosciottos
 - synonym: Vegetariana
   examples: |
     - Vegetariana
     - vegetables
     - vegetarian
     - veggie
+    - vegetarianas
 - synonym: Diavola
   examples: |
     - spicy
     - pepperoni
     - pepp
+    - diavolas
 
