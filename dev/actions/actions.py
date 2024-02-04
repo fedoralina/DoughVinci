@@ -63,12 +63,15 @@ class ValidateTableBookingForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_table_booking_form"
     
-    def run(self, dispatcher, tracker, domain):
+    def run_change(self, dispatcher, tracker, domain):
         user_intent = tracker.latest_message.get('intent')['name']
         if user_intent == 'change_table_booking' and SharedVariables.table_booking_changed == False:
-            return[ActiveLoop(None), FollowupAction("action_change_table_booking")]
+            print("run change called")
+            ChangeTableBookingSlots.run(self, dispatcher, tracker, domain)
+            return
         SharedVariables.table_booking_changed = False
-
+        
+        
 
     def validate_num_people(
         self,
@@ -78,11 +81,12 @@ class ValidateTableBookingForm(FormValidationAction):
         domain: DomainDict,
     ) -> Dict[Text, Any]:
         """Validate `num_people` value."""
-
+        self.run_change(dispatcher, tracker, domain)
         if slot_value not in ALLOWED_NUM_PEOPLE:
             dispatcher.utter_message(text=f"I'm sorry that's not possible. Please be aware: We only offer table from 2 to 6 people. For how many people you want me to reserve?")
             return {"num_people": None}
-        dispatcher.utter_message(text=f"OK! I will check for a table for {slot_value} people.")
+        if SharedVariables.table_booking_changed == False:
+            dispatcher.utter_message(text=f"OK! I will check for a table for {slot_value} people.")
         return {"num_people": slot_value}
     
     def validate_booking_time(
@@ -93,7 +97,7 @@ class ValidateTableBookingForm(FormValidationAction):
         domain: DomainDict,
     ) -> Dict[Text, Any]:
         """Validate `booking_time` value."""
-
+        self.run_change(dispatcher, tracker, domain)
         if slot_value not in ALLOWED_BOOKING_TIME:
             dispatcher.utter_message(text=f"I'm sorry that's not possible. Please be aware: A table can ne booked only from 7pm to 9pm every half hour.")
             return {"booking_time": None}
@@ -108,7 +112,7 @@ class ValidateTableBookingForm(FormValidationAction):
         domain: DomainDict,
     ) -> Dict[Text, Any]:
         """Validate `inside_outside` value."""
-
+        self.run_change(dispatcher, tracker, domain)
         if slot_value not in ALLOWED_SITTING_OPTIONS:
             dispatcher.utter_message(text=f"Please specify if you want to sit inside or outside.")
             return {"inside_outside": None}
@@ -123,7 +127,7 @@ class ValidateTableBookingForm(FormValidationAction):
         domain: DomainDict,
     ) -> Dict[Text, Any]:
         """Validate `client_name` value."""
-
+        self.run_change(dispatcher, tracker, domain)
         if not isinstance(slot_value, str):
             dispatcher.utter_message(text=f"Please provide me your name for the reservation.")
             return {"client_name": None}
@@ -135,12 +139,13 @@ class ChangeTableBookingSlots(Action):
         return 'action_change_table_booking'
     
     def run(self, dispatcher, tracker, domain):
+        print("RUN CHANGE CLASS")
         try:
             user_entity_name = tracker.latest_message.get('entities')[0]['entity']
             user_entity_value = tracker.latest_message.get('entities')[0]['value']
         except IndexError:
             return
-        
+        print(user_entity_name)
         if user_entity_name == 'num_people':
             dispatcher.utter_message(text=f"Got it! I changed your reservation to a table for {user_entity_value} people!")
             SharedVariables.table_booking_changed = True

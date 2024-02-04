@@ -23,3 +23,8 @@ rules:
   steps:
   - intent: out_of_scope
   - action: utter_out_of_scope
+
+- rule: Offer additional help everytime the user thanks the bot
+  steps:
+  - intent: thank
+  - action: utter_youre_welcome

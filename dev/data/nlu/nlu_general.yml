@@ -9,9 +9,7 @@ nlu:
     - that sounds good
     - correct
     - yeah
-    - yes thanks
     - eah
-    - thanks bye
 - intent: deny
   examples: |
     - no
@@ -22,6 +20,17 @@ nlu:
     - no way
     - not really
     - no I don't want it
+- intent: thank
+  examples: |
+    - thanks
+    - thank you
+    - ty
+    - thank you very much
+    - thanks so much
+    - thank you man
+    - thanks buddy
+    - thanks bot
+    - thanks Mr. Bot
 - intent: faq/ask_bot_tasks
   examples: |
     - why do you exist?

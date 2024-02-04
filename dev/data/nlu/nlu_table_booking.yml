@@ -11,6 +11,7 @@ nlu:
     - i want to book a table this evening
     - do you have a free table
     - can i eat at your place
+    - table please
 
 - intent: book_event
   examples: |
@@ -75,10 +76,16 @@ nlu:
     - we are [six](num_people)
     - we are [six](num_people) people
 
-    - [7](booking_time)
+    - at [6](booking_time)
+    - at [6](booking_time) pm
+    - at [six](booking_time)
+    - at [six](booking_time) pm
+    - [6:30](booking_time)
+    - at [6:30](booking_time)
+    - at [6:30](booking_time) pm
+    - [half past 6](booking_time)
     - at [7](booking_time)
     - at [7](booking_time) pm
-    - [seven](booking_time)
     - at [seven](booking_time)
     - at [seven](booking_time) pm
     - [7:30](booking_time)
@@ -89,10 +96,8 @@ nlu:
     - [half past seven]{"entity": "booking_time", "value": "7:30"}
     - at [half past 7](booking_time)
     - at [half past 7](booking_time) pm
-    - [8](booking_time)
     - at [8](booking_time)
     - at [8](booking_time) pm
-    - [eight](booking_time)
     - at [eight](booking_time)
     - at [eight](booking_time) pm
     - [8:30](booking_time)
@@ -103,10 +108,8 @@ nlu:
     - at [half past 8](booking_time) pm
     - at [half past eight]{"entity": "booking_time", "value": "8:30"}
     - [half past eight]{"entity": "booking_time", "value": "8:30"}
-    - [9](booking_time)
     - at [9](booking_time)
     - at [9](booking_time) pm
-    - [nine](booking_time)
     - at [nine](booking_time)
     - at [nine](booking_time) pm
    

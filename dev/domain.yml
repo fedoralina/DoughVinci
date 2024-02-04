@@ -3,6 +3,7 @@ intents:
 # general
 - affirm
 - deny
+- thank
 - faq
 - goodbye
 - greet
@@ -102,6 +103,7 @@ actions:
 # responses
 - utter_goodbye
 - utter_greet
+- utter_youre_welcome
 - utter_pizza_slots
 - utter_table_slots
 - utter_submit
@@ -125,6 +127,9 @@ responses:
   - text: Welcome to DoughVinci, where art meets appetite. How can I assist you today?
   utter_goodbye:
   - text: Bye
+  utter_youre_welcome:
+  - text: No Problem! Anything else I can help you with?
+  - text: You're welcome! Can I help you with something else?
   utter_faq/bot_challenge:
   - text: I am DoughVinci's bot Micheal, supporting the restaurant in taking orders for takeaway and making table bookings.
   utter_faq/ask_bot_tasks:
@@ -149,7 +154,7 @@ responses:
   utter_pizza_slots:
   - text: I will order a {pizza_size} {pizza_type} pizza.
   utter_table_slots:
-  - text: I will book a table for {num_people} people at {booking_time} pm for the name {client_name}. You will sit {inside_outside}.
+  - text: I will book a table for {num_people} people at {booking_time} pm for the name {client_name}. You will sit {inside_outside}. Anything else I can help you with?
   utter_ask_continue:
   - text: Are you sure you want to stop the form?
   utter_ask_pizza_size:
