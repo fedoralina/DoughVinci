@@ -71,7 +71,6 @@ class ValidateTableBookingForm(FormValidationAction):
         domain: DomainDict,
     ) -> Dict[Text, Any]:
         """Validate `num_people` value."""
-        print("OBEN")
         if slot_value not in ALLOWED_NUM_PEOPLE:
             dispatcher.utter_message(text=f"I'm sorry that's not possible. Please be aware: We only offer table from 2 to 6 people. For how many people you want me to reserve?")
             return {"num_people": None}                
@@ -142,7 +141,6 @@ class DoughVinciSlotChanger(ValidationAction):
         dispatcher: CollectingDispatcher,
         tracker: Tracker,
         domain: DomainDict):
-        print("UNTEN")
         try:
             user_entity_name = tracker.latest_message.get('entities')[0]['entity']
             user_entity_value = tracker.latest_message.get('entities')[0]['value']
@@ -151,7 +149,6 @@ class DoughVinciSlotChanger(ValidationAction):
             return
         
         if user_intent == 'change_table_booking' and SharedVariables.table_booking_changed == False:
-            print("change recognized")
             if user_entity_name == 'num_people':  
                 SharedVariables.table_booking_changed = True              
                 return[SlotSet("num_people", user_entity_value)]

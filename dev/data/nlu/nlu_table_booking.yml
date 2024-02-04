@@ -32,39 +32,31 @@ nlu:
 
 - intent: inform_table_booking
   examples: |
-    - for [two](num_people)
     - for [two](num_people) people
-    - for [2](num_people)
     - for [2](num_people) people
-    - we are [two](num_people)
     - we are [2](num_people) people
     - for [my wife and me](num_people)
     - for [my son and me](num_people)
     - for [my daughter and me](num_people)    
-    - for [three](num_people)
     - for [three](num_people) people
-    - for [3](num_people)
     - for [3](num_people) people
-    - we are [three](num_people)
     - we are [three](num_people) people
-    - for [four](num_people)
     - for [four](num_people) people
-    - for [4](num_people)
     - for [4](num_people) people
-    - we are [four](num_people)
     - we are [four](num_people) people
-    - for [five](num_people)
     - for [five](num_people) people
-    - for [5](num_people)
     - for [5](num_people) people
-    - we are [five](num_people)
     - we are [five](num_people) people
-    - for [six](num_people)
     - for [six](num_people) people
-    - for [6](num_people)
     - for [6](num_people) people
-    - we are [six](num_people)
     - we are [six](num_people) people
+
+    - at half past 7pm
+    - at 8pm
+    - today at 8pm
+    - tomorrow at half past 8pm
+    - next Friday at 9pm
+    - on Sunday at half past 7pm
 
     - [inside](inside_outside)
     - i want to sit [inside](inside_outside)
@@ -73,168 +65,13 @@ nlu:
     - i want to sit [outside](inside_outside)
     - we want to sit [outside](inside_outside)
 
-
-# # - at [6](time)
-# # - at [6](time) pm
-# # - at [six](time)
-# # - at [six](time) pm
-# # - [6:30](time)
-# # - at [6:30](time)
-# # - at [6:30](time) pm
-# # - [half past 6](time)
-# # - at [7](time)
-# # - at [7](time) pm
-# # - at [seven](time)
-# # - at [seven](time) pm
-# # - [7:30](time)
-# # - at [7:30](time)
-# # - at [7:30](time) pm
-# # - [half past 7](time)
-# # - at [half past seven]{"entity": "time", "value": "7:30"}
-# # - [half past seven]{"entity": "time", "value": "7:30"}
-# # - at [half past 7](time)
-# # - at [half past 7](time) pm
-# # - at [8](time)
-# # - at [8](time) pm
-# # - at [eight](time)
-# # - at [eight](time) pm
-# # - [8:30](time)
-# # - at [8:30](time)
-# # - at [8:30](time) pm
-# # - [half past 8](time)
-# # - at [half past 8](time)
-# # - at [half past 8](time) pm
-# # - at [half past eight]{"entity": "time", "value": "8:30"}
-# # - [half past eight]{"entity": "time", "value": "8:30"}
-# # - at [9](time)
-# # - at [9](time) pm
-# # - at [nine](time)
-# # - at [nine](time) pm
-
-
-
-# - i want a table at [7](time) for [2](num_people) 
-# - i want a table at [7](time) for [3](num_people) 
-# - i want a table at [7](time) for [4](num_people) 
-# - i want a table at [7](time) for [5](num_people) 
-# - i want a table at [7](time) for [6](num_people) 
-# - i want a table at [half past 7](time) for [2](num_people) 
-# - i want a table at [half past 7](time) for [3](num_people) 
-# - i want a table at [half past 7](time) for [4](num_people) 
-# - i want a table at [half past 7](time) for [5](num_people) 
-# - i want a table at [half past 7](time) for [6](num_people) 
-# - i want a table at [8](time) for [2](num_people) 
-# - i want a table at [8](time) for [3](num_people) 
-# - i want a table at [8](time) for [4](num_people) 
-# - i want a table at [8](time) for [5](num_people) 
-# - i want a table at [8](time) for [6](num_people) 
-# - i want a table at [half past 8](time) for [2](num_people) 
-# - i want a table at [half past 8](time) for [3](num_people) 
-# - i want a table at [half past 8](time) for [4](num_people) 
-# - i want a table at [half past 8](time) for [5](num_people) 
-# - i want a table at [half past 8](time) for [6](num_people) 
-# - i want a table at [9](time) for [2](num_people) 
-# - i want a table at [9](time) for [3](num_people) 
-# - i want a table at [9](time) for [4](num_people) 
-# - i want a table at [9](time) for [5](num_people) 
-# - i want a table at [9](time) for [6](num_people) 
-# - i want a table at [7](time) pm for [2](num_people) people
-# - i want a table at [7](time) pm for [3](num_people) people
-# - i want a table at [7](time) pm for [4](num_people) people
-# - i want a table at [7](time) pm for [5](num_people) people
-# - i want a table at [7](time) pm for [6](num_people) people
-# - i want a table at [half past 7](time) pm for [2](num_people) people 
-# - i want a table at [half past 7](time) pm for [3](num_people) people 
-# - i want a table at [half past 7](time) pm for [4](num_people) people 
-# - i want a table at [half past 7](time) pm for [5](num_people) people 
-# - i want a table at [half past 7](time) pm for [6](num_people) people 
-# - i want a table at [8](time) pm for [2](num_people) people 
-# - i want a table at [8](time) pm for [3](num_people) people 
-# - i want a table at [8](time) pm for [4](num_people) people 
-# - i want a table at [8](time) pm for [5](num_people) people 
-# - i want a table at [8](time) pm for [6](num_people) people 
-# - i want a table at [half past 8](time) pm for [2](num_people) people 
-# - i want a table at [half past 8](time) pm for [3](num_people) people 
-# - i want a table at [half past 8](time) pm for [4](num_people) people 
-# - i want a table at [half past 8](time) pm for [5](num_people) people 
-# - i want a table at [half past 8](time) pm for [6](num_people) people 
-# - i want a table at [9](time) pm for [2](num_people) people 
-# - i want a table at [9](time) pm for [3](num_people) people 
-# - i want a table at [9](time) pm for [4](num_people) people 
-# - i want a table at [9](time) pm for [5](num_people) people 
-# - i want a table at [9](time) pm for [6](num_people) people 
-
-
-# - i want a table for [two](num_people)
-# - i want a table for [three](num_people)
-# - i want a table for [four](num_people)
-# - i want a table for [five](num_people)
-# - i want a table for [six](num_people)
-# - i want a table for [2](num_people)
-# - i want a table for [3](num_people)
-# - i want a table for [4](num_people)
-# - i want a table for [5](num_people)
-# - i want a table for [6](num_people)
-# - i want a table for [two](num_people) people
-# - i want a table for [three](num_people) people
-# - i want a table for [four](num_people) people
-# - i want a table for [five](num_people) people
-# - i want a table for [six](num_people) people
-# - i want a table for [2](num_people) people
-# - i want a table for [3](num_people) people
-# - i want a table for [4](num_people) people
-# - i want a table for [5](num_people) people
-# - i want a table for [6](num_people) people
-# - i want a table for [two](num_people) people at [7](time)
-# - i want a table for [three](num_people) people at [7](time)
-# - i want a table for [four](num_people) people at [7](time)
-# - i want a table for [five](num_people) people at [7](time)
-# - i want a table for [six](num_people) people at [7](time)
-# - i want a table for [2](num_people) people at [7](time)
-# - i want a table for [3](num_people) people at [7](time)
-# - i want a table for [4](num_people) people at [7](time)
-# - i want a table for [5](num_people) people at [7](time)
-# - i want a table for [6](num_people) people at [7](time)
-# - i want a table for [two](num_people) people at [half past 7](time)
-# - i want a table for [three](num_people) people at [half past 7](time)
-# - i want a table for [four](num_people) people at [half past 7](time)
-# - i want a table for [five](num_people) people at [half past 7](time)
-# - i want a table for [six](num_people) people at [half past 7](time)
-# - i want a table for [2](num_people) people at [half past 7](time)
-# - i want a table for [3](num_people) people at [half past 7](time)
-# - i want a table for [4](num_people) people at [half past 7](time)
-# - i want a table for [5](num_people) people at [half past 7](time)
-# - i want a table for [6](num_people) people at [half past 7](time)
-# - i want a table for [two](num_people) people at [8](time)
-# - i want a table for [three](num_people) people at [8](time)
-# - i want a table for [four](num_people) people at [8](time)
-# - i want a table for [five](num_people) people at [8](time)
-# - i want a table for [six](num_people) people at [8](time)
-# - i want a table for [2](num_people) people at [8](time)
-# - i want a table for [3](num_people) people at [8](time)
-# - i want a table for [4](num_people) people at [8](time)
-# - i want a table for [5](num_people) people at [8](time)
-# - i want a table for [6](num_people) people at [8](time)
-# - i want a table for [two](num_people) people at [half past 8](time)
-# - i want a table for [three](num_people) people at [half past 8](time)
-# - i want a table for [four](num_people) people at [half past 8](time)
-# - i want a table for [five](num_people) people at [half past 8](time)
-# - i want a table for [six](num_people) people at [half past 8](time)
-# - i want a table for [2](num_people) people at [half past 8](time)
-# - i want a table for [3](num_people) people at [half past 8](time)
-# - i want a table for [4](num_people) people at [half past 8](time)
-# - i want a table for [5](num_people) people at [half past 8](time)
-# - i want a table for [6](num_people) people at [half past 8](time)
-# - i want a table for [two](num_people) people at [9](time)
-# - i want a table for [three](num_people) people at [9](time)
-# - i want a table for [four](num_people) people at [9](time)
-# - i want a table for [five](num_people) people at [9](time)
-# - i want a table for [six](num_people) people at [9](time)
-# - i want a table for [2](num_people) people at [9](time)
-# - i want a table for [3](num_people) people at [9](time)
-# - i want a table for [4](num_people) people at [9](time)
-# - i want a table for [5](num_people) people at [9](time)
-# - i want a table for [6](num_people) people at [9](time)
+    - i want to book a table today at 8pm
+    - i need a table on Sunday for [3](num_people) people
+    - i need a table next Tuesday at half past 7pm
+    - can i book a table today at 8pm for [5](num_people) people
+    - then i want a table at half past 7pm today
+    - do you have a table today at 7pm?
+    - we are [3](num_people) people, we want to sit [outside](inside_outside) please
 
 
 - intent: inform_client_name
@@ -379,7 +216,9 @@ nlu:
     - please change the table size to [5](num_people) people
     - please change the table size to [6](num_people) people
 
-   
+    - we are only [4](num_people) people, please change it
+    - sorry I got the time wrong, please change to tomorrow 8pm
+    - our amount of people has changed, we are now [6](num_people) people
 
     - can we sit [outside](inside_outside) instead
     - can we sit [inside](inside_outside) instead
@@ -388,19 +227,5 @@ nlu:
     - please change the table location to [outside](inside_outside)
     - please change the table location to [inside](inside_outside)
 
-
-# - actually, change the time to [7](time) pm
-# - actually, change the time to [7:30](time) pm
-# - actually, change the time to [8](time) pm
-# - actually, change the time to [8:30](time) pm
-# - actually, change the time to [9](time) pm
-# - can i change the booking time to [7](time) pm
-# - can i change the booking time to [7:30](time) pm
-# - can i change the booking time to [8](time) pm
-# - can i change the booking time to [8:30](time) pm
-# - can i change the booking time to [9](time) pm
-# - please change the booking time to [7](time) pm
-# - please change the booking time to [7:30](time) pm
-# - please change the booking time to [8](time) pm
-# - please change the booking time to [8:30](time) pm
-# - please change the booking time to [9](time) pm
+    - oh actually we are [4](num_people) people, please change the amount
+    - oh please change the time to tomorrow half past [7pm](pizza_size)

@@ -97,6 +97,7 @@ nlu:
     - is it cold if we sit outside
     - are threre heaters for the places outside
     - can we sit outside
+    - is it cold if we sit outside
 
 - intent: goodbye
   examples: |

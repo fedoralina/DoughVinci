@@ -1,35 +1,36 @@
 version: '3.1'
 intents:
-# general
 - affirm
+- book_event
+- book_table
+- buy_pizza
+- change_table_booking
 - deny
-- thank
-- faq
+- faq:
+    used_entities:
+    - client_name
+    - inside_outside
+    - num_people
+    - pizza_size
+    - pizza_type
+    - time
+    is_retrieval_intent: true
 - goodbye
 - greet
-- out_of_scope
-# pizza order
-- buy_pizza
 - inform
-# table booking
-- book_table
-- book_event
-- inform_table_booking
 - inform_client_name
-- change_table_booking
-# forms
+- inform_table_booking
+- out_of_scope
 - pizza_order_form
 - table_booking_form
-
+- thank
 entities:
-- pizza_type
-- pizza_size
 - num_people
 - inside_outside
 - client_name
+- pizza_type
+- pizza_size
 - time
-
-
 slots:
   pizza_type:
     type: text
@@ -37,82 +38,58 @@ slots:
     mappings:
     - type: from_entity
       entity: pizza_type
-  
   pizza_size:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: pizza_size
-  
   num_people:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: num_people
-      # conditions:
-      # - active_loop: table_booking_form
-      #   requested_slot: num_people
-
   date:
     type: text
     mappings:
     - type: custom
       action: action_validate_slot_mappings
-  
   time:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: time
-      # conditions:
-      # - active_loop: table_booking_form
-      #   requested_slot: time
-  
   inside_outside:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: inside_outside
-      # conditions:
-      # - active_loop: table_booking_form
-      #   requested_slot: inside_outside
-  
   client_name:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: client_name
-      # conditions:
-      # - active_loop: table_booking_form
-      #   requested_slot: client_name
-
-  
-
 forms:
   pizza_order_form:
     required_slots:
     - pizza_type
     - pizza_size
-  
   table_booking_form:
     required_slots:
     - num_people
     - time
     - inside_outside
     - client_name
-
 actions:
-# responses
+- utter_table_slots
+- utter_youre_welcome
 - utter_goodbye
 - utter_greet
-- utter_youre_welcome
 - utter_pizza_slots
-- utter_table_slots
 - utter_submit
 - utter_faq
 - utter_out_of_scope
@@ -124,11 +101,9 @@ actions:
 - utter_ask_inside_outside
 - utter_ask_client_name
 - utter_event_information
-# custom actions
 - validate_pizza_order_form
 - validate_table_booking_form
 - action_validate_slot_mappings
-
 responses:
   utter_greet:
   - text: Welcome to DoughVinci, where art meets appetite. How can I assist you today?
@@ -179,9 +154,6 @@ responses:
   utter_event_information:
   - text: I'm sorry, your request for an event can't be handled directly here by me. Please call us under 0123456789, we are happy to help you with your request!
   - text: I'm sorry, I can't handle this request, but my colleagues can! Please call us under 0123456789 for your event!
-
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
-
-
