@@ -28,6 +28,7 @@ entities:
 - pizza_type
 - pizza_size
 - pizza_amount
+- dough
 - num_people
 - time
 - inside_outside
@@ -49,6 +50,11 @@ slots:
     mappings:
     - type: from_entity
       entity: pizza_amount
+  dough:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: dough
   total_order:
     type: any
     mappings:
@@ -101,9 +107,13 @@ slots:
 
 forms:
   pizza_order_form:
+    ignored_intents:
+    - inform_table_booking
+    - change_table_booking
     required_slots:
     - pizza_type
     - pizza_size
+    - dough
   
   table_booking_form:
     required_slots:
@@ -133,6 +143,7 @@ actions:
 - utter_ask_client_name
 - utter_ask_pizza_size
 - utter_ask_pizza_type
+- utter_ask_dough
 - utter_event_information
 # custom actions
 - validate_pizza_order_form
@@ -189,6 +200,9 @@ responses:
   utter_ask_pizza_type:
   - text: What kind of pizza would you like to buy?
   - text: Which pizza do you want?
+  utter_ask_dough:
+  - text: Which dough type do you want?
+  - text: Please tell me your preferred dough type for the {pizza_type}.
   utter_ask_num_people:
   - text: For how many people do you want to book the table?
   utter_ask_time:
@@ -211,6 +225,7 @@ responses:
   utter_do_one_by_one:
   - text: Unfortunately I am just a small town assistant, living in a complex world. I cannot process multiple orders at once. Please give me your orders again one by one.
 
+#TODO bot response for dough types if specific one exists, if none, then inform about all
 
 session_config:
   session_expiration_time: 60

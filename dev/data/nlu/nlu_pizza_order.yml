@@ -51,11 +51,29 @@ nlu:
     - a [spicy](pizza_type) pizza for me please
     - give me a [diavola](pizza_type) pizza
     - [pepp](pizza_type)
+    - with [classic](dough) dough 
+    - with [classical](dough) dough
+    - with [normal](dough) dough
+    - with [traditional](dough) dough
+    - with [standard](dough) dough
+    - with [gluten-free](dough) dough
+    - with [glutenfree](dough) dough
+    - with [gluten free](dough) dough
+    - with [without gluten](dough) dough
+    - with [non-gluten](dough) dough
+    - with [garlic](dough) dough
+    - with [garlic flavour](dough) dough
+    - with [garlic flavor](dough) dough
+    - with [garlic flavoured](dough) dough
+    - with [whole wheat](dough) dough
+    - with [whole-wheat](dough) dough
+    - with [wholemeal] dough
     - i want two [xl](pizza_size) [vegetariana](pizza_type) pizzas
     - i want 3 [huge](pizza_size) [funghi](pizza_type)
     - i want to order a [xl](pizza_size) [vegetariana](pizza_type) pizza
     - I want a [medium](pizza_size) [cheese](pizza_type) pizza
     - I like [small](pizza_size) [fungi](pizza_type) pizza
+    - I'd like to order 2 [small](pizza_size) [funghi](pizza_type) pizzas with [garlic](dough) dough
     - [pepperoni](pizza_type) [small](pizza_size) pizza
     - want to order [large](pizza_size) [cheese](pizza_type) pizza
     - want to order [medium](pizza_size) [pepp](pizza_type) pizza
@@ -86,6 +104,8 @@ nlu:
     - tell me your size offers
     - what size is [small](pizza_size)
     - what size is [small](pizza_size)
+
+#TODO: ask for specific dough type
 
 #TODO: questions on pizza ordering like do you have a certain pizza type etc
 #TODO: include the specific questions in new intent

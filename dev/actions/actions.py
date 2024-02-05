@@ -7,6 +7,7 @@ from rasa_sdk.types import DomainDict
 
 ALLOWED_PIZZA_SIZES = ["small", "medium", "large", "family-size"]
 ALLOWED_PIZZA_TYPES = ["Margherita", "Funghi", "Prosciutto", "Vegetariana", "Diavola"]
+ALLOWED_DOUGH_TYPES = ["classic", "gluten-free", "garlic", "whole wheat"]
 ALLOWED_NUM_PEOPLE = ["2","3","4","5","6"]
 ALLOWED_BOOKING_TIME = ["19:00", "19:30", "20:00", "20:30", "21:00"]
 ALLOWED_SITTING_OPTIONS = ["inside", "outside"]
@@ -41,7 +42,7 @@ class DoughVinciSlotChanger(ValidationAction):
 
             ## table booking
             if user_intent == 'change_table_booking' and SharedVariables.table_booking_changed == False:
-                # TODO: extract my relevant entities to avoid duckling entities like number
+                # extract my relevant entities to avoid duckling entities like number
                 user_entities = tracker.latest_message.get('entities')
                 
                 for i in range(len(user_entities)):
@@ -64,7 +65,7 @@ class DoughVinciSlotChanger(ValidationAction):
             if user_intent == 'inform_pizza_order':
                 user_message = tracker.latest_message.get('text')
                 # trigger logic to make user order one by one
-                if "and" in user_message:
+                if " and " in user_message:
                     # deactivate loop to not just continue again, use action_listen to continue with user input after utterance of information
                     dispatcher.utter_message(response="utter_do_one_by_one")
                     SharedVariables.multiple_orders = True
@@ -158,6 +159,33 @@ class ValidatePizzaOrderForm(FormValidationAction):
     ) -> Dict[Text, Any]:
             
         return {"pizza_amount": SharedVariables.pizza_amount}
+    
+
+    def validate_dough(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        
+        if SharedVariables.multiple_orders == True and SharedVariables.continue_after_multiple_orders == False:
+            return {"dough": None}
+        else:        
+            try:
+                if slot_value is not None:
+                    if isinstance(slot_value, str) and slot_value in ALLOWED_DOUGH_TYPES:
+                        return {"dough": slot_value}
+                    else:
+                        dispatcher.utter_message(text=f"Unfortunately we do not offer this dough type. We serve {', '.join(ALLOWED_DOUGH_TYPES)}.")
+                        return {"dough": None}
+                else:
+                    return {"dough": None}
+            except AttributeError as e:
+                logging.error(f'{__class__} {ValidatePizzaOrderForm.validate_dough.__name__} - Error: {e}')
+        
+
+
 
 class ActionTotalOrderAdd(Action):
     order_str = ""
@@ -170,7 +198,14 @@ class ActionTotalOrderAdd(Action):
         total_orders = len(order)
         
         for index, (_, pizza) in enumerate(order.items(), 1):
-            pizza_info = f"{num_to_word(pizza['pizza_amount'])} {pizza['pizza_size']} {pizza['pizza_type']}"
+            pizza_amount = pizza["pizza_amount"]
+
+            # save order differently depending on pizza_amount
+            if pizza_amount == 1:
+                pizza_info = f"{num_to_word(pizza_amount)} {pizza['pizza_size']} {pizza['pizza_type']} with {pizza['dough']} dough"
+            elif pizza_amount > 1:
+                pizza_info = f"{num_to_word(pizza_amount)} {pizza['pizza_size']} {pizza['pizza_type']} pizzas with {pizza['dough']} dough"
+            
             if total_orders == 1:
                 order_elements.append(pizza_info)
             elif index < total_orders:
@@ -184,6 +219,7 @@ class ActionTotalOrderAdd(Action):
         pizza_type = tracker.get_slot("pizza_type")
         pizza_size = tracker.get_slot("pizza_size")
         pizza_amount = tracker.get_slot("pizza_amount")
+        dough_type = tracker.get_slot("dough")
 
         # safe order structured in a dict
         total_order_dict = tracker.get_slot("total_order")
@@ -195,7 +231,7 @@ class ActionTotalOrderAdd(Action):
         order_key = len(total_order_dict) + 1
         if pizza_amount is None:
             pizza_amount = 1
-        total_order_dict[order_key] = {"pizza_size": pizza_size, "pizza_type": pizza_type, "pizza_amount": pizza_amount}
+        total_order_dict[order_key] = {"pizza_size": pizza_size, "pizza_type": pizza_type, "pizza_amount": pizza_amount, "dough": dough_type}
         
         self.print_order(total_order_dict)
         
@@ -321,5 +357,5 @@ class ResetSlots(Action):
     def run(self, dispatcher, tracker, domain):
         dispatcher.utter_message("Sure, tell me what you want to add.")
         # remove existing pizza_type and pizza_size slots
-        return[SlotSet("pizza_type", None), SlotSet("pizza_size", None), SlotSet("pizza_amount", None)]
+        return[SlotSet("pizza_type", None), SlotSet("pizza_size", None), SlotSet("pizza_amount", None), SlotSet("dough", None)]
 

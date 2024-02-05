@@ -1,0 +1,35 @@
+version: "3.1"
+nlu:
+#### lookup
+- lookup: dough
+  examples: |
+    - classic
+    - gluten-free
+    - garlic
+    - whole wheat
+
+- synonym: classic
+  examples: |
+    - classical
+    - traditional
+    - standard
+
+#! normal and standard trigger new intent bc of pizza_sizes
+- synonym: gluten-free
+  examples: |
+    - gluten free
+    - glutenfree
+    - without gluten
+    - non-gluten
+
+- synonym: garlic
+  examples: |
+    - garlic flavour
+    - garlic flavor
+    - garlic flavoured
+    - garlic flavored
+
+- synonym: whole wheat
+  examples: |
+    - whole-wheat
+    - wholemeal
