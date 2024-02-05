@@ -69,17 +69,20 @@ class DoughVinciSlotChanger(ValidationAction):
                     dispatcher.utter_message(response="utter_do_one_by_one")
                     SharedVariables.multiple_orders = True
                     SharedVariables.continue_after_multiple_orders = True
+                    # reset this flag so amount can be set properly in single order
+                    SharedVariables.is_pizza_amount_number_set = False
                     return[SlotSet("pizza_type", None), SlotSet("pizza_size", None), SlotSet("pizza_amount", None)]
                 
                 # set default pizza_amount to 1, otherwise to the extracted value to not ask user anytime for the amount
-                elif SharedVariables.is_pizza_amount_number_set == False: 
+                elif SharedVariables.is_pizza_amount_number_set == False:  
                     for i in tracker.latest_message.get('entities'):
                         if i["entity"] == "number":
                             SharedVariables.is_pizza_amount_number_set = True
                             SharedVariables.pizza_amount = i['value']
 
                             return[SlotSet("pizza_amount", SharedVariables.pizza_amount)]
-                        elif (i["entity"] == "pizza_type" and i["value"] != None) or (i["entity"] == "pizza_amount" and i["value"] == None) or (i["entity"] == "pizza_size" and i["value"] != None):
+
+                        if (i["entity"] == "pizza_type" and i["value"] != None) or (i["entity"] == "pizza_size" and i["value"] != None) or (i["entity"] == "pizza_amount" and i["value"] == None):
                             SharedVariables.is_pizza_amount_number_set = False  
                             SharedVariables.pizza_amount = 1
 
@@ -190,6 +193,8 @@ class ActionTotalOrderAdd(Action):
             total_order_dict = {}
         
         order_key = len(total_order_dict) + 1
+        if pizza_amount is None:
+            pizza_amount = 1
         total_order_dict[order_key] = {"pizza_size": pizza_size, "pizza_type": pizza_type, "pizza_amount": pizza_amount}
         
         self.print_order(total_order_dict)
