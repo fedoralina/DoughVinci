@@ -15,6 +15,11 @@ pipeline:
 # # No configuration for the NLU pipeline was provided. The following default pipeline was used to train your model.
 # # If you'd like to customize it, uncomment and adjust the pipeline.
 # # See https://rasa.com/docs/rasa/tuning-your-model for more information.
+### Duckling can be set up first, bc it does not require any kind of tokenization: https://rasa.com/docs/rasa/components/#ducklingentityextractor
+  - name: "DucklingEntityExtractor"
+    url: "http://localhost:8000"
+    dimensions: ["number"]
+    timezone: "Europe/Berlin"
   - name: WhitespaceTokenizer
   - name: RegexFeaturizer
   - name: LexicalSyntacticFeaturizer

@@ -8,33 +8,47 @@ intents:
 - greet
 - out_of_scope
 # pizza order
+- add_more_pizza
 - buy_pizza
-- inform
-# table booking
-# ...
+- order_readable
+- inform_pizza_order
+- total_order
+- multiple_orders
+- what_pizza_you_have
+- what_size_you_have
 # forms
 - pizza_order_form
 
 entities:
 - pizza_type
 - pizza_size
-
+- pizza_amount
 
 slots:
   pizza_type:
     type: text
-    influence_conversation: true
     mappings:
     - type: from_entity
       entity: pizza_type
-  
   pizza_size:
     type: text
-    influence_conversation: true
     mappings:
     - type: from_entity
       entity: pizza_size
-  
+  pizza_amount:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: pizza_amount
+  total_order:
+    type: any
+    mappings:
+    - type: custom
+  order_readable:
+    type: any
+    mappings:
+    - type: custom
+
 
 forms:
   pizza_order_form:
@@ -44,15 +58,26 @@ forms:
 
 actions:
 # responses
-- utter_goodbye
+- utter_all_set
 - utter_greet
+- utter_goodbye
+- utter_anything_else
+- utter_order_final
+- utter_faq
 - utter_pizza_slots
 - utter_submit
-- utter_faq
 - utter_out_of_scope
 - utter_ask_continue
+- utter_do_one_by_one
 # custom actions
 - validate_pizza_order_form
+- action_reset_slots
+- action_reset_all_slots
+- action_total_order_add
+- action_pizza_type_information
+- action_pizza_size_information
+# validation action
+- action_validate_slot_mappings
 
 responses:
   utter_greet:
@@ -60,9 +85,12 @@ responses:
   utter_goodbye:
   - text: Bye
   utter_faq/bot_challenge:
-  - text: I am DoughVinci's bot Micheal, supporting the restaurant in taking orders for takeaway and making table bookings.
+  - text: I am Micheal, DoughVinci's assistant with the aim to support the restaurant in taking orders for takeaway and making table bookings.
   utter_faq/ask_bot_tasks:
   - text: My tasks include taking orders for pizza and drinks for takeaway as well as making table bookings for our restaurant.
+  utter_faq/whats_my_order:
+  - text: So far, your order contains {order_readable}.
+  - text: For now your order includes {order_readable}.
   utter_faq/request_restaurant_location:
   - text: DoughVinci is located in Via dei Solteri 35, in Trento.
   utter_out_of_scope:
@@ -76,11 +104,21 @@ responses:
   - text: Are you sure you want to stop the form?
   utter_ask_pizza_size:
   - text: What size would you like your pizza to be?
+  - text: What pizza size would you like?
   utter_ask_pizza_type:
   - text: What kind of pizza would you like to buy?
+  - text: Which pizza do you want?
+  utter_anything_else:
+  - text: Alright, do you want anything else?
+  - text: Alright! What else do you want to add?
+  utter_all_set:
+  - text: Perfect, you're all set then!
+  - text: Alright, you're all set!
+  utter_order_final:
+  - text: Alright, your final order is {order_readable}.
+  utter_do_one_by_one:
+  - text: Unfortunately I am just a small town assistant, living in a complex world. I cannot process multiple orders at once. Please give me your orders again one by one.
 
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
-
-

@@ -1,13 +1,16 @@
 version: "3.1"
 
 rules:
-#TODO: copied from repo
 - rule: Activate Pizza Form
   steps:
-  - intent: buy_pizza
+  - or:
+    - intent: inform_pizza_order
+    - intent: buy_pizza
   - action: pizza_order_form
-  - active_loop: pizza_order_form
+  - active_loop: pizza_order_form 
+    
 
+#### sumit pizza order form by adding all to total_order, ask for more orders
 - rule: Submit Pizza Form
   condition:
   - active_loop: pizza_order_form
@@ -16,10 +19,11 @@ rules:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - action: utter_submit
-  - action: utter_pizza_slots
+  - action: action_total_order_add
+  - action: utter_anything_else
 
-  #### continues the form after bot challange
+
+#### continues the form after bot challange
 - rule: Interruption in Pizza Form
   condition:
   # Condition that form is active.
@@ -31,6 +35,18 @@ rules:
   # Return to form after handling the faq intent
   - action: pizza_order_form
   - active_loop: pizza_order_form
+
+####  interrupts the normal flow with telling the pizza sizes
+- rule: Explain Pizza Size
+  condition:
+  - active_loop: pizza_order_form
+  steps:
+  - intent: what_size_you_have
+  - action: action_pizza_size_information
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+
+#TODO: think of general grouping like faq for size, type and crust?
 
 #### continues the form after bot challange
 - rule: Out of Scope in Pizza Form
