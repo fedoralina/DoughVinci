@@ -38,12 +38,12 @@ class DoughVinciSlotChanger(ValidationAction):
         try: 
             #TODO: does user want to be asked "anything else" when bot says order one by one and user already made two orders?
             #TODO: so should we add another rule for this kind of flow or too complex?
-            user_entity_name = tracker.latest_message.get('entities')[0]['entity']
-            user_entity_value = tracker.latest_message.get('entities')[0]['value']
             user_intent = tracker.latest_message.get('intent')['name']
 
             ## table booking
             if user_intent == 'change_table_booking' and SharedVariables.table_booking_changed == False:
+                user_entity_name = tracker.latest_message.get('entities')[0]['entity']
+                user_entity_value = tracker.latest_message.get('entities')[0]['value']
                 if user_entity_name == 'num_people':  
                     SharedVariables.table_booking_changed = True              
                     return[SlotSet("num_people", user_entity_value)]

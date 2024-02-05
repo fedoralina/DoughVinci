@@ -15,7 +15,7 @@ stories:
   - action: action_pizza_type_information
   - action: pizza_order_form
   - slot_was_set:
-		- requested_slot: pizza_type
+    - requested_slot: pizza_type
 
 
 # happy path, mostly system initiative
