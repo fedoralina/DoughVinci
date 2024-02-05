@@ -127,6 +127,7 @@ actions:
 # custom actions
 - validate_pizza_order_form
 - validate_table_booking_form
+# validation action
 - action_validate_slot_mappings
 
 responses:
