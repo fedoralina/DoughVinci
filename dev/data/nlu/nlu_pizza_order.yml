@@ -8,7 +8,8 @@ nlu:
     - i want to order pizzas
     - I'm interested in a savory round flattened bread of Italian origin
     - i want to buy a pizza
-- intent: inform
+
+- intent: inform_pizza_order
   examples: |    
     - [small](pizza_size)
     - size [s](pizza_size) please
@@ -19,6 +20,7 @@ nlu:
     - [medium](pizza_size) pizza
     - [m](pizza_size)
     - just normal](pizza_size) size
+    - [standard] size
     - Probably [avg](pizza_size)
     - [average](pizza_size) sized pizza
     - [large](pizza_size)
@@ -49,9 +51,43 @@ nlu:
     - a [spicy](pizza_type) pizza for me please
     - give me a [diavola](pizza_type) pizza
     - [pepp](pizza_type)
+    - i want two [xl](pizza_size) [vegetariana](pizza_type) pizzas
+    - i want 3 [huge](pizza_size) [funghi](pizza_type)
     - i want to order a [xl](pizza_size) [vegetariana](pizza_type) pizza
     - I want a [medium](pizza_size) [cheese](pizza_type) pizza
     - I like [small](pizza_size) [fungi](pizza_type) pizza
     - [pepperoni](pizza_type) [small](pizza_size) pizza
-    - want to oder [large](pizza_size) [cheese](pizza_type) pizza
+    - want to order [large](pizza_size) [cheese](pizza_type) pizza
     - want to order [medium](pizza_size) [pepp](pizza_type) pizza
+    - give me a [small](pizza_size) [margherita](pizza_type) and a [large](pizza_size) [pepperoni](pizza_type) one
+    - can I get a size [m](pizza_size) [funghi](pizza_type), a [family-size](pizza_size) [prosciutto](pizza_type) and a [diavola](pizza_type)
+
+- intent: add_more_pizza
+  examples: |
+    - yeah, actually i want to add another pizza
+    - i want to extend the order
+    - i want to add a pizza
+    - more pizza
+    - another one
+
+- intent: what_pizza_you_have
+  examples: |
+    - what types do you have
+    - tell me the types
+    - what types
+    - what are the types you offer
+    - what do you offer
+
+- intent: what_size_you_have
+  examples: |
+    - what sizes do you have
+    - what sizes do you offer
+    - what sizes are available
+    - tell me your size offers
+    - what size is [small](pizza_size)
+    - what size is [small](pizza_size)
+
+#TODO: questions on pizza ordering like do you have a certain pizza type etc
+#TODO: include the specific questions in new intent
+
+    

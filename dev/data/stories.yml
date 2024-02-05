@@ -1,24 +1,22 @@
 version: "3.1"
 
 stories:
+#? no story required so far for pizza logic (without the change logic) -> it does not detect actions correctly after using stories as well -> therefore we will just leave it like that
 
-# order overinformative user
-- story: interactive_story_1
+#### give pizza type information: now works that I put requested_slot back in the end
+- story: pizza default
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: inform
-    entities:
-    - pizza_size: small
-    - pizza_type: Funghi
+  - intent: buy_pizza
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
   - slot_was_set:
-    - pizza_size: small
+    - requested_slot: pizza_type
+  - intent: what_pizza_you_have
+  - action: action_pizza_type_information
+  - action: pizza_order_form
   - slot_was_set:
-    - pizza_type: Funghi
-  - action: utter_submit
-  - action: utter_pizza_slots
-  - intent: goodbye
-  - action: utter_goodbye
+		- requested_slot: pizza_type
+
 
 # happy path, mostly system initiative
 - story: table_1
@@ -284,3 +282,28 @@ stories:
   - action: utter_table_slots
   - intent: thank
   - action: utter_youre_welcome
+
+     
+
+- story: what else?
+  steps:  
+  - action: utter_anything_else
+  - checkpoint: anything_else
+
+- story: nothing else
+  steps:
+  - checkpoint: anything_else
+  - intent: deny
+  - action: utter_all_set
+  - action: utter_order_final
+
+- story: something else
+  steps:
+  - checkpoint: anything_else
+  - or:
+    - intent: affirm
+    - intent: add_more_pizza
+  - action: action_reset_slots
+  - action: action_listen
+
+

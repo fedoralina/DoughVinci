@@ -10,16 +10,27 @@ nlu:
     - correct
     - yeah
     - eah
+    - yes pls
+    - yes please
+
 - intent: deny
   examples: |
     - no
+    - no thanks
+    - thank you, no
     - n
     - never
+    - nothing
+    - none
+    - nothing else
     - I don't think so
     - don't like that
     - no way
     - not really
     - no I don't want it
+		- no thanks i'm fine
+    - no thanks i'm good
+
 - intent: thank
   examples: |
     - thanks
@@ -31,6 +42,8 @@ nlu:
     - thanks buddy
     - thanks bot
     - thanks Mr. Bot
+
+    
 - intent: faq/ask_bot_tasks
   examples: |
     - why do you exist?
@@ -99,6 +112,15 @@ nlu:
     - can we sit outside
     - is it cold if we sit outside
 
+
+- intent: faq/whats_my_order
+  examples: |
+    - can you repeat my order so far?
+    - whats my order
+    - what's my order
+    - summarize order
+    - what did i order so far
+
 - intent: goodbye
   examples: |
     - cu
@@ -111,6 +133,8 @@ nlu:
     - see you around
     - bye bye
     - see you later
+    - thanks bye
+
 - intent: greet
   examples: |
     - hey
@@ -126,6 +150,7 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+
 - intent: out_of_scope
   examples: |
     - what is your favorite color?
