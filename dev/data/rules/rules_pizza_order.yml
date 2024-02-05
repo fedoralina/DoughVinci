@@ -10,8 +10,8 @@ rules:
   - active_loop: pizza_order_form 
     
 
-#### sumit pizza order form by adding all to total_order, ask for more orders
-- rule: Submit Pizza Form
+#### submit pizza order form by adding all to total_order, ask for more orders
+- rule: Submit Pizza Form and Add More Orders
   condition:
   - active_loop: pizza_order_form
   steps:
@@ -21,6 +21,28 @@ rules:
     - requested_slot: null
   - action: action_total_order_add
   - action: utter_anything_else
+  - or:
+    - intent: affirm
+    - intent: add_more_pizza
+  - action: action_reset_slots
+  - action: action_listen
+
+
+#### sumit pizza order form by adding all to total_order, ask for more orders, no more orders
+- rule: Submit Pizza Form Finish Order
+  condition:
+  - active_loop: pizza_order_form
+  steps:
+  - action: pizza_order_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_total_order_add
+  - action: utter_anything_else
+  - intent: deny
+  - action: utter_all_set
+  - action: utter_order_final
+
 
 
 #### continues the form after bot challange

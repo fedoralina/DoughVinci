@@ -6,7 +6,9 @@ stories:
 #### give pizza type information: now works that I put requested_slot back in the end
 - story: pizza default
   steps:
-  - intent: buy_pizza
+  - or:
+    - intent: buy_pizza
+    - intent: inform_pizza_order
   - action: pizza_order_form
   - active_loop: pizza_order_form
   - slot_was_set:
@@ -282,28 +284,3 @@ stories:
   - action: utter_table_slots
   - intent: thank
   - action: utter_youre_welcome
-
-     
-
-- story: what else?
-  steps:  
-  - action: utter_anything_else
-  - checkpoint: anything_else
-
-- story: nothing else
-  steps:
-  - checkpoint: anything_else
-  - intent: deny
-  - action: utter_all_set
-  - action: utter_order_final
-
-- story: something else
-  steps:
-  - checkpoint: anything_else
-  - or:
-    - intent: affirm
-    - intent: add_more_pizza
-  - action: action_reset_slots
-  - action: action_listen
-
-
