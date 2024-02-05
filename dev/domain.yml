@@ -142,7 +142,6 @@ actions:
 - utter_ask_inside_outside
 - utter_ask_client_name
 - utter_event_information
-
 # custom actions
 - validate_pizza_order_form
 - validate_table_booking_form
@@ -151,7 +150,6 @@ actions:
 - action_total_order_add
 - action_pizza_type_information
 - action_pizza_size_information
-
 # validation action
 - action_validate_slot_mappings
 
