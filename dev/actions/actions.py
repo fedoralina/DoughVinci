@@ -44,7 +44,7 @@ class DoughVinciSlotChanger(ValidationAction):
 
             ## table booking
             if user_intent == 'change_table_booking' and SharedVariables.table_booking_changed == False:
-								if user_entity_name == 'num_people':  
+                if user_entity_name == 'num_people':  
                     SharedVariables.table_booking_changed = True              
                     return[SlotSet("num_people", user_entity_value)]
 
