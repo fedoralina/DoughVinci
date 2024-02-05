@@ -1,0 +1,33 @@
+version: "3.1"
+nlu:
+#### lookup
+- lookup: num_people
+  examples: |
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+
+- synonym: '2'
+  examples: |
+    - two
+    - my wife and me
+    - my son and me
+    - my daughter and me
+
+- synonym: '3'
+  examples: |
+    - three
+
+- synonym: '4'
+  examples: |
+    - four
+
+- synonym: '5'
+  examples: |
+    - five
+
+- synonym: '6'
+  examples: |
+    - six

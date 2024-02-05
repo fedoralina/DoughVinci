@@ -9,10 +9,10 @@ nlu:
     - that sounds good
     - correct
     - yeah
-    - yes thanks
     - eah
     - yes pls
     - yes please
+
 - intent: deny
   examples: |
     - no
@@ -28,8 +28,22 @@ nlu:
     - no way
     - not really
     - no I don't want it
-    - no thanks i'm fine
+		- no thanks i'm fine
     - no thanks i'm good
+
+- intent: thank
+  examples: |
+    - thanks
+    - thank you
+    - ty
+    - thank you very much
+    - thanks so much
+    - thank you man
+    - thanks buddy
+    - thanks bot
+    - thanks Mr. Bot
+
+    
 - intent: faq/ask_bot_tasks
   examples: |
     - why do you exist?
@@ -54,6 +68,51 @@ nlu:
     - where are you guys?
     - where's my pizza?
     - what's your address?
+
+- intent: faq/dogs_allowed
+  examples: |
+    - can we bring our dog
+    - can our dog also come
+    - are dogs allowed
+    - can i bring my dog with me
+    - i have a dog
+    - i want to bring my dog
+
+- intent: faq/how_many_people
+  examples: |
+    - what is your biggest table
+    - for how many people can we book
+    - how many seats do you have
+    - what is the maximum capacity
+    - how many people can sit on one table
+    - how many people can sit
+    - how many seats
+
+- intent: faq/opening_hours
+  examples: |
+    - what are your opening hours
+    - when are you open
+    - when can i come to eat
+    - when can i book a table
+    - how long are you open
+    - when do you close
+    - when do you open
+    - are you open
+    - are you closed
+
+- intent: faq/outside_tables
+  examples: |
+    - can we eat outside
+    - do you have tables outside
+    - is it possible to eat outside
+    - are your tables outside nice
+    - are the tables outside roofed
+    - is it cold if we sit outside
+    - are threre heaters for the places outside
+    - can we sit outside
+    - is it cold if we sit outside
+
+
 - intent: faq/whats_my_order
   examples: |
     - can you repeat my order so far?
@@ -61,10 +120,11 @@ nlu:
     - what's my order
     - summarize order
     - what did i order so far
+
 - intent: goodbye
   examples: |
     - cu
-    - good by
+    - good bye
     - cee you later
     - good night
     - bye
@@ -74,6 +134,7 @@ nlu:
     - bye bye
     - see you later
     - thanks bye
+
 - intent: greet
   examples: |
     - hey
@@ -89,6 +150,7 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+
 - intent: out_of_scope
   examples: |
     - what is your favorite color?

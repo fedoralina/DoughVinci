@@ -15,7 +15,275 @@ stories:
   - action: action_pizza_type_information
   - action: pizza_order_form
   - slot_was_set:
-    - requested_slot: pizza_type
+		- requested_slot: pizza_type
+
+
+# happy path, mostly system initiative
+- story: table_1
+  steps:
+  - intent: book_table
+  - action: table_booking_form
+  - active_loop: table_booking_form
+  - slot_was_set:
+    - requested_slot: num_people
+  - intent: inform_table_booking
+    entities:
+    - num_people: '3'
+  - slot_was_set:
+    - num_people: '3'
+  - action: table_booking_form
+  - slot_was_set:
+    - num_people: '3'
+  - slot_was_set:
+    - requested_slot: time
+  - intent: inform_table_booking
+    entities:
+    - time: '2024-02-04T20:00:00.000+01:00'
+  - slot_was_set:
+    - time: '2024-02-04T20:00:00.000+01:00'
+  - action: table_booking_form
+  - slot_was_set:
+    - time: 20:00
+  - slot_was_set:
+    - date: '2024-02-04'
+  - slot_was_set:
+    - requested_slot: inside_outside
+  - intent: inform_table_booking
+    entities:
+    - inside_outside: inside
+  - slot_was_set:
+    - inside_outside: inside
+  - action: table_booking_form
+  - slot_was_set:
+    - inside_outside: inside
+  - slot_was_set:
+    - requested_slot: client_name
+  - intent: inform_client_name
+    entities:
+    - client_name: John
+  - slot_was_set:
+    - client_name: John
+  - action: table_booking_form
+  - slot_was_set:
+    - client_name: John
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_table_slots
+
+# slightly unhappy
+- story: table_2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: book_table
+  - action: table_booking_form
+  - active_loop: table_booking_form
+  - slot_was_set:
+    - requested_slot: num_people
+  - intent: inform_table_booking
+    entities:
+    - num_people: '7'
+  - slot_was_set:
+    - num_people: '7'
+  - action: table_booking_form
+  - slot_was_set:
+    - num_people: null
+  - slot_was_set:
+    - requested_slot: num_people
+  - intent: inform_table_booking
+    entities:
+    - num_people: '4'
+  - slot_was_set:
+    - num_people: '4'
+  - action: table_booking_form
+  - slot_was_set:
+    - num_people: '4'
+  - slot_was_set:
+    - requested_slot: time
+  - intent: inform_table_booking
+    entities:
+    - time: '2024-02-05T19:30:00.000+01:00'
+  - slot_was_set:
+    - time: '2024-02-05T19:30:00.000+01:00'
+  - action: table_booking_form
+  - slot_was_set:
+    - time: 19:30
+  - slot_was_set:
+    - date: '2024-02-05'
+  - slot_was_set:
+    - requested_slot: inside_outside
+  - intent: inform_table_booking
+    entities:
+    - inside_outside: inside
+  - slot_was_set:
+    - inside_outside: inside
+  - action: table_booking_form
+  - slot_was_set:
+    - inside_outside: inside
+  - slot_was_set:
+    - requested_slot: client_name
+  - intent: inform_client_name
+    entities:
+    - client_name: Chris
+  - slot_was_set:
+    - client_name: Chris
+  - action: table_booking_form
+  - slot_was_set:
+    - client_name: Chris
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_table_slots
+  - intent: thank
+  - action: utter_youre_welcome
+
+# unhappy path, many questions and changes from the user
+- story: table_3
+  steps:
+  - intent: book_table
+  - action: table_booking_form
+  - active_loop: table_booking_form
+  - slot_was_set:
+    - requested_slot: num_people
+  - intent: faq
+  - action: utter_faq
+  - action: table_booking_form
+  - slot_was_set:
+    - requested_slot: num_people
+  - intent: inform_table_booking
+    entities:
+    - num_people: '6'
+  - slot_was_set:
+    - num_people: '6'
+  - action: table_booking_form
+  - slot_was_set:
+    - num_people: '6'
+  - slot_was_set:
+    - requested_slot: time
+  - intent: change_table_booking
+    entities:
+    - num_people: '4'
+  - slot_was_set:
+    - num_people: '4'
+  - slot_was_set:
+    - num_people: '4'
+  - action: table_booking_form
+  - slot_was_set:
+    - num_people: '4'
+  - slot_was_set:
+    - requested_slot: time
+  - intent: faq
+  - action: utter_faq
+  - action: table_booking_form
+  - slot_was_set:
+    - requested_slot: time
+  - intent: inform_table_booking
+    entities:
+    - time: '2024-02-04T19:30:00.000+01:00'
+  - slot_was_set:
+    - time: '2024-02-04T19:30:00.000+01:00'
+  - action: table_booking_form
+  - slot_was_set:
+    - time: 19:30
+  - slot_was_set:
+    - date: '2024-02-04'
+  - slot_was_set:
+    - requested_slot: inside_outside
+  - intent: change_table_booking
+    entities:
+    - time: '2024-02-05T19:30:00.000+01:00'
+    - pizza_size: 7pm
+  - slot_was_set:
+    - pizza_size: 7pm
+  - slot_was_set:
+    - time: '2024-02-05T19:30:00.000+01:00'
+  - slot_was_set:
+    - time: '2024-02-05T19:30:00.000+01:00'
+  - action: table_booking_form
+  - slot_was_set:
+    - time: 19:30
+  - slot_was_set:
+    - date: '2024-02-05'
+  - slot_was_set:
+    - requested_slot: inside_outside
+  - intent: faq
+  - action: utter_faq
+  - action: table_booking_form
+  - slot_was_set:
+    - requested_slot: inside_outside
+  - intent: inform_table_booking
+    entities:
+    - inside_outside: outside
+  - slot_was_set:
+    - inside_outside: outside
+  - action: table_booking_form
+  - slot_was_set:
+    - inside_outside: outside
+  - slot_was_set:
+    - requested_slot: client_name
+  - intent: inform_table_booking
+    entities:
+    - client_name: Peter
+  - slot_was_set:
+    - client_name: Peter
+  - action: table_booking_form
+  - slot_was_set:
+    - client_name: Peter
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_table_slots
+  - intent: thank
+  - action: utter_youre_welcome
+
+# overinformative user
+- story: table_4
+  steps:
+  - intent: inform_table_booking
+    entities:
+    - time: '2024-02-04T19:00:00.000+01:00'
+  - slot_was_set:
+    - time: '2024-02-04T19:00:00.000+01:00'
+  - action: table_booking_form
+  - active_loop: table_booking_form
+  - slot_was_set:
+    - time: 19:00
+  - slot_was_set:
+    - date: '2024-02-04'
+  - slot_was_set:
+    - requested_slot: num_people
+  - intent: inform_table_booking
+    entities:
+    - num_people: '3'
+    - inside_outside: outside
+  - slot_was_set:
+    - num_people: '3'
+  - slot_was_set:
+    - inside_outside: outside
+  - action: table_booking_form
+  - slot_was_set:
+    - num_people: '3'
+  - slot_was_set:
+    - inside_outside: outside
+  - slot_was_set:
+    - requested_slot: client_name
+  - intent: inform_client_name
+    entities:
+    - client_name: Luca
+  - slot_was_set:
+    - client_name: Luca
+  - action: table_booking_form
+  - slot_was_set:
+    - client_name: Luca
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_table_slots
+  - intent: thank
+  - action: utter_youre_welcome
+
+     
 
 - story: what else?
   steps:  
@@ -37,4 +305,5 @@ stories:
     - intent: add_more_pizza
   - action: action_reset_slots
   - action: action_listen
+
 

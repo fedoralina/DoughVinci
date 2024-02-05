@@ -1,0 +1,43 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hello
+- intent: book_table
+  examples: |
+    - i want to book a table
+    - i want a table
+- intent: inform_table_booking
+  examples: |
+    - for [7](num_people) people
+    - we are [4](num_people) people
+    - [inside](inside_outside)
+    - for [3](num_people) people
+    - at 8pm
+    - for [6](num_people) people
+    - then i want a table at half past 7pm today
+    - [outside](inside_outside)
+    - [Peter](client_name)
+    - do you have a table today at 7pm?
+    - we are [3](num_people) people, we want to sit [outside](inside_outside) please
+- intent: out_of_scope
+  examples: |
+    - tomorrow at half past [7pm](pizza_size)
+- intent: inform_client_name
+  examples: |
+    - [Chris](client_name)
+    - [John](client_name)
+    - the name is [Luca](client_name)
+- intent: thank
+  examples: |
+    - thank you bye
+    - thank you
+- intent: faq
+  examples: |
+    - what is your biggest table?
+    - when are you open?
+    - is it nice outside?
+- intent: change_table_booking
+  examples: |
+    - oh actually we are [4](num_people) people, please change the amount
+    - oh please change the time to tomorrow half past [7pm](pizza_size)

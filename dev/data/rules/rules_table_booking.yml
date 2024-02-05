@@ -1,8 +1,45 @@
-#version: "3.1"
-#
-#rules:
-#- rule: Activate Pizza Form
-#  steps:
-#  - intent: buy_pizza
-#  - action: pizza_order_form
-#  - active_loop: pizza_order_form
+version: "3.1"
+
+rules:
+- rule: Activate Table Booking Form
+  steps:
+  - or:
+    - intent: book_table
+    - intent: inform_table_booking
+  - action: table_booking_form
+  - active_loop: table_booking_form
+
+- rule: Submit Table Booking Form
+  condition:
+  - active_loop: table_booking_form
+  steps:
+  - action: table_booking_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_table_slots
+
+
+
+- rule: Interruption in Table Booking Form
+  condition:
+  - active_loop: table_booking_form
+  steps:
+  - intent: faq
+  - action: utter_faq
+  - action: table_booking_form
+  - active_loop: table_booking_form
+
+- rule: Out of Scope in Table Booking Form
+  condition:
+  - active_loop: table_booking_form
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+  - action: table_booking_form
+  - active_loop: table_booking_form
+
+- rule: Event booking
+  steps:
+  - intent: book_event
+  - action: utter_event_information

@@ -7,8 +7,12 @@ from rasa_sdk.types import DomainDict
 
 ALLOWED_PIZZA_SIZES = ["small", "medium", "large", "family-size"]
 ALLOWED_PIZZA_TYPES = ["Margherita", "Funghi", "Prosciutto", "Vegetariana", "Diavola"]
+ALLOWED_NUM_PEOPLE = ["2","3","4","5","6"]
+ALLOWED_BOOKING_TIME = ["19:00", "19:30", "20:00", "20:30", "21:00"]
+ALLOWED_SITTING_OPTIONS = ["inside", "outside"]
 
 class SharedVariables:
+    table_booking_changed = False
     is_pizza_amount_number_set = False
     multiple_orders = False
     continue_after_multiple_orders = False
@@ -29,14 +33,31 @@ def num_to_word(num):
     
 class DoughVinciSlotChanger(ValidationAction):
     # this is run before the Form Validation
+    # TODO: prob. add async, in table booking it was used
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict):
         try: 
             #TODO: does user want to be asked "anything else" when bot says order one by one and user already made two orders?
             #TODO: so should we add another rule for this kind of flow or too complex?
-            intent_name = tracker.latest_message.get('intent')['name']
+            user_entity_name = tracker.latest_message.get('entities')[0]['entity']
+            user_entity_value = tracker.latest_message.get('entities')[0]['value']
+            user_intent = tracker.latest_message.get('intent')['name']
 
-            ## pizza order logic adapting
-            if intent_name == 'inform_pizza_order':
+            ## table booking
+            if user_intent == 'change_table_booking' and SharedVariables.table_booking_changed == False:
+								if user_entity_name == 'num_people':  
+                    SharedVariables.table_booking_changed = True              
+                    return[SlotSet("num_people", user_entity_value)]
+
+                if user_entity_name == 'time':
+                    SharedVariables.table_booking_changed = True
+                    return[SlotSet("time", user_entity_value)]
+
+                if user_entity_name == 'inside_outside':
+                    SharedVariables.table_booking_changed = True
+                    return[SlotSet("inside_outside", user_entity_value)]
+            
+            ## pizza order 
+            if user_intent == 'inform_pizza_order':
                 user_message = tracker.latest_message.get('text')
                 # trigger logic to make user order one by one
                 if "and" in user_message:
@@ -60,12 +81,10 @@ class DoughVinciSlotChanger(ValidationAction):
 
                             logging.info(f"DAS IST NUN IN ELIF")
                             return[SlotSet("pizza_amount", SharedVariables.pizza_amount)]
-                        
-                #TODO reset flag continue_after_multiple_orders to false if everything is set as i want it
+                         
         except IndexError as e:
             logging.error(f"{__class__} {__name__} - Error: {e}")
         
-
 
 class ValidatePizzaOrderForm(FormValidationAction):
     def name(self) -> Text:
@@ -159,13 +178,93 @@ class ActionTotalOrderAdd(Action):
         if total_order_dict is None:
             # dictionary never used
             total_order_dict = {}
-
+        
         order_key = len(total_order_dict) + 1
         total_order_dict[order_key] = {"pizza_size": pizza_size, "pizza_type": pizza_type, "pizza_amount": pizza_amount}
         
         self.print_order(total_order_dict)
         
         return[SlotSet("total_order", total_order_dict), SlotSet("order_readable", self.order_str)]
+
+
+class ValidateTableBookingForm(FormValidationAction):
+    def name(self) -> Text:
+        return "validate_table_booking_form" 
+    
+    def validate_num_people(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate `num_people` value."""
+        if slot_value not in ALLOWED_NUM_PEOPLE:
+            dispatcher.utter_message(text=f"I'm sorry that's not possible. Please be aware: We only offer table from 2 to 6 people. For how many people you want me to reserve?")
+            return {"num_people": None}                
+        if SharedVariables.table_booking_changed == False: 
+            dispatcher.utter_message(text=f"OK! I will check for a table for {slot_value} people.")
+        else:
+            dispatcher.utter_message(text=f"Got it! I changed your reservation to a table for {slot_value} people!")
+            SharedVariables.table_booking_changed = False
+        return {"num_people": slot_value}
+    
+    def validate_time(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate `time` value."""
+        date = slot_value[:10]
+        time = slot_value[11:16]
+
+        if time not in ALLOWED_BOOKING_TIME:
+            dispatcher.utter_message(text=f"I'm sorry that's not possible. Please be aware: A table can ne booked only from 19:00 to 21:00 every half hour.")
+            return {"date": None, "time": None}
+        if SharedVariables.table_booking_changed == False: 
+            dispatcher.utter_message(text=f"OK! On {date} at {time} we have a free table.")
+        else:
+            dispatcher.utter_message(text=f"Got it! I changed the reservation time to {date} at {time}!")
+            SharedVariables.table_booking_changed = False
+        return {"date": date, "time": time}
+    
+    def validate_inside_outside(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate `inside_outside` value."""
+        if slot_value not in ALLOWED_SITTING_OPTIONS:
+            dispatcher.utter_message(text=f"Please specify if you want to sit inside or outside.")
+            return {"inside_outside": None}
+        if SharedVariables.table_booking_changed == False: 
+            dispatcher.utter_message(text=f"Good choice! We have beautiful spots {slot_value}.")
+        else:
+            dispatcher.utter_message(text=f"Got it! I changed your reservation to a table {slot_value}!")
+            SharedVariables.table_booking_changed = False
+        return {"inside_outside": slot_value}
+    
+    def validate_client_name(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate `client_name` value."""
+        if not isinstance(slot_value, str):
+            dispatcher.utter_message(text=f"Please provide me your name for the reservation.")
+            return {"client_name": None}
+        dispatcher.utter_message(text=f"Thank you for your reservation, {slot_value}!.")
+        return {"client_name": slot_value}
+    
+            
+    
+
 
 class ActionPizzaTypeInformation(Action):
 
@@ -208,3 +307,4 @@ class ResetSlots(Action):
         dispatcher.utter_message("Sure, tell me what you want to add.")
         # remove existing pizza_type and pizza_size slots
         return[SlotSet("pizza_type", None), SlotSet("pizza_size", None), SlotSet("pizza_amount", None)]
+

@@ -1,6 +1,231 @@
-#version: "3.1"
-#nlu:
-#- intent: ...
-#  examples: |
-#    - ...
-#    - ...
+version: "3.1"
+nlu:
+- intent: book_table
+  examples: |
+    - i want a table
+    - i want to book a table
+    - can i book a table
+    - can i have a table
+    - i need a table
+    - i want a table this evening
+    - i want to book a table this evening
+    - do you have a free table
+    - can i eat at your place
+    - table please
+
+- intent: book_event
+  examples: |
+    - i want an event
+    - i want to book all your tables
+    - i want to celebrate my birthday
+    - i want your place for an event
+    - i want to celebrate a big party
+    - can your place be booked for a party
+    - can i book your restaurant for a party
+    - can i book your restaurant for a birhtday
+    - can we celebrate a birthday at your place
+    - can we celebrate an anniversary at your place
+    - do you have space for a larger party
+    - do you have the option for a private party
+    - do you have capacity for a large event
+
+
+- intent: inform_table_booking
+  examples: |
+    - for [two](num_people) people
+    - for [2](num_people) people
+    - we are [2](num_people) people
+    - for [my wife and me](num_people)
+    - for [my son and me](num_people)
+    - for [my daughter and me](num_people)    
+    - for [three](num_people) people
+    - for [3](num_people) people
+    - we are [three](num_people) people
+    - for [four](num_people) people
+    - for [4](num_people) people
+    - we are [four](num_people) people
+    - for [five](num_people) people
+    - for [5](num_people) people
+    - we are [five](num_people) people
+    - for [six](num_people) people
+    - for [6](num_people) people
+    - we are [six](num_people) people
+
+    - at half past 7pm
+    - at 8pm
+    - today at 8pm
+    - tomorrow at half past 8pm
+    - next Friday at 9pm
+    - on Sunday at half past 7pm
+
+    - [inside](inside_outside)
+    - i want to sit [inside](inside_outside)
+    - we want to sit [inside](inside_outside)
+    - [outside](inside_outside)
+    - i want to sit [outside](inside_outside)
+    - we want to sit [outside](inside_outside)
+
+    - i want to book a table today at 8pm
+    - i need a table on Sunday for [3](num_people) people
+    - i need a table next Tuesday at half past 7pm
+    - can i book a table today at 8pm for [5](num_people) people
+    - then i want a table at half past 7pm today
+    - do you have a table today at 7pm?
+    - we are [3](num_people) people, we want to sit [outside](inside_outside) please
+
+
+- intent: inform_client_name
+  examples: |
+    - my name is [John](client_name)
+    - my name is [Francesca](client_name)
+    - my name is [Mario](client_name)
+    - my name is [Anna](client_name)
+    - my name is [Lena](client_name)
+    - my name is [Malik](client_name)
+    - my name is [Deniz](client_name)
+    - my name is [Chris](client_name)
+    - my name is [Egidia](client_name)
+    - my name is [Carlos](client_name)
+    - my name is [Toni](client_name)
+    - my name is [Giuliano](client_name)
+    - my name is [Raul](client_name)
+    - my name is [Leo](client_name)
+    - my name is [Vincent](client_name)
+    - my name is [Alex](client_name)
+    - my name is [Nina](client_name)
+    - my name is [Nora](client_name)
+    - my name is [Oscar](client_name)
+    - my name is [Elena](client_name)
+    - my name is [Elisa](client_name)
+    - my name is [Brian](client_name)
+    - my name is [James](client_name)
+    - my name is [Robert](client_name)
+    - my name is [Michael](client_name)
+    - my name is [William](client_name)
+    - my name is [David](client_name)
+    - my name is [Richard](client_name)
+    - my name is [Joseph](client_name)
+    - my name is [Thomas](client_name)
+    - my name is [Charles](client_name)
+    - my name is [Christopher](client_name)
+    - my name is [Daniel](client_name)
+    - my name is [Matthew](client_name)
+    - my name is [Anthony](client_name)
+    - my name is [Mark](client_name)
+    - my name is [Donald](client_name)
+    - my name is [Brian](client_name)
+    - my name is [Kevin](client_name)
+    - my name is [Edward](client_name)
+    - my name is [George](client_name)
+    - my name is [Mary](client_name)
+    - my name is [Patricia](client_name)
+    - my name is [Jennifer](client_name)
+    - my name is [Linda](client_name)
+    - my name is [Elizabeth](client_name)
+    - my name is [Barbara](client_name)
+    - my name is [Susan](client_name)
+    - my name is [Jessica](client_name)
+    - my name is [Sarah](client_name)
+    - my name is [Karen](client_name)
+    - my name is [Nancy](client_name)
+    - my name is [Lisa](client_name)
+    - my name is [Betty](client_name)
+    - my name is [Dorothy](client_name)
+    - my name is [Emily](client_name)
+    - my name is [Megan](client_name)
+    - my name is [Emma](client_name)
+    - my name is [Hannah](client_name)
+    - my name is [Grace](client_name)
+    - [John](client_name)
+    - [Francesca](client_name)
+    - [Mario](client_name)
+    - [Anna](client_name)
+    - [Lena](client_name)
+    - [Malik](client_name)
+    - [Deniz](client_name)
+    - [Chris](client_name)
+    - [Egidia](client_name)
+    - [Carlos](client_name)
+    - [Toni](client_name)
+    - [Giuliano](client_name)
+    - [Raul](client_name)
+    - [Leo](client_name)
+    - [Vincent](client_name)
+    - [Alex](client_name)
+    - [Nina](client_name)
+    - [Nora](client_name)
+    - [Oscar](client_name)
+    - [Elena](client_name)
+    - [Elisa](client_name)
+    - [Brian](client_name)
+    - [James](client_name)
+    - [Robert](client_name)
+    - [Michael](client_name)
+    - [William](client_name)
+    - [David](client_name)
+    - [Richard](client_name)
+    - [Joseph](client_name)
+    - [Thomas](client_name)
+    - [Charles](client_name)
+    - [Christopher](client_name)
+    - [Daniel](client_name)
+    - [Matthew](client_name)
+    - [Anthony](client_name)
+    - [Mark](client_name)
+    - [Donald](client_name)
+    - [Brian](client_name)
+    - [Kevin](client_name)
+    - [Edward](client_name)
+    - [George](client_name)
+    - [Mary](client_name)
+    - [Patricia](client_name)
+    - [Jennifer](client_name)
+    - [Linda](client_name)
+    - [Elizabeth](client_name)
+    - [Barbara](client_name)
+    - [Susan](client_name)
+    - [Jessica](client_name)
+    - [Sarah](client_name)
+    - [Karen](client_name)
+    - [Nancy](client_name)
+    - [Lisa](client_name)
+    - [Betty](client_name)
+    - [Dorothy](client_name)
+    - [Emily](client_name)
+    - [Megan](client_name)
+    - [Emma](client_name)
+    - [Hannah](client_name)
+    - [Grace](client_name)
+
+
+- intent: change_table_booking
+  examples: |
+    - actually, change the table size to [2](num_people) people
+    - actually, change the table size to [3](num_people) people
+    - actually, change the table size to [4](num_people) people
+    - actually, change the table size to [5](num_people) people
+    - actually, change the table size to [6](num_people) people
+    - can i change the amount of people to [2](num_people)
+    - can i change the amount of people to [3](num_people)
+    - can i change the amount of people to [4](num_people)
+    - can i change the amount of people to [5](num_people)
+    - can i change the amount of people to [6](num_people)
+    - please change the table size to [2](num_people) people
+    - please change the table size to [3](num_people) people
+    - please change the table size to [4](num_people) people
+    - please change the table size to [5](num_people) people
+    - please change the table size to [6](num_people) people
+
+    - we are only [4](num_people) people, please change it
+    - sorry I got the time wrong, please change to tomorrow 8pm
+    - our amount of people has changed, we are now [6](num_people) people
+
+    - can we sit [outside](inside_outside) instead
+    - can we sit [inside](inside_outside) instead
+    - i want to change to a table [outside](inside_outside)
+    - i want to change to a table [inside](inside_outside)
+    - please change the table location to [outside](inside_outside)
+    - please change the table location to [inside](inside_outside)
+
+    - oh actually we are [4](num_people) people, please change the amount
+    - oh please change the time to tomorrow half past [7pm](pizza_size)
