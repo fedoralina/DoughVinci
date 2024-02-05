@@ -33,7 +33,6 @@ def num_to_word(num):
     
 class DoughVinciSlotChanger(ValidationAction):
     # this is run before the Form Validation
-    # TODO: prob. add async, in table booking it was used
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict):
         try: 
             #TODO: does user want to be asked "anything else" when bot says order one by one and user already made two orders?
@@ -75,15 +74,14 @@ class DoughVinciSlotChanger(ValidationAction):
                             SharedVariables.pizza_amount = i['value']
 
                             return[SlotSet("pizza_amount", SharedVariables.pizza_amount)]
-                        elif (i["entity"] == "pizza_type" and i["value"] != None) or (i["entity"] == "pizza_amount" and i["value"] == None):
+                        elif (i["entity"] == "pizza_type" and i["value"] != None) or (i["entity"] == "pizza_amount" and i["value"] == None) or (i["entity"] == "pizza_size" and i["value"] != None):
                             SharedVariables.is_pizza_amount_number_set = False  
                             SharedVariables.pizza_amount = 1
 
-                            logging.info(f"DAS IST NUN IN ELIF")
                             return[SlotSet("pizza_amount", SharedVariables.pizza_amount)]
                          
         except IndexError as e:
-            logging.error(f"{__class__} {__name__} - Error: {e}")
+            logging.error(f"{__class__} {DoughVinciSlotChanger.run__name__} - Error: {e}")
         
 
 class ValidatePizzaOrderForm(FormValidationAction):
@@ -103,13 +101,17 @@ class ValidatePizzaOrderForm(FormValidationAction):
             return {"pizza_size": None}
         else:
             try:
-                if slot_value.lower() not in ALLOWED_PIZZA_SIZES:
-                    dispatcher.utter_message(text=f"I could not recognize your wished size. You can choose from the following: {', '.join(ALLOWED_PIZZA_SIZES)}.")
-                    return {"pizza_size": None}
+                if slot_value is not None:
+                    if slot_value.lower() not in ALLOWED_PIZZA_SIZES:
+                        dispatcher.utter_message(text=f"I could not recognize your wished size. You can choose from the following: {', '.join(ALLOWED_PIZZA_SIZES)}.")
+                        return {"pizza_size": None}
 
-                return {"pizza_size": slot_value}
+                    return {"pizza_size": slot_value}
+                else:
+                    SharedVariables.is_pizza_amount_number_set = False
+                    return {"pizza_size": None}
             except AttributeError as e:
-                logging.error(f'{__class__} {__name__} - Error: {e}')
+                logging.error(f'{__class__} {ValidatePizzaOrderForm.validate_pizza_size.__name__} - Error: {e}')
 
     def validate_pizza_type(
         self,
@@ -124,17 +126,20 @@ class ValidatePizzaOrderForm(FormValidationAction):
             return {"pizza_type": None}
         else:        
             try:
-                # lowercase strings to compare
-                standardized_types = [pizza_type.lower() for pizza_type in ALLOWED_PIZZA_TYPES]
+                if slot_value is not None:
+                    # lowercase strings to compare
+                    standardized_types = [pizza_type.lower() for pizza_type in ALLOWED_PIZZA_TYPES]
 
-                if isinstance(slot_value, str) and slot_value.lower() in standardized_types:
-                    # validation succeeded, set the value of the "cuisine" slot to value
-                    return {"pizza_type": slot_value}
+                    if isinstance(slot_value, str) and slot_value.lower() in standardized_types:
+                        # validation succeeded, set the value of the "cuisine" slot to value
+                        return {"pizza_type": slot_value}
+                    else:
+                        dispatcher.utter_message(text=f"Unfortunately we do not offer this pizza type. We serve {', '.join(ALLOWED_PIZZA_TYPES)}.")
+                        return {"pizza_type": None}
                 else:
-                    dispatcher.utter_message(text=f"Unfortunately we do not offer this pizza type. We serve {', '.join(ALLOWED_PIZZA_TYPES)}.")
                     return {"pizza_type": None}
             except AttributeError as e:
-                logging.error(f'{__class__} {__name__} - Error: {e}')
+                logging.error(f'{__class__} {ValidatePizzaOrderForm.validate_pizza_type.__name__} - Error: {e}')
 
     def validate_pizza_amount(
         self,
