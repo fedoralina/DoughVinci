@@ -28,7 +28,7 @@ nlu:
     - no way
     - not really
     - no I don't want it
-		- no thanks i'm fine
+    - no thanks i'm fine
     - no thanks i'm good
 
 - intent: thank

@@ -47,7 +47,7 @@ slots:
     mappings:
     - type: from_entity
       entity: pizza_size
-	pizza_amount:
+  pizza_amount:
     type: text
     mappings:
     - type: from_entity
@@ -198,7 +198,7 @@ responses:
   - text: What pizza size would you like?
   utter_ask_pizza_type:
   - text: What kind of pizza would you like to buy?
-	- text: Which pizza do you want?
+  - text: Which pizza do you want?
   utter_ask_num_people:
   - text: For how many people do you want to book the table?
   utter_ask_time:
