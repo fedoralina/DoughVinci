@@ -68,6 +68,8 @@ rules:
   - action: pizza_order_form
   - active_loop: pizza_order_form
 
+#TODO include rule for dough information
+
 #TODO: think of general grouping like faq for size, type and crust?
 
 #### continues the form after bot challange

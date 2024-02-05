@@ -19,7 +19,6 @@ stories:
   - slot_was_set:
     - requested_slot: pizza_type
 
-
 # # happy path, mostly system initiative
 # - story: table_1
 #   steps:
