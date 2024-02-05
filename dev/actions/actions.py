@@ -86,7 +86,7 @@ class DoughVinciSlotChanger(ValidationAction):
                             return[SlotSet("pizza_amount", SharedVariables.pizza_amount)]
                          
         except IndexError as e:
-            logging.error(f"{__class__} {DoughVinciSlotChanger.run__name__} - Error: {e}")
+            logging.error(f"{__class__} {DoughVinciSlotChanger.run.__name__} - Error: {e}")
         
 
 class ValidatePizzaOrderForm(FormValidationAction):
