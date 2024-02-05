@@ -15,12 +15,9 @@ intents:
 - inform_client_name
 - change_table_booking
 # pizza order
-- add_more_pizza
 - buy_pizza
-- order_readable
 - inform_pizza_order
-- total_order
-- multiple_orders
+- add_more_pizza
 - what_pizza_you_have
 - what_size_you_have
 # forms
@@ -59,9 +56,7 @@ slots:
   order_readable:
     type: any
     mappings:
-    - type: custom
-
-  
+    - type: custom  
   num_people:
     type: text
     influence_conversation: true
@@ -71,13 +66,11 @@ slots:
       # conditions:
       # - active_loop: table_booking_form
       #   requested_slot: num_people
-
   date:
     type: text
     mappings:
     - type: custom
-      action: action_validate_slot_mappings
-  
+      action: action_validate_slot_mappings  
   time:
     type: text
     influence_conversation: true
@@ -86,8 +79,7 @@ slots:
       entity: time
       # conditions:
       # - active_loop: table_booking_form
-      #   requested_slot: time
-  
+      #   requested_slot: time  
   inside_outside:
     type: text
     influence_conversation: true
@@ -96,8 +88,7 @@ slots:
       entity: inside_outside
       # conditions:
       # - active_loop: table_booking_form
-      #   requested_slot: inside_outside
-  
+      #   requested_slot: inside_outside  
   client_name:
     type: text
     influence_conversation: true
@@ -107,7 +98,6 @@ slots:
       # conditions:
       # - active_loop: table_booking_form
       #   requested_slot: client_name
-
 
 forms:
   pizza_order_form:
@@ -141,6 +131,8 @@ actions:
 - utter_ask_time
 - utter_ask_inside_outside
 - utter_ask_client_name
+- utter_ask_pizza_size
+- utter_ask_pizza_type
 - utter_event_information
 # custom actions
 - validate_pizza_order_form
@@ -162,7 +154,7 @@ responses:
   - text: No Problem! Let me know if I can help you with anything else.
   - text: You're welcome! If I can help you with something else, just let me know.
   utter_faq/bot_challenge:
-  - text: I am Micheal, DoughVinci's assistant with the aim to support the restaurant in taking orders for takeaway and making table bookings.
+  - text: I am Leo, DoughVinci's assistant with the aim to support the restaurant in taking orders for takeaway and making table bookings.
   utter_faq/ask_bot_tasks:
   - text: My tasks include taking orders for pizza and drinks for takeaway as well as making table bookings for our restaurant.
   utter_faq/whats_my_order:
@@ -204,7 +196,7 @@ responses:
   utter_ask_inside_outside:
   - text: Do you want to sit inside or outside?
   utter_ask_client_name:
-  - text: Can you give me your name, please?
+  - text: For the reservation a name is required. Can you give me your name, please?
   utter_event_information:
   - text: I'm sorry, your request for an event can't be handled directly here by me. Please call us under 0123456789, we are happy to help you with your request!
   - text: I'm sorry, I can't handle this request, but my colleagues can! Please call us under 0123456789 for your event!

@@ -41,19 +41,24 @@ class DoughVinciSlotChanger(ValidationAction):
 
             ## table booking
             if user_intent == 'change_table_booking' and SharedVariables.table_booking_changed == False:
-                user_entity_name = tracker.latest_message.get('entities')[0]['entity']
-                user_entity_value = tracker.latest_message.get('entities')[0]['value']
-                if user_entity_name == 'num_people':  
-                    SharedVariables.table_booking_changed = True              
-                    return[SlotSet("num_people", user_entity_value)]
+                # TODO: extract my relevant entities to avoid duckling entities like number
+                user_entities = tracker.latest_message.get('entities')
+                
+                for i in range(len(user_entities)):
+                    user_entity_name = user_entities[i]['entity']
+                    user_entity_value = user_entities[i]['value']
+                
+                    if user_entity_name == 'num_people':  
+                        SharedVariables.table_booking_changed = True              
+                        return[SlotSet("num_people", user_entity_value)]
 
-                if user_entity_name == 'time':
-                    SharedVariables.table_booking_changed = True
-                    return[SlotSet("time", user_entity_value)]
+                    if user_entity_name == 'time':
+                        SharedVariables.table_booking_changed = True
+                        return[SlotSet("time", user_entity_value)]
 
-                if user_entity_name == 'inside_outside':
-                    SharedVariables.table_booking_changed = True
-                    return[SlotSet("inside_outside", user_entity_value)]
+                    if user_entity_name == 'inside_outside':
+                        SharedVariables.table_booking_changed = True
+                        return[SlotSet("inside_outside", user_entity_value)]
             
             ## pizza order 
             if user_intent == 'inform_pizza_order':
