@@ -296,7 +296,7 @@ responses:
   - text: Should we add ice to your drink?
   - text: Do you want ice in your drink?
   utter_drinks_slots:
-  - text: Great! I will add a {drinks_type}({drinks_size}ml) with {drinks_ice} to your order.
+  - text: Great! I will add a {drinks_type} ({drinks_size}ml) with {drinks_ice} to your order.
 
 session_config:
   session_expiration_time: 60
