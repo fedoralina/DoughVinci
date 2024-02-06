@@ -274,12 +274,12 @@ responses:
   - text: Alright, do you want anything else?
   - text: Alright! What else do you want to add?
   utter_all_set:
-  - text: Perfect, you're all set then!
+  - text: Perfect, you're all set then, {client_name}!
   - text: Alright {client_name}, you're all set!
   utter_order_final:
-  - text: Your final order is {order_readable}. Thank you for your trust in DoughVinci's edible masterpieces. Your order will be ready for takeaway 30 minutes - you can take it by saying your name and the ID 36896.
-  - text: Your final order is {order_readable}. Thank you for your trust in DoughVinci's edible masterpieces. Your order will be ready for takeaway 40 minutes - you can take it by saying your name and the ID 98673.
-  - text: Your final order is {order_readable}. Thank you for your trust in DoughVinci's edible masterpieces. Due to high demand, your order will be ready for takeaway in 1 hour - you can take it by saying your name and the ID 22478.
+  - text: Your final order is {order_readable}. {client_name}, thank you for your trust in DoughVinci's edible masterpieces. Your order will be ready for takeaway 30 minutes - you can take it by saying your name and the ID 36896.
+  - text: Your final order is {order_readable}. {client_name}, thank you for your trust in DoughVinci's edible masterpieces. Your order will be ready for takeaway 40 minutes - you can take it by saying your name and the ID 98673.
+  - text: Your final order is {order_readable}. {client_name}, thank you for your trust in DoughVinci's edible masterpieces. Due to high demand, your order will be ready for takeaway in 1 hour - you can take it by saying your name and the ID 22478.
   utter_do_one_by_one:
   - text: Unfortunately I am just a small town assistant, living in a complex world. I cannot process multiple orders at once. Please give me your orders again one by one.
   utter_keep_dough:
@@ -301,8 +301,3 @@ session_config:
   carry_over_slots_to_new_session: true
 
 #TODO: add hard coded prices
-
-#TODO: what is my order logic differently in rules, story!
-# whats_my_order:
-  # - text: So far, your order contains {order_readable}. What else can I do for you?
-  # - text: For now your order includes {order_readable}. Is there anything else I can do?

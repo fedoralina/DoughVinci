@@ -39,6 +39,27 @@ rules:
 #   - intent: deny
 #   - action: utter_ask_client_name
 
+
+- rule: Get User Name at the End of Pizza Order
+  steps:
+  - action: utter_ask_client_name
+  - intent: inform_client_name
+  - action: utter_all_set
+  - action: utter_order_final
+
+- rule: Deny Triggers Ask Name
+  steps:
+  - action: utter_anything_else
+  - intent: deny
+  - action: utter_ask_client_name
+
+
+- rule: Order Info triggers Deny
+  steps:
+  - action: action_order_information
+  - intent: deny
+  - action: utter_ask_client_name
+
 #### continues the form after bot challange
 - rule: Interruption in Pizza Form
   condition:
