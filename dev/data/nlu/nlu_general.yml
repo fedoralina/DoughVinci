@@ -42,7 +42,7 @@ nlu:
     - thanks buddy
     - thanks bot
     - thanks Mr. Bot
-
+    - thanks Leo
     
 - intent: faq/ask_bot_tasks
   examples: |

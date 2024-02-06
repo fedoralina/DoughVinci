@@ -201,8 +201,8 @@ class ActionTotalOrderAdd(Action):
             pizza_amount = pizza["pizza_amount"]
 
             # save order differently depending on pizza_amount
-            if pizza_amount == 1:
-                pizza_info = f"{num_to_word(pizza_amount)} {pizza['pizza_size']} {pizza['pizza_type']} with {pizza['dough']} dough"
+            if pizza_amount == 1 or pizza_amount == None:
+                pizza_info = f"{num_to_word(1)} {pizza['pizza_size']} {pizza['pizza_type']} with {pizza['dough']} dough"
             elif pizza_amount > 1:
                 pizza_info = f"{num_to_word(pizza_amount)} {pizza['pizza_size']} {pizza['pizza_type']} pizzas with {pizza['dough']} dough"
             
@@ -342,6 +342,25 @@ class ActionPizzaSizeInformation(Action):
         return []
 
 
+class DoughTypeInformation(Action):
+    def name(self):
+        return "action_dough_information"
+    
+    def run(self, dispatcher, tracker, domain):
+        # not available, reset set slot again
+        dough_inform = tracker.get_slot("dough_inform")
+        pizza_type = tracker.get_slot("pizza_type")
+
+        if dough_inform in ALLOWED_DOUGH_TYPES:
+            dispatcher.utter_message(text=f"Yes, we offer it! I will add the {dough_inform} dough for your {pizza_type}.")
+            return [SlotSet("dough", dough_inform)]
+        elif dough_inform not in ALLOWED_DOUGH_TYPES and dough_inform is not None:
+            dispatcher.utter_message(text=f"I am sorry, we do not offer {dough_inform} as dough type. Please choose one of the following ones: {', '.join(ALLOWED_DOUGH_TYPES)}. ")
+            # unset dough type again to trigger form
+            return[SlotSet("dough_inform", None)]
+        else:
+            dispatcher.utter_message(text=f"We offer {', '.join(ALLOWED_DOUGH_TYPES)}.")
+
 class ActionResetAllSlots(Action):
 
     def name(self):
@@ -357,5 +376,5 @@ class ResetSlots(Action):
     def run(self, dispatcher, tracker, domain):
         dispatcher.utter_message("Sure, tell me what you want to add.")
         # remove existing pizza_type and pizza_size slots
-        return[SlotSet("pizza_type", None), SlotSet("pizza_size", None), SlotSet("pizza_amount", None), SlotSet("dough", None)]
+        return[SlotSet("pizza_type", None), SlotSet("pizza_size", None), SlotSet("pizza_amount", None), SlotSet("dough", None), SlotSet("dough_inform",None), SlotSet("client_name", None)]
 

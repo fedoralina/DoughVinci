@@ -20,12 +20,12 @@ rules:
   - slot_was_set:
     - requested_slot: null
   - action: action_total_order_add
-  - action: utter_anything_else
-  - or:
-    - intent: affirm
-    - intent: add_more_pizza
   - action: action_reset_slots
-  - action: action_listen
+  - action: utter_anything_else
+#  - or:
+#    - intent: affirm
+#    - intent: add_more_pizza
+#
 
 
 #### sumit pizza order form by adding all to total_order, ask for more orders, no more orders
@@ -38,12 +38,11 @@ rules:
   - slot_was_set:
     - requested_slot: null
   - action: action_total_order_add
+  - action: action_reset_slots
   - action: utter_anything_else
   - intent: deny
   - action: utter_all_set
   - action: utter_order_final
-
-
 
 #### continues the form after bot challange
 - rule: Interruption in Pizza Form
@@ -68,7 +67,17 @@ rules:
   - action: pizza_order_form
   - active_loop: pizza_order_form
 
-#TODO include rule for dough information
+
+####  interrupts the normal flow with telling the pizza sizes
+- rule: Explain Pizza Dough
+  condition:
+  - active_loop: pizza_order_form
+  steps:
+  - intent: what_doughs_you_have
+  - action: action_dough_information
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+
 
 #TODO: think of general grouping like faq for size, type and crust?
 

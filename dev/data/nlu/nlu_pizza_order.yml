@@ -68,12 +68,14 @@ nlu:
     - with [whole wheat](dough) dough
     - with [whole-wheat](dough) dough
     - with [wholemeal] dough
+    - then i would like to have [garlic](dough) please
     - i want two [xl](pizza_size) [vegetariana](pizza_type) pizzas
     - i want 3 [huge](pizza_size) [funghi](pizza_type)
     - i want to order a [xl](pizza_size) [vegetariana](pizza_type) pizza
     - I want a [medium](pizza_size) [cheese](pizza_type) pizza
     - I like [small](pizza_size) [fungi](pizza_type) pizza
     - I'd like to order 2 [small](pizza_size) [funghi](pizza_type) pizzas with [garlic](dough) dough
+    - I'd like to order a [medium](pizza_size) [funghi](pizza_type) pizzas with [pepper](dough) dough
     - [pepperoni](pizza_type) [small](pizza_size) pizza
     - want to order [large](pizza_size) [cheese](pizza_type) pizza
     - want to order [medium](pizza_size) [pepp](pizza_type) pizza
@@ -102,9 +104,16 @@ nlu:
     - what sizes do you offer
     - what sizes are available
     - tell me your size offers
-    - what size is [small](pizza_size)
-    - what size is [small](pizza_size)
 
+- intent: what_doughs_you_have
+  examples: |
+    - which doughs do you have
+    - what doughs do you offer
+    - tell me your dough types
+    - what can I choose from
+    - do you have [gluten-free](dough_inform) dough
+    - do you offer [garlic](dough_inform) dough
+    - do you have [parmesan](dough_inform) dough
 #TODO: ask for specific dough type
 
 #TODO: questions on pizza ordering like do you have a certain pizza type etc
