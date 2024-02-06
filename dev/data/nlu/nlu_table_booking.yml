@@ -51,12 +51,12 @@ nlu:
     - for [6](num_people) people
     - we are [six](num_people) people
 
-    - at half past 7pm
-    - at 8pm
-    - today at 8pm
-    - tomorrow at half past 8pm
-    - next Friday at 9pm
-    - on Sunday at half past 7pm
+    - at half past 7 p.m.
+    - at 8 p.m.
+    - today at 8 p.m.
+    - tomorrow at half past eight p.m.
+    - next Friday at 9 p.m.
+    - on Sunday at half past 7 p.m.
 
     - [inside](inside_outside)
     - i want to sit [inside](inside_outside)
@@ -65,12 +65,12 @@ nlu:
     - i want to sit [outside](inside_outside)
     - we want to sit [outside](inside_outside)
 
-    - i want to book a table today at 8pm
+    - i want to book a table today at 8 p.m.
     - i need a table on Sunday for [3](num_people) people
-    - i need a table next Tuesday at half past 7pm
-    - can i book a table today at 8pm for [5](num_people) people
-    - then i want a table at half past 7pm today
-    - do you have a table today at 7pm?
+    - i need a table next Tuesday at half past 7 p.m.
+    - can i book a table today at 8 p.m. for [5](num_people) people
+    - then i want a table at half past 7 p.m. today
+    - do you have a table today at 7 p.m.?
     - we are [3](num_people) people, we want to sit [outside](inside_outside) please
 
 
@@ -217,7 +217,7 @@ nlu:
     - please change the table size to [6](num_people) people
 
     - we are only [4](num_people) people, please change it
-    - sorry I got the time wrong, please change to tomorrow 8pm
+    - sorry I got the time wrong, please change to tomorrow 8 p.m.
     - our amount of people has changed, we are now [6](num_people) people
 
     - can we sit [outside](inside_outside) instead
@@ -228,4 +228,4 @@ nlu:
     - please change the table location to [inside](inside_outside)
 
     - oh actually we are [4](num_people) people, please change the amount
-    - oh please change the time to tomorrow half past [7pm](pizza_size)
+    - oh please change the time to tomorrow half past [7 p.m.](pizza_size)
