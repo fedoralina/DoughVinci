@@ -4,3 +4,4 @@ actions/__pycache__/
 story_graph.dot
 !models/.gitkeep
 .rasa/
+__pycache__/

@@ -349,7 +349,7 @@ class ValidateTableBookingForm(FormValidationAction):
     ) -> Dict[Text, Any]:
         """Validate `num_people` value."""
         if slot_value not in ALLOWED_NUM_PEOPLE:
-            dispatcher.utter_message(text=f"I'm sorry that's not possible. Please be aware: We only offer table from 2 to 6 people. For how many people you want me to reserve?")
+            dispatcher.utter_message(text=f"I'm sorry that's not possible. Please be aware: We only offer tables from 2 to 6 people. For how many people you want me to reserve?")
             return {"num_people": None}                
         if SharedVariables.table_booking_changed == False: 
             dispatcher.utter_message(text=f"OK! I will check for a table for {slot_value} people.")
@@ -373,9 +373,9 @@ class ValidateTableBookingForm(FormValidationAction):
             dispatcher.utter_message(text=f"I'm sorry that's not possible. Please be aware: A table can ne booked only from 19:00 to 21:00 every half hour.")
             return {"date": None, "time": None}
         if SharedVariables.table_booking_changed == False: 
-            dispatcher.utter_message(text=f"OK! On {date} at {time} we have a free table.")
+            dispatcher.utter_message(text=f"OK! On {date} at {time} p.m. we have a free table.")
         else:
-            dispatcher.utter_message(text=f"Got it! I changed the reservation time to {date} at {time}!")
+            dispatcher.utter_message(text=f"Got it! I changed the reservation time to {date} at {time} p.m.!")
             SharedVariables.table_booking_changed = False
         return {"date": date, "time": time}
     
