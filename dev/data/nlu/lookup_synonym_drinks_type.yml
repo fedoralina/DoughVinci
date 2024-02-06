@@ -1,0 +1,24 @@
+version: "3.1"
+nlu:
+#### lookup
+- lookup: drinks_type
+  examples: |
+    - Cola
+    - Water
+    - Icetea
+
+- synonym: Cola
+  examples: |
+    - coke
+    - cola
+    - coca cola
+
+- synonym: Water
+  examples: |
+    - aqua
+    - water
+
+- synonym: Icetea
+  examples: |
+    - icetea
+    - tea

@@ -11,6 +11,14 @@ ALLOWED_DOUGH_TYPES = ["classic", "gluten-free", "garlic", "whole wheat"]
 ALLOWED_NUM_PEOPLE = ["2","3","4","5","6"]
 ALLOWED_BOOKING_TIME = ["19:00", "19:30", "20:00", "20:30", "21:00"]
 ALLOWED_SITTING_OPTIONS = ["inside", "outside"]
+ALLOWED_DRINKS_TYPES = ["Cola", "Water", "Icetea"]
+ALLOWED_DRINKS_SIZES = ["300ml", "500ml", "300", "500"]
+ALLOWED_ICE_OPTIONS = ["ice", "no ice"]
+PIZZA_DRINK_MAPPINGS = {"Margherita": "Basil Breeze",
+                        "Funghi": "Forest Frost", 
+                        "Prosciutto": "Ham Harmony", 
+                        "Vegetariana": "Pepper Passion", 
+                        "Diavola": "Spicy Sip" }
 
 class SharedVariables:
     table_booking_changed = False
@@ -104,9 +112,62 @@ class DoughVinciSlotChanger(ValidationAction):
                             SharedVariables.pizza_amount = 1
 
                             return[SlotSet("pizza_amount", SharedVariables.pizza_amount)]
-                         
+
+            
         except IndexError as e:
             logging.error(f"{__class__} {DoughVinciSlotChanger.run.__name__} - Error: {e}")
+        
+class ValidateDrinksForm(FormValidationAction):
+    def name(self) -> Text:
+        return "validate_drinks_form"
+
+    def validate_drinks_size(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate `drinks_size` value."""
+        
+        if slot_value not in ALLOWED_DRINKS_SIZES:
+            dispatcher.utter_message(text=f"Please choose between our sizes 300ml and 500ml. Which size do you want?")
+            return {"drinks_size": None}
+        dispatcher.utter_message(text=f"OK! I added your drink with size {slot_value}ml.")
+        return {"drinks_size": slot_value}
+    
+    def validate_drinks_type(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate `drinks_type` value."""
+        if slot_value not in ALLOWED_DRINKS_TYPES:
+            dispatcher.utter_message(text=f"Please choose between Cola, Water and our special Icetea. What drink do you want?")
+            return {"drinks_type": None}
+        
+        users_pizza = tracker.get_slot('total_order')['1']['pizza_type']
+        drinks_type = PIZZA_DRINK_MAPPINGS[users_pizza]
+        
+        dispatcher.utter_message(text=f"OK! For your {users_pizza} we have our special selfmade icetea '{drinks_type}'.")
+        return {"drinks_type": drinks_type}
+        
+    
+    def validate_drinks_ice(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate `drinks_ice` value."""
+        if slot_value not in ALLOWED_ICE_OPTIONS:
+            dispatcher.utter_message(text=f"Please tell me if you want to have ice or no ice in your drink.")
+            return {"drinks_ice": None}
+        dispatcher.utter_message(text=f"OK! Your drink will be with {slot_value}.")
+        return {"drinks_ice": slot_value}
 
 class ValidatePizzaOrderForm(FormValidationAction):
     def name(self) -> Text:
@@ -206,8 +267,7 @@ class ValidatePizzaOrderForm(FormValidationAction):
                 else:
                     return {"dough": None}
             except AttributeError as e:
-                logging.error(f'{__class__} {ValidatePizzaOrderForm.validate_dough.__name__} - Error: {e}')     
-
+                logging.error(f'{__class__} {ValidatePizzaOrderForm.validate_dough.__name__} - Error: {e}')
 
 class ActionTotalOrderAdd(Action):
     order_str = ""
@@ -220,6 +280,7 @@ class ActionTotalOrderAdd(Action):
         total_orders = len(order)
         
         for index, (_, pizza) in enumerate(order.items(), 1):
+            
             pizza_amount = pizza["pizza_amount"]
 
             # save order differently depending on pizza_amount
@@ -230,6 +291,7 @@ class ActionTotalOrderAdd(Action):
             
             if total_orders == 1:
                 order_elements.append(pizza_info)
+                order_elements.append(f"and a {pizza['drinks_type']}({pizza['drinks_size']}ml) with {pizza['drinks_ice']}")
             elif index < total_orders:
                 order_elements.append(pizza_info + ",")
             else:
@@ -243,6 +305,10 @@ class ActionTotalOrderAdd(Action):
         pizza_amount = tracker.get_slot("pizza_amount")
         dough_type = tracker.get_slot("dough")
 
+        drinks_type = tracker.get_slot("drinks_type")
+        drinks_size = tracker.get_slot("drinks_size")
+        drinks_ice = tracker.get_slot("drinks_ice")
+
         # safe order structured in a dict
         total_order_dict = tracker.get_slot("total_order")
 
@@ -250,6 +316,12 @@ class ActionTotalOrderAdd(Action):
             # dictionary never used
             total_order_dict = {}
         
+        # atm: drinks recommendation only for single orders
+        if drinks_type is not None:
+            total_order_dict['1'].update({"drinks_type": drinks_type, "drinks_size": drinks_size, "drinks_ice": drinks_ice})
+            self.print_order(total_order_dict)
+            return[SlotSet("total_order", total_order_dict), SlotSet("order_readable", self.order_str)]
+
         order_key = len(total_order_dict) + 1
         if pizza_amount is None:
             pizza_amount = 1
@@ -341,10 +413,7 @@ class ValidateTableBookingForm(FormValidationAction):
         dispatcher.utter_message(text=f"Thank you for your reservation, {slot_value}!.")
         return {"client_name": slot_value}
     
-            
-    
-
-
+              
 class ActionPizzaTypeInformation(Action):
 
     def name(self):
@@ -356,6 +425,7 @@ class ActionPizzaTypeInformation(Action):
         dispatcher.utter_message(f"We offer {pizza_offer}.")
         return []
     
+
 class ActionPizzaSizeInformation(Action):
 
     def name(self):
@@ -416,4 +486,3 @@ class ResetSlots(Action):
     def run(self, dispatcher, tracker, domain):
         # remove existing pizza_type and pizza_size slots
         return[SlotSet("pizza_type", None), SlotSet("pizza_size", None), SlotSet("pizza_amount", None), SlotSet("dough", None), SlotSet("dough_inform",None)]
-

@@ -110,8 +110,22 @@ nlu:
     - is it cold if we sit outside
     - are threre heaters for the places outside
     - can we sit outside
-    - is it cold if we sit outside
 
+- intent: faq/sugarfree
+  examples: |
+    - do you have sugarfree drinks
+    - are there drinks without sugar
+    - is it sugarfree
+    - is that drink sugarfree
+    - can i order this drink sugarfree
+    - do you have that drink without sugar
+
+- intent: faq/what_ice_teas
+  examples: |
+    - what iceteas do you have
+    - tell me more about the iceteas
+    - what are those iceteas
+    - whats in the icetea
 
 - intent: whats_my_order
   examples: |

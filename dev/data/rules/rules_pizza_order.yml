@@ -24,7 +24,7 @@ rules:
   - action: utter_anything_else
 
 
-# #### sumit pizza order form by adding all to total_order, ask for more orders, no more orders
+#### sumit pizza order form by adding all to total_order, ask for more orders, no more orders
 # - rule: Submit Pizza Form Finish Order
 #   condition:
 #   - active_loop: pizza_order_form
@@ -39,6 +39,7 @@ rules:
 #   - intent: deny
 #   - action: utter_ask_client_name
 
+
 - rule: Get User Name at the End of Pizza Order
   steps:
   - action: utter_ask_client_name
@@ -51,6 +52,7 @@ rules:
   - action: utter_anything_else
   - intent: deny
   - action: utter_ask_client_name
+
 
 - rule: Order Info triggers Deny
   steps:
