@@ -223,7 +223,7 @@ responses:
   - text: Always a pleasure! What else can I do for you?
   - text: Anytime! Can I do something else for you?
   utter_faq/bot_challenge:
-  - text: I am Leo, DoughVinci's assistant with the aim to support the restaurant in taking orders for takeaway and making table bookings.
+  - text: I am Leonardo, DoughVinci's assistant with the aim to support the restaurant in taking orders for takeaway and making table bookings.
   utter_faq/ask_bot_tasks:
   - text: My tasks include taking orders for pizza and drinks for takeaway as well as making table bookings for our restaurant.
   utter_faq/request_restaurant_location:

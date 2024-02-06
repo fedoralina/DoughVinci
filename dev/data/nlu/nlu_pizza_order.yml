@@ -98,6 +98,7 @@ nlu:
     - tell me the types
     - what types
     - what are the types you offer
+    - what types do you offer
     - what do you offer
 
 - intent: what_size_you_have
