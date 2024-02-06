@@ -66,23 +66,15 @@ class DoughVinciSlotChanger(ValidationAction):
                 for i in range(len(user_entities)):
                     user_entity_name = user_entities[i]['entity']
                     user_entity_value = user_entities[i]['value']
-                
-                    if user_entity_name == 'pizza_amount':  
-                        SharedVariables.table_booking_changed = True
-                        print(f"BIN HIER IN AMOUNT DRIN UND WURDE GECHANGED AUF {user_entity_value} (davor war {SharedVariables.pizza_amount})")
-                        # change order triggered?
-                        dispatcher.utter_message(text=f"Of course! I changed the pizza amount to '{num_to_word(user_entity_value)}'!")
-                        SharedVariables.pizza_amount = user_entity_value
-                        return[SlotSet("pizza_amount", SharedVariables.pizza_amount)]
+                    
+                    # pizza amount is not changeable so easily in this config
                     
                     if user_entity_name == 'pizza_type':
                         SharedVariables.table_booking_changed = True
-                        print("IN CHANGE PIZZA TYPE")
                         return[SlotSet("pizza_type", user_entity_value)]                    
                     
                     if user_entity_name == 'pizza_size':
                         SharedVariables.table_booking_changed = True
-                        print("IN CHANGE PIZZA SIZE")
                         return[SlotSet("pizza_size", user_entity_value)]                        
             
             ## pizza order 
