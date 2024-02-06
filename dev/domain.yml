@@ -22,6 +22,7 @@ intents:
 - what_pizza_you_have
 - what_size_you_have
 - what_doughs_you_have
+- change_pizza_order
 # forms
 - pizza_order_form
 - table_booking_form
@@ -165,6 +166,7 @@ actions:
 - action_pizza_size_information
 - action_dough_information
 - action_order_information
+- action_change_pizza_order
 # validation action
 - action_validate_slot_mappings
 

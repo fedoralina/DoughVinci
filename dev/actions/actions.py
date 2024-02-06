@@ -14,6 +14,7 @@ ALLOWED_SITTING_OPTIONS = ["inside", "outside"]
 
 class SharedVariables:
     table_booking_changed = False
+    pizza_order_changed = False
     is_pizza_amount_number_set = False
     multiple_orders = False
     continue_after_multiple_orders = False
@@ -41,7 +42,7 @@ class DoughVinciSlotChanger(ValidationAction):
             user_intent = tracker.latest_message.get('intent')['name']
 
             ## table booking
-            if user_intent == 'change_table_booking' and SharedVariables.table_booking_changed == False:
+            if user_intent == 'change_table_booking' and SharedVariables.pizza_order_changed == False:
                 # extract my relevant entities to avoid duckling entities like number
                 user_entities = tracker.latest_message.get('entities')
                 
@@ -49,17 +50,40 @@ class DoughVinciSlotChanger(ValidationAction):
                     user_entity_name = user_entities[i]['entity']
                     user_entity_value = user_entities[i]['value']
                 
-                    if user_entity_name == 'num_people':  
-                        SharedVariables.table_booking_changed = True              
-                        return[SlotSet("num_people", user_entity_value)]
+                    if user_entity_name == 'pizza_type':  
+                        SharedVariables.pizza_order_changed = True              
+                        return[SlotSet("pizza_type", user_entity_value)]
 
-                    if user_entity_name == 'time':
-                        SharedVariables.table_booking_changed = True
-                        return[SlotSet("time", user_entity_value)]
+                    if user_entity_name == 'pizza_size':
+                        SharedVariables.pizza_order_changed = True
+                        return[SlotSet("pizza_size", user_entity_value)]
 
-                    if user_entity_name == 'inside_outside':
+            ## change order
+            if user_intent == 'change_pizza_order' and SharedVariables.table_booking_changed == False:
+            # extract my relevant entities to avoid duckling entities like number
+                user_entities = tracker.latest_message.get('entities')
+                
+                for i in range(len(user_entities)):
+                    user_entity_name = user_entities[i]['entity']
+                    user_entity_value = user_entities[i]['value']
+                
+                    if user_entity_name == 'pizza_amount':  
                         SharedVariables.table_booking_changed = True
-                        return[SlotSet("inside_outside", user_entity_value)]
+                        print(f"BIN HIER IN AMOUNT DRIN UND WURDE GECHANGED AUF {user_entity_value} (davor war {SharedVariables.pizza_amount})")
+                        # change order triggered?
+                        dispatcher.utter_message(text=f"Of course! I changed the pizza amount to '{num_to_word(user_entity_value)}'!")
+                        SharedVariables.pizza_amount = user_entity_value
+                        return[SlotSet("pizza_amount", SharedVariables.pizza_amount)]
+                    
+                    if user_entity_name == 'pizza_type':
+                        SharedVariables.table_booking_changed = True
+                        print("IN CHANGE PIZZA TYPE")
+                        return[SlotSet("pizza_type", user_entity_value)]                    
+                    
+                    if user_entity_name == 'pizza_size':
+                        SharedVariables.table_booking_changed = True
+                        print("IN CHANGE PIZZA SIZE")
+                        return[SlotSet("pizza_size", user_entity_value)]                        
             
             ## pizza order 
             if user_intent == 'inform_pizza_order':
@@ -91,7 +115,6 @@ class DoughVinciSlotChanger(ValidationAction):
                          
         except IndexError as e:
             logging.error(f"{__class__} {DoughVinciSlotChanger.run.__name__} - Error: {e}")
-        
 
 class ValidatePizzaOrderForm(FormValidationAction):
     def name(self) -> Text:
@@ -114,7 +137,11 @@ class ValidatePizzaOrderForm(FormValidationAction):
                     if slot_value.lower() not in ALLOWED_PIZZA_SIZES:
                         dispatcher.utter_message(text=f"I could not recognize your wished size. You can choose from the following: {', '.join(ALLOWED_PIZZA_SIZES)}.")
                         return {"pizza_size": None}
-
+                    
+                    if SharedVariables.pizza_order_changed == True:
+                        dispatcher.utter_message(text=f"Alright! I changed your pizza size to '{slot_value}'!")
+                        SharedVariables.pizza_order_changed = False
+                    
                     return {"pizza_size": slot_value}
                 else:
                     SharedVariables.is_pizza_amount_number_set = False
@@ -135,7 +162,12 @@ class ValidatePizzaOrderForm(FormValidationAction):
             return {"pizza_type": None}
         else:        
             try:
-                if slot_value is not None:
+                if slot_value is not None:    
+
+                    if SharedVariables.pizza_order_changed == True:
+                        dispatcher.utter_message(text=f"Sure! I changed your pizza type to '{slot_value}'.")
+                        SharedVariables.pizza_order_changed = False
+                        return {"pizza_type", slot_value}
                     # lowercase strings to compare
                     standardized_types = [pizza_type.lower() for pizza_type in ALLOWED_PIZZA_TYPES]
 
@@ -157,7 +189,7 @@ class ValidatePizzaOrderForm(FormValidationAction):
         tracker: Tracker,
         domain: DomainDict,
     ) -> Dict[Text, Any]:
-            
+        
         return {"pizza_amount": SharedVariables.pizza_amount}
     
 
@@ -182,9 +214,7 @@ class ValidatePizzaOrderForm(FormValidationAction):
                 else:
                     return {"dough": None}
             except AttributeError as e:
-                logging.error(f'{__class__} {ValidatePizzaOrderForm.validate_dough.__name__} - Error: {e}')
-        
-
+                logging.error(f'{__class__} {ValidatePizzaOrderForm.validate_dough.__name__} - Error: {e}')     
 
 
 class ActionTotalOrderAdd(Action):

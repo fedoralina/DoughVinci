@@ -115,9 +115,13 @@ nlu:
     - do you have [gluten-free](dough_inform) dough
     - do you offer [garlic](dough_inform) dough
     - do you have [parmesan](dough_inform) dough
-#TODO: ask for specific dough type
 
-#TODO: questions on pizza ordering like do you have a certain pizza type etc
-#TODO: include the specific questions in new intent
+- intent: change_pizza_order
+  examples: |
+    - my friend changed his mind, I just want two [margherita](pizza_type) pizzas now
+    - please change the pizza to [funghi](pizza_type)
+    - actually, i want to change my pizza to a [diavola](pizza_type)
+    - change the size to [small](pizza_size)
+    - can i get in in [small](pizza_size) instead
 
     

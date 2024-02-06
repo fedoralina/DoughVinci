@@ -82,7 +82,7 @@ rules:
   - active_loop: pizza_order_form
 
 
-####  interrupts the normal flow with telling the pizza sizes
+####  interrupts the normal flow with telling the pizza doughs
 - rule: Explain Pizza Dough
   condition:
   - active_loop: pizza_order_form
@@ -92,8 +92,6 @@ rules:
   - action: pizza_order_form
   - active_loop: pizza_order_form
 
-
-#TODO: think of general grouping like faq for size, type and crust?
 
 #### continues the form after bot challange
 - rule: Out of Scope in Pizza Form
