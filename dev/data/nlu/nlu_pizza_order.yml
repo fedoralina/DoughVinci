@@ -43,6 +43,8 @@ nlu:
     - [mushroom](pizza_type)
     - [prosciutto](pizza_type) pizza
     - want to order least [ham](pizza_type) pizza
+    - i want a [regina](pizza_type) pizza
+    - i want a [diabola](pizza_type) pizza
     - [veggie](pizza_type)
     - [vegetarian](pizza_type) pizza
     - pizza [vegetariana](pizza_type)

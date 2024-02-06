@@ -48,24 +48,29 @@ class DoughVinciSlotChanger(ValidationAction):
             user_intent = tracker.latest_message.get('intent')['name']
 
             ## table booking
-            if user_intent == 'change_table_booking' and SharedVariables.pizza_order_changed == False:
+            if user_intent == 'change_table_booking' and SharedVariables.table_booking_changed == False:
                 # extract my relevant entities to avoid duckling entities like number
                 user_entities = tracker.latest_message.get('entities')
-                
+
                 for i in range(len(user_entities)):
                     user_entity_name = user_entities[i]['entity']
                     user_entity_value = user_entities[i]['value']
-                
-                    if user_entity_name == 'pizza_type':  
-                        SharedVariables.pizza_order_changed = True              
-                        return[SlotSet("pizza_type", user_entity_value)]
 
-                    if user_entity_name == 'pizza_size':
-                        SharedVariables.pizza_order_changed = True
-                        return[SlotSet("pizza_size", user_entity_value)]
+                    if user_entity_name == 'num_people':  
+                        SharedVariables.table_booking_changed = True              
+                        return[SlotSet("num_people", user_entity_value)]
+
+                    if user_entity_name == 'time':
+                        SharedVariables.table_booking_changed = True
+                        return[SlotSet("time", user_entity_value)]
+
+                    if user_entity_name == 'inside_outside':
+                        SharedVariables.table_booking_changed = True
+                        return[SlotSet("inside_outside", user_entity_value)]
+
 
             ## change order
-            if user_intent == 'change_pizza_order' and SharedVariables.table_booking_changed == False:
+            if user_intent == 'change_pizza_order' and SharedVariables.pizza_order_changed == False:
             # extract my relevant entities to avoid duckling entities like number
                 user_entities = tracker.latest_message.get('entities')
                 
@@ -76,11 +81,11 @@ class DoughVinciSlotChanger(ValidationAction):
                     # pizza amount is not changeable so easily in this config
                     
                     if user_entity_name == 'pizza_type':
-                        SharedVariables.table_booking_changed = True
+                        SharedVariables.pizza_order_changed = True
                         return[SlotSet("pizza_type", user_entity_value)]                    
                     
                     if user_entity_name == 'pizza_size':
-                        SharedVariables.table_booking_changed = True
+                        SharedVariables.pizza_order_changed = True
                         return[SlotSet("pizza_size", user_entity_value)]                        
             
             ## pizza order 
