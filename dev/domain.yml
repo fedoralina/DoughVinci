@@ -279,8 +279,8 @@ responses:
   - text: Perfect, you're all set then, {client_name}!
   - text: Alright {client_name}, you're all set!
   utter_order_final:
-  - text: Your final order is {order_readable}. {client_name}, thank you for your trust in DoughVinci's edible masterpieces. Your order will be ready for takeaway 30 minutes - you can take it by saying your name and the ID 36896.
-  - text: Your final order is {order_readable}. {client_name}, thank you for your trust in DoughVinci's edible masterpieces. Your order will be ready for takeaway 40 minutes - you can take it by saying your name and the ID 98673.
+  - text: Your final order is {order_readable}. {client_name}, thank you for your trust in DoughVinci's edible masterpieces. Your order will be ready for takeaway in 30 minutes - you can take it by saying your name and the ID 36896.
+  - text: Your final order is {order_readable}. {client_name}, thank you for your trust in DoughVinci's edible masterpieces. Your order will be ready for takeaway in 40 minutes - you can take it by saying your name and the ID 98673.
   - text: Your final order is {order_readable}. {client_name}, thank you for your trust in DoughVinci's edible masterpieces. Due to high demand, your order will be ready for takeaway in 1 hour - you can take it by saying your name and the ID 22478.
   utter_do_one_by_one:
   - text: Unfortunately I am just a small town assistant, living in a complex world. I cannot process multiple orders at once. Please give me your orders again one by one.
