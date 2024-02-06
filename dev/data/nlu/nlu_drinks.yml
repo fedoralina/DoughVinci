@@ -1,0 +1,39 @@
+version: "3.1"
+nlu:
+- intent: want_drinks
+  examples: |
+    - i want drinks
+    - yes i want drinks
+    - yes drinks please
+    - do you have drinks
+    - i need drinks
+    - yes something to drink
+    - yes i want some drinks
+
+- intent: inform_drinks
+  examples: |
+    - i want the [coke](drinks_type)
+    - i want the [cola](drinks_type)
+    - i want the [water](drinks_type)
+    - i want the [aqua](drinks_type)
+    - i want the [icetea](drinks_type)
+    - i want the [tea](drinks_type)
+
+    - [ice](drinks_ice) please
+    - [no ice](drinks_ice)
+    - [no ice](drinks_ice) please
+    - with [ice](drinks_ice) please
+    - yes i like [ice](drinks_ice)
+
+    - [300](drinks_size)
+    - [500](drinks_size)
+    - [300](drinks_size) please
+    - [500](drinks_size) please
+    - [330ml](drinks_size)
+    - [500ml](drinks_size)
+    - i want the [330ml](drinks_size)
+    - i want the [500ml](drinks_size)
+    - [0.3](drinks_size)
+    - [0.5](drinks_size)
+    - [threehundred](drinks_size)
+    - [fivehundred](drinks_size)

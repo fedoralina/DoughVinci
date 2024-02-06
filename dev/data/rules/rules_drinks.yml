@@ -1,0 +1,49 @@
+version: "3.1"
+
+rules:
+- rule: Activate Drinks Form
+  steps:
+  - or:
+    - intent: want_drinks
+    - intent: inform_drinks
+  - action: drinks_form
+  - active_loop: drinks_form
+
+- rule: Submit Drinks Form
+  condition:
+  - active_loop: drinks_form
+  steps:
+  - action: drinks_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_drinks_slots
+  - action: action_total_order_add
+  - action: utter_ask_client_name
+
+- rule: Interruption in Drinks Form
+  condition:
+  - active_loop: drinks_form
+  steps:
+  - intent: faq
+  - action: utter_faq
+  - action: drinks_form
+  - active_loop: drinks_form
+
+- rule: Out of Scope in Drinks Form
+  condition:
+  - active_loop: drinks_form
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+  - action: drinks_form
+  - active_loop: drinks_form
+
+- rule: Drinks after Pizza
+  steps:
+  - action: utter_anything_else
+  - or:
+    - intent: want_drinks
+    - intent: inform_drinks
+  - action: drinks_form
+  - active_loop: drinks_form

@@ -22,9 +22,13 @@ intents:
 - what_pizza_you_have
 - what_size_you_have
 - what_doughs_you_have
+# drinks
+- want_drinks
+- inform_drinks
 # forms
 - pizza_order_form
 - table_booking_form
+- drinks_form
 
 entities:
 - pizza_type
@@ -36,8 +40,35 @@ entities:
 - time
 - inside_outside
 - client_name
+- drinks_type
+- drinks_size
+- drinks_ice
 
 slots:
+  drinks_type:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: drinks_type  
+      conditions:
+      - active_loop: drinks_form
+        requested_slot: drinks_type
+  drinks_size:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: drinks_size 
+      conditions:
+      - active_loop: drinks_form
+        requested_slot: drinks_size
+  drinks_ice:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: drinks_ice 
+      conditions:
+      - active_loop: drinks_form
+        requested_slot: drinks_ice
   pizza_type:
     type: text
     mappings:
@@ -81,6 +112,7 @@ slots:
       # conditions:
       # - active_loop: table_booking_form
       #   requested_slot: num_people
+
   date:
     type: text
     mappings:
@@ -130,6 +162,12 @@ forms:
     - time
     - inside_outside
     - client_name
+  
+  drinks_form:
+    required_slots:
+    - drinks_type
+    - drinks_size
+    - drinks_ice
 
 actions:
 # responses
@@ -142,7 +180,6 @@ actions:
 - utter_faq
 - utter_pizza_slots
 - utter_table_slots
-- utter_submit
 - utter_out_of_scope
 - utter_ask_continue
 - utter_do_one_by_one
@@ -155,9 +192,14 @@ actions:
 - utter_ask_dough
 - utter_keep_dough
 - utter_event_information
+- utter_ask_drinks_type
+- utter_ask_drinks_size
+- utter_ask_drinks_ice
+- utter_drinks_slots
 # custom actions
 - validate_pizza_order_form
 - validate_table_booking_form
+- validate_drinks_form
 - action_reset_slots
 - action_reset_all_slots
 - action_total_order_add
@@ -194,11 +236,14 @@ responses:
   - text: DoughVinci is opened from 7pm to 10pm every day. If you want to book a table, the latest option is 9pm.
   utter_faq/outside_tables:
   - text: Our tables outside are wonderful! They are roofed with a nice view. If it gets colder outside we provide heaters and blankets, if you want.
+  utter_faq/sugarfree:
+  - text: We offer Cola and our special Iceteas, they both contain sugar. But of course you can add sugarfree water to your order.
+  - text: Our Iceteas and Cola both are not sugarfree. But feel free to try the sugarfree water!
+  utter_faq/what_ice_teas:
+  - text: The Iceteas we offer are all homemade and each of them is created to fit perfectly to your choice of pizza! The ingredients are kept secret.
   utter_out_of_scope:
   - text: Sorry, but I can't handle this request. I am a bot for pizza ordering and table bookings in our restaurant DoughVinci.
   - text: Unfortunately I am not created to answer these kind of requests. But I would love to help you with ordering from our restaurant or to book a table there.
-  utter_submit:
-  - text: I will now order a pizza for you!
   utter_pizza_slots:
   - text: I will order a {pizza_size} {pizza_type} pizza.
   utter_table_slots:
@@ -239,6 +284,18 @@ responses:
   - text: Unfortunately I am just a small town assistant, living in a complex world. I cannot process multiple orders at once. Please give me your orders again one by one.
   utter_keep_dough:
   - text: Perfect! Then I'll add your {pizza_type} with our {dough} dough to the order!
+  utter_ask_drinks_type:
+  - text: What type of drink do you want? We offer Cola, Water, or a special Icetea that would fit perfectly to your pizza! 
+  - text: What do you like? I can recommend our special icetea that fits perfectly to your pizza! But we also offer Cola and Water. 
+  utter_ask_drinks_size:
+  - text: Do you want your drink to be 300ml or 500ml?
+  - text: 300ml or 500ml?
+  utter_ask_drinks_ice:
+  - text: Should we add ice to your drink?
+  - text: Do you want ice in your drink?
+  utter_drinks_slots:
+  - text: Great! I will add a {drinks_type}({drinks_size}ml) with {drinks_ice} to your order.
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
