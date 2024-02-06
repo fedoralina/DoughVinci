@@ -130,6 +130,8 @@ nlu:
     - please change the pizza to [funghi](pizza_type)
     - actually, i want to change my pizza to a [diavola](pizza_type)
     - change the size to [small](pizza_size)
-    - can i get in in [small](pizza_size) instead
+    - change it to a [diabola](pizza_type) pizza
+    - can i get it in [small](pizza_size) instead
+    - i want a [diavola](pizza_type) pizza instead
 
     

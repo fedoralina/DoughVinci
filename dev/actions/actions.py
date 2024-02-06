@@ -232,9 +232,7 @@ class ValidatePizzaOrderForm(FormValidationAction):
                         return {"pizza_type": slot_value}
                     else:
                         dispatcher.utter_message(text=f"Unfortunately we do not offer this pizza type. We serve {', '.join(ALLOWED_PIZZA_TYPES)}.")
-                        return {"pizza_type": None}
-                else:
-                    return {"pizza_type": None}
+                return {"pizza_type": None}
             except AttributeError as e:
                 logging.error(f'{__class__} {__class__.validate_pizza_type.__name__} - Error: {e}')
 
