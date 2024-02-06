@@ -11,6 +11,11 @@ rules:
   - intent: goodbye
   - action: utter_goodbye
 
+- rule: Give Order Information after Form
+  steps:
+  - intent: whats_my_order
+  - action: action_order_information
+
 
 #TODO add response for faq and chitchat like here: https://rasa.com/docs/rasa/chitchat-faqs
 - rule: respond to FAQs

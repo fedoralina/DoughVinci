@@ -42,7 +42,7 @@ nlu:
     - thanks buddy
     - thanks bot
     - thanks Mr. Bot
-
+    - thanks Leo
     
 - intent: faq/ask_bot_tasks
   examples: |
@@ -113,7 +113,7 @@ nlu:
     - is it cold if we sit outside
 
 
-- intent: faq/whats_my_order
+- intent: whats_my_order
   examples: |
     - can you repeat my order so far?
     - whats my order

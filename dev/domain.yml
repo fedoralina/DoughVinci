@@ -8,6 +8,7 @@ intents:
 - goodbye
 - greet
 - out_of_scope
+- whats_my_order
 # table booking
 - book_table
 - book_event
@@ -20,6 +21,7 @@ intents:
 - add_more_pizza
 - what_pizza_you_have
 - what_size_you_have
+- what_doughs_you_have
 # forms
 - pizza_order_form
 - table_booking_form
@@ -29,6 +31,7 @@ entities:
 - pizza_size
 - pizza_amount
 - dough
+- dough_inform
 - num_people
 - time
 - inside_outside
@@ -52,9 +55,15 @@ slots:
       entity: pizza_amount
   dough:
     type: text
+    influence_conversation: true
     mappings:
     - type: from_entity
       entity: dough
+  dough_inform:
+    type: any
+    mappings:
+    - type: from_entity
+      entity: dough_inform
   total_order:
     type: any
     mappings:
@@ -144,6 +153,7 @@ actions:
 - utter_ask_pizza_size
 - utter_ask_pizza_type
 - utter_ask_dough
+- utter_keep_dough
 - utter_event_information
 # custom actions
 - validate_pizza_order_form
@@ -153,6 +163,8 @@ actions:
 - action_total_order_add
 - action_pizza_type_information
 - action_pizza_size_information
+- action_dough_information
+- action_order_information
 # validation action
 - action_validate_slot_mappings
 
@@ -160,17 +172,16 @@ responses:
   utter_greet:
   - text: Welcome to DoughVinci, where art meets appetite. How can I assist you today?
   utter_goodbye:
-  - text: Bye
+  - text: Thank you for considering DoughVinci - where art meets appetite. Goodbye and see you soon!
   utter_youre_welcome:
   - text: No Problem! Let me know if I can help you with anything else.
   - text: You're welcome! If I can help you with something else, just let me know.
+  - text: Always a pleasure! What else can I do for you?
+  - text: Anytime! Can I do something else for you?
   utter_faq/bot_challenge:
   - text: I am Leo, DoughVinci's assistant with the aim to support the restaurant in taking orders for takeaway and making table bookings.
   utter_faq/ask_bot_tasks:
   - text: My tasks include taking orders for pizza and drinks for takeaway as well as making table bookings for our restaurant.
-  utter_faq/whats_my_order:
-  - text: So far, your order contains {order_readable}.
-  - text: For now your order includes {order_readable}.
   utter_faq/request_restaurant_location:
   - text: DoughVinci is located in Via dei Solteri 35, in Trento.
   utter_faq/dogs_allowed:
@@ -210,7 +221,7 @@ responses:
   utter_ask_inside_outside:
   - text: Do you want to sit inside or outside?
   utter_ask_client_name:
-  - text: For the reservation a name is required. Can you give me your name, please?
+  - text: OK! DoughVinci requires a name to properly assign your request. Can you give me your name, please?
   utter_event_information:
   - text: I'm sorry, your request for an event can't be handled directly here by me. Please call us under 0123456789, we are happy to help you with your request!
   - text: I'm sorry, I can't handle this request, but my colleagues can! Please call us under 0123456789 for your event!
@@ -219,14 +230,22 @@ responses:
   - text: Alright! What else do you want to add?
   utter_all_set:
   - text: Perfect, you're all set then!
-  - text: Alright, you're all set!
+  - text: Alright {client_name}, you're all set!
   utter_order_final:
-  - text: Alright, your final order is {order_readable}.
+  - text: Your final order is {order_readable}. Thank you for your trust in DoughVinci's edible masterpieces. Your order will be ready for takeaway 30 minutes - you can take it by saying your name and the ID 36896.
+  - text: Your final order is {order_readable}. Thank you for your trust in DoughVinci's edible masterpieces. Your order will be ready for takeaway 40 minutes - you can take it by saying your name and the ID 98673.
+  - text: Your final order is {order_readable}. Thank you for your trust in DoughVinci's edible masterpieces. Due to high demand, your order will be ready for takeaway in 1 hour - you can take it by saying your name and the ID 22478.
   utter_do_one_by_one:
   - text: Unfortunately I am just a small town assistant, living in a complex world. I cannot process multiple orders at once. Please give me your orders again one by one.
-
-#TODO bot response for dough types if specific one exists, if none, then inform about all
-
+  utter_keep_dough:
+  - text: Perfect! Then I'll add your {pizza_type} with our {dough} dough to the order!
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+
+#TODO: add hard coded prices
+
+#TODO: what is my order logic differently in rules, story!
+# whats_my_order:
+  # - text: So far, your order contains {order_readable}. What else can I do for you?
+  # - text: For now your order includes {order_readable}. Is there anything else I can do?
