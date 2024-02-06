@@ -34,6 +34,7 @@ nlu:
     - i'd like a [family-size](pizza_size) pizza
     - [xl](pizza_size)
     - i want a [extra-large](pizza_size) pizza
+    - i want a [margarita](pizza_type) pizza
     - [margherita](pizza_type) pizza
     - a [cheese](pizza_type) one
     - [funghi](pizza_type)
@@ -110,9 +111,13 @@ nlu:
   examples: |
     - which doughs do you have
     - what doughs do you offer
+    - which doe type do you offer
+    - what doe type do you offer
     - tell me your dough types
+    - tell me the doe types
     - what can I choose from
     - do you have [gluten-free](dough_inform) dough
+    - do you have [gluten-free](dough_inform) doe
     - do you offer [garlic](dough_inform) dough
     - do you have [parmesan](dough_inform) dough
 

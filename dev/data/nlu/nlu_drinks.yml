@@ -33,6 +33,7 @@ nlu:
     - [500ml](drinks_size)
     - i want the [330ml](drinks_size)
     - i want the [500ml](drinks_size)
+    - i'll take [five hundred milliliters](drinks_size)
     - [0.3](drinks_size)
     - [0.5](drinks_size)
     - [threehundred](drinks_size)

@@ -15,6 +15,7 @@ nlu:
     - margherita
     - cheese
     - margheritas
+    - margarita
 - synonym: Funghi
   examples: |
     - fungi

@@ -113,7 +113,7 @@ class DoughVinciSlotChanger(ValidationAction):
 
             
         except IndexError as e:
-            logging.error(f"{__class__} {DoughVinciSlotChanger.run.__name__} - Error: {e}")
+            logging.error(f"{__class__} {__class__.run.__name__} - Error: {e}")
         
 class ValidateDrinksForm(FormValidationAction):
     def name(self) -> Text:
@@ -198,7 +198,7 @@ class ValidatePizzaOrderForm(FormValidationAction):
                     SharedVariables.is_pizza_amount_number_set = False
                     return {"pizza_size": None}
             except AttributeError as e:
-                logging.error(f'{__class__} {ValidatePizzaOrderForm.validate_pizza_size.__name__} - Error: {e}')
+                logging.error(f'{__class__} {__class__.validate_pizza_size.__name__} - Error: {e}')
 
     def validate_pizza_type(
         self,
@@ -231,7 +231,7 @@ class ValidatePizzaOrderForm(FormValidationAction):
                 else:
                     return {"pizza_type": None}
             except AttributeError as e:
-                logging.error(f'{__class__} {ValidatePizzaOrderForm.validate_pizza_type.__name__} - Error: {e}')
+                logging.error(f'{__class__} {__class__.validate_pizza_type.__name__} - Error: {e}')
 
     def validate_pizza_amount(
         self,
@@ -265,7 +265,7 @@ class ValidatePizzaOrderForm(FormValidationAction):
                 else:
                     return {"dough": None}
             except AttributeError as e:
-                logging.error(f'{__class__} {ValidatePizzaOrderForm.validate_dough.__name__} - Error: {e}')
+                logging.error(f'{__class__} {__class__.validate_dough.__name__} - Error: {e}')
 
 class ActionTotalOrderAdd(Action):
     order_str = ""
@@ -289,7 +289,10 @@ class ActionTotalOrderAdd(Action):
             
             if total_orders == 1:
                 order_elements.append(pizza_info)
-                order_elements.append(f"and a {pizza['drinks_type']}({pizza['drinks_size']}ml) with {pizza['drinks_ice']}")
+                try:
+                    order_elements.append(f"and a {pizza['drinks_type']}({pizza['drinks_size']}ml) with {pizza['drinks_ice']}")
+                except KeyError as e:
+                    logging.error(f"{__class__} {__class__.run.__name__} - Error: {e}")
             elif index < total_orders:
                 order_elements.append(pizza_info + ",")
             else:

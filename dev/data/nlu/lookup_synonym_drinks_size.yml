@@ -11,9 +11,11 @@ nlu:
     - 300
     - 300 ml
     - 0.3
+    - three hundred milliliters
 
 - synonym: "500"
   examples: |
     - 500
     - 500 ml
     - 0.5
+    - five hundred milliliters
