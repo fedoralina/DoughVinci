@@ -25,7 +25,7 @@ pipeline:
   epochs: 100
   constrain_similarities: true
 - name: EntitySynonymMapper
-#TODO: added rule to gather in separate ResponseSelectors related questions to the same rules to prevent creating multiple rules
+# added rule to gather in separate ResponseSelectors related questions to the same rules to prevent creating multiple rules
 - name: ResponseSelector
   epochs: 100
   retrieval_intent: faq

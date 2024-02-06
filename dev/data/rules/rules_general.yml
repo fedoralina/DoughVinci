@@ -17,7 +17,7 @@ rules:
   - action: action_order_information
 
 
-#TODO add response for faq and chitchat like here: https://rasa.com/docs/rasa/chitchat-faqs
+# response for faq like here: https://rasa.com/docs/rasa/chitchat-faqs
 - rule: respond to FAQs
   steps:
   - intent: faq

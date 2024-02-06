@@ -24,28 +24,13 @@ rules:
   - action: utter_anything_else
 
 
-#### sumit pizza order form by adding all to total_order, ask for more orders, no more orders
-# - rule: Submit Pizza Form Finish Order
-#   condition:
-#   - active_loop: pizza_order_form
-#   steps:
-#   - action: pizza_order_form
-#   - active_loop: null
-#   - slot_was_set:
-#     - requested_slot: null
-#   - action: action_total_order_add
-#   - action: action_reset_slots
-#   - action: utter_anything_else
-#   - intent: deny
-#   - action: utter_ask_client_name
-
-
 - rule: Get User Name at the End of Pizza Order
   steps:
   - action: utter_ask_client_name
   - intent: inform_client_name
   - action: utter_all_set
   - action: utter_order_final
+
 
 - rule: Deny Triggers Ask Name
   steps:
@@ -60,6 +45,7 @@ rules:
   - intent: deny
   - action: utter_ask_client_name
 
+
 #### continues the form after bot challange
 - rule: Interruption in Pizza Form
   condition:
@@ -72,6 +58,7 @@ rules:
   # Return to form after handling the faq intent
   - action: pizza_order_form
   - active_loop: pizza_order_form
+
 
 ####  interrupts the normal flow with telling the pizza sizes
 - rule: Explain Pizza Size

@@ -6,7 +6,6 @@ recipe: default.v1
 # This default value must be replaced with a unique assistant name within your deployment
 assistant_id: dough_vinci
 
-#TODO: think of custom slot mapping with FormValidationAction https://rasa.com/docs/rasa/forms/#custom-slot-mappings
 ### for now using RegexEntityExtractor to only provide at least two annotated examples of the entity: https://rasa.com/docs/rasa/nlu-training-data/#lookup-tables
 # Configuration for Rasa NLU.
 # https://rasa.com/docs/rasa/nlu/components/

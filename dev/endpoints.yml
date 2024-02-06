@@ -10,7 +10,7 @@
 # Server which runs your custom actions.
 # https://rasa.com/docs/rasa/custom-actions
 
-#TODO needs to be used for custom actions
+
 action_endpoint:
   url: "http://localhost:5055/webhook"
 

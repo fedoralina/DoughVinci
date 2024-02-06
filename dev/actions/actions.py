@@ -45,8 +45,6 @@ class DoughVinciSlotChanger(ValidationAction):
     # this is run before the Form Validation
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict):
         try: 
-            #TODO: does user want to be asked "anything else" when bot says order one by one and user already made two orders?
-            #TODO: so should we add another rule for this kind of flow or too complex?
             user_intent = tracker.latest_message.get('intent')['name']
 
             ## table booking
