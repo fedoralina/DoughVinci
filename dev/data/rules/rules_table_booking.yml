@@ -43,3 +43,10 @@ rules:
   steps:
   - intent: book_event
   - action: utter_event_information
+
+- rule: No After Table Booking
+  steps:
+  - action: utter_table_slots
+  - intent: deny
+  - action: utter_all_set
+  - action: utter_goodbye
