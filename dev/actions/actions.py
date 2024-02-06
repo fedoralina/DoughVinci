@@ -72,7 +72,7 @@ class DoughVinciSlotChanger(ValidationAction):
                     SharedVariables.continue_after_multiple_orders = True
                     # reset this flag so amount can be set properly in single order
                     SharedVariables.is_pizza_amount_number_set = False
-                    return[SlotSet("pizza_type", None), SlotSet("pizza_size", None), SlotSet("pizza_amount", None)]
+                    return[SlotSet("pizza_type", None), SlotSet("pizza_size", None), SlotSet("pizza_amount", None), SlotSet("dough")]
                 
                 # set default pizza_amount to 1, otherwise to the extracted value to not ask user anytime for the amount
                 elif SharedVariables.is_pizza_amount_number_set == False:  
@@ -177,7 +177,7 @@ class ValidatePizzaOrderForm(FormValidationAction):
                     if isinstance(slot_value, str) and slot_value in ALLOWED_DOUGH_TYPES:
                         return {"dough": slot_value}
                     else:
-                        dispatcher.utter_message(text=f"Unfortunately we do not offer this dough type. We serve {', '.join(ALLOWED_DOUGH_TYPES)}.")
+                        dispatcher.utter_message(text=f"Unfortunately we do not offer {slot_value} dough type. We serve {', '.join(ALLOWED_DOUGH_TYPES)}.")
                         return {"dough": None}
                 else:
                     return {"dough": None}
@@ -232,6 +232,12 @@ class ActionTotalOrderAdd(Action):
         if pizza_amount is None:
             pizza_amount = 1
         total_order_dict[order_key] = {"pizza_size": pizza_size, "pizza_type": pizza_type, "pizza_amount": pizza_amount, "dough": dough_type}
+
+        # save order differently depending on pizza_amount
+        if pizza_amount == 1:
+            dispatcher.utter_message(f"Good choice! I will add {num_to_word(pizza_amount)} {pizza_size} {pizza_type} with {dough_type} dough to your order.")
+        elif pizza_amount > 1:
+            dispatcher.utter_message(f"Good choice! I will add {num_to_word(pizza_amount)} {pizza_size} {pizza_type} pizzas with {dough_type} dough to your order.")
         
         self.print_order(total_order_dict)
         
@@ -341,6 +347,18 @@ class ActionPizzaSizeInformation(Action):
         dispatcher.utter_message(f"We offer {size_offer}.")
         return []
 
+class OrderInformation(Action):
+
+    def name(self):
+        return "action_order_information"
+    
+    def run(self, dispatcher, tracker, domain):
+        order_readable = tracker.get_slot("order_readable")
+
+        if order_readable is None:
+            dispatcher.utter_message("You didn't finish your order, therefore I cannot summarize it.")
+        else:
+            dispatcher.utter_message(f"For now your order includes {order_readable}. Is there anything else I can do?")
 
 class DoughTypeInformation(Action):
     def name(self):
@@ -374,7 +392,6 @@ class ResetSlots(Action):
         return 'action_reset_slots'
     
     def run(self, dispatcher, tracker, domain):
-        dispatcher.utter_message("Sure, tell me what you want to add.")
         # remove existing pizza_type and pizza_size slots
-        return[SlotSet("pizza_type", None), SlotSet("pizza_size", None), SlotSet("pizza_amount", None), SlotSet("dough", None), SlotSet("dough_inform",None), SlotSet("client_name", None)]
+        return[SlotSet("pizza_type", None), SlotSet("pizza_size", None), SlotSet("pizza_amount", None), SlotSet("dough", None), SlotSet("dough_inform",None)]
 

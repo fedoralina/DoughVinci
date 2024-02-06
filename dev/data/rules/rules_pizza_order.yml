@@ -22,10 +22,6 @@ rules:
   - action: action_total_order_add
   - action: action_reset_slots
   - action: utter_anything_else
-#  - or:
-#    - intent: affirm
-#    - intent: add_more_pizza
-#
 
 
 #### sumit pizza order form by adding all to total_order, ask for more orders, no more orders
@@ -41,8 +37,7 @@ rules:
   - action: action_reset_slots
   - action: utter_anything_else
   - intent: deny
-  - action: utter_all_set
-  - action: utter_order_final
+  - action: utter_ask_client_name
 
 #### continues the form after bot challange
 - rule: Interruption in Pizza Form

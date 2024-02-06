@@ -4,7 +4,7 @@ stories:
 #? no story required so far for pizza logic (without the change logic) -> it does not detect actions correctly after using stories as well -> therefore we will just leave it like that
 
 #### give pizza type information: now works that I put requested_slot back in the end
-- story: pizza default
+- story: pizza_default
   steps:
   - or:
     - intent: buy_pizza
@@ -18,6 +18,67 @@ stories:
   - action: pizza_order_form
   - slot_was_set:
     - requested_slot: pizza_type
+
+## overinformative user, no other order
+- story: pizza_2
+  steps:
+  - intent: inform_pizza_order
+    entities:
+    - pizza_size: large
+    - pizza_type: Funghi
+    - dough: garlic
+  - slot_was_set:
+    - pizza_amount: 1
+  - slot_was_set:
+    - pizza_type: Funghi
+  - slot_was_set:
+    - pizza_size: large
+  - slot_was_set:
+    - dough: garlic
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+  - slot_was_set:
+    - pizza_type: Funghi
+  - slot_was_set:
+    - pizza_size: large
+  - slot_was_set:
+    - dough: garlic
+  - slot_was_set:
+    - pizza_amount: 1
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_total_order_add
+  - slot_was_set:
+    - total_order:
+        '1':
+          pizza_size: large
+          pizza_type: Funghi
+          pizza_amount: 1
+          dough: garlic
+  - slot_was_set:
+    - order_readable: one large Funghi with garlic dough
+  - action: action_reset_slots
+  - slot_was_set:
+    - pizza_type: null
+  - slot_was_set:
+    - pizza_size: null
+  - slot_was_set:
+    - pizza_amount: null
+  - slot_was_set:
+    - dough: null
+  - slot_was_set:
+    - dough_inform: null
+  - action: utter_anything_else
+  - intent: deny
+  - action: utter_ask_client_name
+  - intent: inform_client_name
+    entities:
+    - client_name: Mary
+  - slot_was_set:
+    - client_name: Mary
+  - action: utter_all_set
+  - action: utter_order_final
 
 # # happy path, mostly system initiative
 # - story: table_1

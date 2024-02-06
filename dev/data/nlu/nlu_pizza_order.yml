@@ -69,6 +69,7 @@ nlu:
     - with [whole-wheat](dough) dough
     - with [wholemeal] dough
     - then i would like to have [garlic](dough) please
+    - i want [garlic](dough) dough then
     - i want two [xl](pizza_size) [vegetariana](pizza_type) pizzas
     - i want 3 [huge](pizza_size) [funghi](pizza_type)
     - i want to order a [xl](pizza_size) [vegetariana](pizza_type) pizza
