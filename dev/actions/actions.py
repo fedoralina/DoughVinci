@@ -370,7 +370,7 @@ class ValidateTableBookingForm(FormValidationAction):
         time = slot_value[11:16]
 
         if time not in ALLOWED_BOOKING_TIME:
-            dispatcher.utter_message(text=f"I'm sorry that's not possible. Please be aware: A table can ne booked only from 19:00 to 21:00 every half hour.")
+            dispatcher.utter_message(text=f"I'm sorry that's not possible. Please be aware: A table can ne booked only from 19:00 p.m. to 21:00 p.m. every half hour.")
             return {"date": None, "time": None}
         if SharedVariables.table_booking_changed == False: 
             dispatcher.utter_message(text=f"OK! On {date} at {time} p.m. we have a free table.")

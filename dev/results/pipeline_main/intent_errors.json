@@ -1,0 +1,546 @@
+[
+  {
+    "text": "yes please",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "want_drinks",
+      "confidence": 0.678087055683136
+    }
+  },
+  {
+    "text": "ty",
+    "intent": "thank",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.3438929617404938
+    }
+  },
+  {
+    "text": "thanks Leo",
+    "intent": "thank",
+    "intent_prediction": {
+      "name": "inform_client_name",
+      "confidence": 0.9514307379722595
+    }
+  },
+  {
+    "text": "what's your name",
+    "intent": "faq",
+    "intent_prediction": {
+      "name": "inform_client_name",
+      "confidence": 0.8939346671104431
+    }
+  },
+  {
+    "text": "what is your biggest table",
+    "intent": "faq",
+    "intent_prediction": {
+      "name": "book_table",
+      "confidence": 0.4180614650249481
+    }
+  },
+  {
+    "text": "when can i book a table",
+    "intent": "faq",
+    "intent_prediction": {
+      "name": "book_table",
+      "confidence": 0.7591707110404968
+    }
+  },
+  {
+    "text": "good night",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.8674114942550659
+    }
+  },
+  {
+    "text": "let's go",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.6455292701721191
+    }
+  },
+  {
+    "text": "how far is the square",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.9999237060546875
+    }
+  },
+  {
+    "text": "give me the directions to time square",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "change_table_booking",
+      "confidence": 0.5798588395118713
+    }
+  },
+  {
+    "text": "i want to order pizzas",
+    "intent": "buy_pizza",
+    "intent_prediction": {
+      "name": "inform_pizza_order",
+      "confidence": 0.7334533333778381
+    }
+  },
+  {
+    "text": "Probably avg",
+    "intent": "inform_pizza_order",
+    "intent_prediction": {
+      "name": "book_table",
+      "confidence": 0.26879820227622986
+    }
+  },
+  {
+    "text": "with gluten-free dough",
+    "intent": "inform_pizza_order",
+    "intent_prediction": {
+      "name": "what_doughs_you_have",
+      "confidence": 0.48328450322151184
+    }
+  },
+  {
+    "text": "tell me your dough types",
+    "intent": "what_doughs_you_have",
+    "intent_prediction": {
+      "name": "what_pizza_you_have",
+      "confidence": 0.7301022410392761
+    }
+  },
+  {
+    "text": "outside",
+    "intent": "inform_table_booking",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.7914946675300598
+    }
+  },
+  {
+    "text": "with ice please",
+    "intent": "inform_drinks",
+    "intent_prediction": {
+      "name": "inform_pizza_order",
+      "confidence": 0.9845951795578003
+    }
+  },
+  {
+    "text": "indeed",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "thank",
+      "confidence": 0.13708007335662842
+    }
+  },
+  {
+    "text": "correct",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.18900056183338165
+    }
+  },
+  {
+    "text": "where's my pizza?",
+    "intent": "faq",
+    "intent_prediction": {
+      "name": "buy_pizza",
+      "confidence": 0.40275153517723083
+    }
+  },
+  {
+    "text": "good afternoon",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.5886911153793335
+    }
+  },
+  {
+    "text": "do you like flowers?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.9089450240135193
+    }
+  },
+  {
+    "text": "Who's the US President?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.7818149924278259
+    }
+  },
+  {
+    "text": "s",
+    "intent": "inform_pizza_order",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.24320831894874573
+    }
+  },
+  {
+    "text": "what can I choose from",
+    "intent": "what_doughs_you_have",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.9817440509796143
+    }
+  },
+  {
+    "text": "do you have parmesan dough",
+    "intent": "what_doughs_you_have",
+    "intent_prediction": {
+      "name": "book_event",
+      "confidence": 0.6779077053070068
+    }
+  },
+  {
+    "text": "i want to book all your tables",
+    "intent": "book_event",
+    "intent_prediction": {
+      "name": "book_table",
+      "confidence": 0.45517778396606445
+    }
+  },
+  {
+    "text": "of course",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.3856692612171173
+    }
+  },
+  {
+    "text": "Where is the restaurant?",
+    "intent": "faq",
+    "intent_prediction": {
+      "name": "out_of_scope",
+      "confidence": 0.7192827463150024
+    }
+  },
+  {
+    "text": "are threre heaters for the places outside",
+    "intent": "faq",
+    "intent_prediction": {
+      "name": "inform_table_booking",
+      "confidence": 0.9703734517097473
+    }
+  },
+  {
+    "text": "can we sit outside",
+    "intent": "faq",
+    "intent_prediction": {
+      "name": "inform_table_booking",
+      "confidence": 0.9803690314292908
+    }
+  },
+  {
+    "text": "whats in the icetea",
+    "intent": "faq",
+    "intent_prediction": {
+      "name": "inform_drinks",
+      "confidence": 0.7287970185279846
+    }
+  },
+  {
+    "text": "hi",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "inform_pizza_order",
+      "confidence": 0.9598015546798706
+    }
+  },
+  {
+    "text": "do you have shoes",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.45363232493400574
+    }
+  },
+  {
+    "text": "do you have a sister",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.26071590185165405
+    }
+  },
+  {
+    "text": "book a flight from milan to ny",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "what_doughs_you_have",
+      "confidence": 0.4071488678455353
+    }
+  },
+  {
+    "text": "m",
+    "intent": "inform_pizza_order",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.732200562953949
+    }
+  },
+  {
+    "text": "I want a big pizza",
+    "intent": "inform_pizza_order",
+    "intent_prediction": {
+      "name": "buy_pizza",
+      "confidence": 0.9526835083961487
+    }
+  },
+  {
+    "text": "i want to extend the order",
+    "intent": "add_more_pizza",
+    "intent_prediction": {
+      "name": "inform_drinks",
+      "confidence": 0.6904023289680481
+    }
+  },
+  {
+    "text": "tell me the types",
+    "intent": "what_pizza_you_have",
+    "intent_prediction": {
+      "name": "what_doughs_you_have",
+      "confidence": 0.48267096281051636
+    }
+  },
+  {
+    "text": "do you have gluten-free dough",
+    "intent": "what_doughs_you_have",
+    "intent_prediction": {
+      "name": "inform_pizza_order",
+      "confidence": 0.9999457597732544
+    }
+  },
+  {
+    "text": "change the size to small",
+    "intent": "change_pizza_order",
+    "intent_prediction": {
+      "name": "change_table_booking",
+      "confidence": 0.6068478226661682
+    }
+  },
+  {
+    "text": "do you have a free table",
+    "intent": "book_table",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.5626894235610962
+    }
+  },
+  {
+    "text": "Leo",
+    "intent": "inform_client_name",
+    "intent_prediction": {
+      "name": "inform_drinks",
+      "confidence": 0.6100167632102966
+    }
+  },
+  {
+    "text": "that sounds good",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.4690861105918884
+    }
+  },
+  {
+    "text": "cu",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.5328010320663452
+    }
+  },
+  {
+    "text": "thanks bye",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "thank",
+      "confidence": 0.8684557676315308
+    }
+  },
+  {
+    "text": "how is the weather tomorrow?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.8963423371315002
+    }
+  },
+  {
+    "text": "What is 2 + 2?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "inform_drinks",
+      "confidence": 0.9258180856704712
+    }
+  },
+  {
+    "text": "where are you living",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.999985933303833
+    }
+  },
+  {
+    "text": "small",
+    "intent": "inform_pizza_order",
+    "intent_prediction": {
+      "name": "change_pizza_order",
+      "confidence": 0.5492846369743347
+    }
+  },
+  {
+    "text": "champignon",
+    "intent": "inform_pizza_order",
+    "intent_prediction": {
+      "name": "change_table_booking",
+      "confidence": 0.5573877096176147
+    }
+  },
+  {
+    "text": "want to order least ham pizza",
+    "intent": "inform_pizza_order",
+    "intent_prediction": {
+      "name": "buy_pizza",
+      "confidence": 0.4391210377216339
+    }
+  },
+  {
+    "text": "then i would like to have garlic please",
+    "intent": "inform_pizza_order",
+    "intent_prediction": {
+      "name": "inform_drinks",
+      "confidence": 0.2690901458263397
+    }
+  },
+  {
+    "text": "do you offer garlic dough",
+    "intent": "what_doughs_you_have",
+    "intent_prediction": {
+      "name": "inform_pizza_order",
+      "confidence": 0.9324459433555603
+    }
+  },
+  {
+    "text": "please change the pizza to funghi",
+    "intent": "change_pizza_order",
+    "intent_prediction": {
+      "name": "change_table_booking",
+      "confidence": 0.7941697239875793
+    }
+  },
+  {
+    "text": "can i eat at your place",
+    "intent": "book_table",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.560380756855011
+    }
+  },
+  {
+    "text": "y",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "thank",
+      "confidence": 0.2669488787651062
+    }
+  },
+  {
+    "text": "thank you, no",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "thank",
+      "confidence": 0.42055943608283997
+    }
+  },
+  {
+    "text": "what is the maximum capacity",
+    "intent": "faq",
+    "intent_prediction": {
+      "name": "book_event",
+      "confidence": 0.3544546365737915
+    }
+  },
+  {
+    "text": "is it cold if we sit outside",
+    "intent": "faq",
+    "intent_prediction": {
+      "name": "inform_table_booking",
+      "confidence": 0.9035171866416931
+    }
+  },
+  {
+    "text": "summarize order",
+    "intent": "whats_my_order",
+    "intent_prediction": {
+      "name": "inform_pizza_order",
+      "confidence": 0.9167351722717285
+    }
+  },
+  {
+    "text": "have a nice day",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "inform_drinks",
+      "confidence": 0.23928093910217285
+    }
+  },
+  {
+    "text": "what is your favorite color?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.7927799820899963
+    }
+  },
+  {
+    "text": "do you want a hug?",
+    "intent": "out_of_scope",
+    "intent_prediction": {
+      "name": "faq",
+      "confidence": 0.5236304998397827
+    }
+  },
+  {
+    "text": "i want a pizza",
+    "intent": "buy_pizza",
+    "intent_prediction": {
+      "name": "inform_pizza_order",
+      "confidence": 0.9989495873451233
+    }
+  },
+  {
+    "text": "I'm interested in a savory round flattened bread of Italian origin",
+    "intent": "buy_pizza",
+    "intent_prediction": {
+      "name": "change_pizza_order",
+      "confidence": 0.47319409251213074
+    }
+  },
+  {
+    "text": "more pizza",
+    "intent": "add_more_pizza",
+    "intent_prediction": {
+      "name": "inform_pizza_order",
+      "confidence": 0.9403123259544373
+    }
+  },
+  {
+    "text": "actually, i want to change my pizza to a diavola",
+    "intent": "change_pizza_order",
+    "intent_prediction": {
+      "name": "change_table_booking",
+      "confidence": 0.8994072079658508
+    }
+  }
+]

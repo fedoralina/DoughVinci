@@ -1,0 +1,142 @@
+version: "3.1"
+
+stories:
+- story: s1
+  steps:
+  - user: |
+      hello
+    intent: greet
+  - action: utter_greet
+
+- story: s2
+  steps:
+  - user: |
+      what is my order so far?
+    intent: whats_my_order
+  - action: action_order_information
+
+- story: s3
+  steps:
+  - user: |
+      can we bring our dog?
+    intent: faq
+  - action: utter_faq
+
+- story: s4
+  steps:
+  - user: |
+      i want to book a table
+    intent: book_table
+  - action: table_booking_form
+  - active_loop: table_booking_form
+
+- story: s5
+  steps:
+  - user: |
+      for [2](num_people) people
+    intent: inform_table_booking
+    entities:
+    - number: 2
+    - num_people: '2'
+  - slot_was_set:
+    - num_people: '2'
+  - slot_was_set:
+    - num_people: '2'
+  - action: table_booking_form 
+  - action: utter_table_slots
+
+- story: s6
+  steps:
+  - user: |
+      [friday in two weeks at eight p.m.]{"entity": "time", "value": "2024-02-23T20:00:00.000+01:00"}
+    intent: inform_table_booking
+    entities:
+    - time: '2024-02-23T20:00:00.000+01:00'
+  - slot_was_set:
+    - time: '2024-02-23T20:00:00.000+01:00'
+  - slot_was_set:
+    - time: '2024-02-23T20:00:00.000+01:00'
+  - action: table_booking_form  
+  - action: utter_table_slots
+
+- story: s7
+  steps:
+  - user: |
+      i want to sit [inside](inside_outside) please
+    intent: inform_table_booking
+    entities:
+    - inside_outside: inside
+  - slot_was_set:
+    - inside_outside: inside
+  - slot_was_set:
+    - inside_outside: inside
+  - action: table_booking_form 
+  - action: utter_table_slots
+
+- story: s8
+  steps:
+  - user: |
+      i want a [large](pizza_size) [funghi](pizza_type) pizza
+    intent: inform_pizza_order
+    entities:
+    - pizza_size: large
+    - pizza_type: Funghi
+  - slot_was_set:
+    - pizza_amount: 1
+  - slot_was_set:
+    - pizza_type: Funghi
+  - slot_was_set:
+    - pizza_size: large
+  - action: pizza_order_form 
+  - action: action_total_order_add
+  - action: action_reset_slots
+  - action: utter_anything_else
+
+- story: s9
+  steps:
+  - user: |
+      book a flight from milan to ny
+    intent: out_of_scope
+  - action: utter_out_of_scope
+
+- story: s10
+  steps:
+  - user: |
+      can we bring our dog?
+    intent: faq
+  - action: utter_faq
+
+- story: s11
+  steps:
+  - user: |
+      how many people can sit on a table?
+    intent: faq
+  - action: utter_faq
+
+- story: s12
+  steps:
+  - user: |
+      how long are you open?
+    intent: faq
+  - action: utter_faq
+
+- story: s13
+  steps:
+  - user: |
+      are threre heaters for the places outside
+    intent: faq
+  - action: utter_faq
+
+- story: s14
+  steps:
+  - user: |
+      tell me more about the iceteas
+    intent: faq
+  - action: utter_faq
+
+- story: s15
+  steps:
+  - user: |
+      are there drinks without sugar
+    intent: faq
+  - action: utter_faq
