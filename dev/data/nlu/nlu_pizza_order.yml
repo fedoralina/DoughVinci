@@ -34,6 +34,7 @@ nlu:
     - i'd like a [family-size](pizza_size) pizza
     - [xl](pizza_size)
     - i want a [extra-large](pizza_size) pizza
+    - i want a [margarita](pizza_type) pizza
     - [margherita](pizza_type) pizza
     - a [cheese](pizza_type) one
     - [funghi](pizza_type)
@@ -42,6 +43,8 @@ nlu:
     - [mushroom](pizza_type)
     - [prosciutto](pizza_type) pizza
     - want to order least [ham](pizza_type) pizza
+    - i want a [regina](pizza_type) pizza
+    - i want a [diabola](pizza_type) pizza
     - [veggie](pizza_type)
     - [vegetarian](pizza_type) pizza
     - pizza [vegetariana](pizza_type)
@@ -97,6 +100,7 @@ nlu:
     - tell me the types
     - what types
     - what are the types you offer
+    - what types do you offer
     - what do you offer
 
 - intent: what_size_you_have
@@ -110,9 +114,13 @@ nlu:
   examples: |
     - which doughs do you have
     - what doughs do you offer
+    - which doe type do you offer
+    - what doe type do you offer
     - tell me your dough types
+    - tell me the doe types
     - what can I choose from
     - do you have [gluten-free](dough_inform) dough
+    - do you have [gluten-free](dough_inform) doe
     - do you offer [garlic](dough_inform) dough
     - do you have [parmesan](dough_inform) dough
 
@@ -122,6 +130,8 @@ nlu:
     - please change the pizza to [funghi](pizza_type)
     - actually, i want to change my pizza to a [diavola](pizza_type)
     - change the size to [small](pizza_size)
-    - can i get in in [small](pizza_size) instead
+    - change it to a [diabola](pizza_type) pizza
+    - can i get it in [small](pizza_size) instead
+    - i want a [diavola](pizza_type) pizza instead
 
     

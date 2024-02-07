@@ -72,6 +72,17 @@ rules:
 
 
 ####  interrupts the normal flow with telling the pizza doughs
+- rule: Explain Pizza Type
+  condition:
+  - active_loop: pizza_order_form
+  steps:
+  - intent: what_pizza_you_have
+  - action: action_pizza_type_information
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+
+
+####  interrupts the normal flow with telling the pizza doughs
 - rule: Explain Pizza Dough
   condition:
   - active_loop: pizza_order_form

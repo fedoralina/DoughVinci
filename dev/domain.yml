@@ -223,7 +223,7 @@ responses:
   - text: Always a pleasure! What else can I do for you?
   - text: Anytime! Can I do something else for you?
   utter_faq/bot_challenge:
-  - text: I am Leo, DoughVinci's assistant with the aim to support the restaurant in taking orders for takeaway and making table bookings.
+  - text: I am Leonardo, DoughVinci's assistant with the aim to support the restaurant in taking orders for takeaway and making table bookings.
   utter_faq/ask_bot_tasks:
   - text: My tasks include taking orders for pizza and drinks for takeaway as well as making table bookings for our restaurant.
   utter_faq/request_restaurant_location:
@@ -253,24 +253,24 @@ responses:
   utter_ask_continue:
   - text: Are you sure you want to stop the form?
   utter_ask_pizza_size:
-  - text: What size would you like your pizza to be?
-  - text: What pizza size would you like?
+  - text: And, what size would you like your pizza to be?
+  - text: And, what pizza size would you like?
   utter_ask_pizza_type:
   - text: What kind of pizza would you like to buy?
   - text: Which pizza do you want?
   utter_ask_dough:
-  - text: Which dough type do you want?
+  - text: And, which dough type do you want?
   - text: Please tell me your preferred dough type for the {pizza_type}.
   utter_ask_num_people:
   - text: For how many people do you want to book the table?
   utter_ask_time:
-  - text: At what time do you want to book the table?
+  - text: Alright, at what time do you want to book the table?
   utter_ask_inside_outside:
-  - text: Do you want to sit inside or outside?
+  - text: And, do you want to sit inside or outside?
   utter_ask_client_name:
   - text: OK! DoughVinci requires a name to properly assign your request. Can you give me your name, please?
   utter_event_information:
-  - text: I'm sorry, your request for an event can't be handled directly here by me. Please call us under 0123456789, we are happy to help you with your request!
+  - text: Unfortunately your request for an event can't be handled directly here by me. Please call us under 0123456789, we are happy to help you with your request!
   - text: I'm sorry, I can't handle this request, but my colleagues can! Please call us under 0123456789 for your event!
   utter_anything_else:
   - text: Alright, do you want anything else?
@@ -279,8 +279,8 @@ responses:
   - text: Perfect, you're all set then, {client_name}!
   - text: Alright {client_name}, you're all set!
   utter_order_final:
-  - text: Your final order is {order_readable}. {client_name}, thank you for your trust in DoughVinci's edible masterpieces. Your order will be ready for takeaway 30 minutes - you can take it by saying your name and the ID 36896.
-  - text: Your final order is {order_readable}. {client_name}, thank you for your trust in DoughVinci's edible masterpieces. Your order will be ready for takeaway 40 minutes - you can take it by saying your name and the ID 98673.
+  - text: Your final order is {order_readable}. {client_name}, thank you for your trust in DoughVinci's edible masterpieces. Your order will be ready for takeaway in 30 minutes - you can take it by saying your name and the ID 36896.
+  - text: Your final order is {order_readable}. {client_name}, thank you for your trust in DoughVinci's edible masterpieces. Your order will be ready for takeaway in 40 minutes - you can take it by saying your name and the ID 98673.
   - text: Your final order is {order_readable}. {client_name}, thank you for your trust in DoughVinci's edible masterpieces. Due to high demand, your order will be ready for takeaway in 1 hour - you can take it by saying your name and the ID 22478.
   utter_do_one_by_one:
   - text: Unfortunately I am just a small town assistant, living in a complex world. I cannot process multiple orders at once. Please give me your orders again one by one.
@@ -293,10 +293,10 @@ responses:
   - text: Do you want your drink to be 300ml or 500ml?
   - text: 300ml or 500ml?
   utter_ask_drinks_ice:
-  - text: Should we add ice to your drink?
-  - text: Do you want ice in your drink?
+  - text: Should we add ice or no ice to your drink?
+  - text: Do you want ice or no ice in your drink?
   utter_drinks_slots:
-  - text: Great! I will add a {drinks_type}({drinks_size}ml) with {drinks_ice} to your order.
+  - text: Great! I will add a {drinks_type} ({drinks_size}ml) with {drinks_ice} to your order.
 
 session_config:
   session_expiration_time: 60

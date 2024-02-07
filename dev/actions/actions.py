@@ -48,24 +48,29 @@ class DoughVinciSlotChanger(ValidationAction):
             user_intent = tracker.latest_message.get('intent')['name']
 
             ## table booking
-            if user_intent == 'change_table_booking' and SharedVariables.pizza_order_changed == False:
+            if user_intent == 'change_table_booking' and SharedVariables.table_booking_changed == False:
                 # extract my relevant entities to avoid duckling entities like number
                 user_entities = tracker.latest_message.get('entities')
-                
+
                 for i in range(len(user_entities)):
                     user_entity_name = user_entities[i]['entity']
                     user_entity_value = user_entities[i]['value']
-                
-                    if user_entity_name == 'pizza_type':  
-                        SharedVariables.pizza_order_changed = True              
-                        return[SlotSet("pizza_type", user_entity_value)]
 
-                    if user_entity_name == 'pizza_size':
-                        SharedVariables.pizza_order_changed = True
-                        return[SlotSet("pizza_size", user_entity_value)]
+                    if user_entity_name == 'num_people':  
+                        SharedVariables.table_booking_changed = True              
+                        return[SlotSet("num_people", user_entity_value)]
+
+                    if user_entity_name == 'time':
+                        SharedVariables.table_booking_changed = True
+                        return[SlotSet("time", user_entity_value)]
+
+                    if user_entity_name == 'inside_outside':
+                        SharedVariables.table_booking_changed = True
+                        return[SlotSet("inside_outside", user_entity_value)]
+
 
             ## change order
-            if user_intent == 'change_pizza_order' and SharedVariables.table_booking_changed == False:
+            if user_intent == 'change_pizza_order' and SharedVariables.pizza_order_changed == False:
             # extract my relevant entities to avoid duckling entities like number
                 user_entities = tracker.latest_message.get('entities')
                 
@@ -76,11 +81,11 @@ class DoughVinciSlotChanger(ValidationAction):
                     # pizza amount is not changeable so easily in this config
                     
                     if user_entity_name == 'pizza_type':
-                        SharedVariables.table_booking_changed = True
+                        SharedVariables.pizza_order_changed = True
                         return[SlotSet("pizza_type", user_entity_value)]                    
                     
                     if user_entity_name == 'pizza_size':
-                        SharedVariables.table_booking_changed = True
+                        SharedVariables.pizza_order_changed = True
                         return[SlotSet("pizza_size", user_entity_value)]                        
             
             ## pizza order 
@@ -113,7 +118,7 @@ class DoughVinciSlotChanger(ValidationAction):
 
             
         except IndexError as e:
-            logging.error(f"{__class__} {DoughVinciSlotChanger.run.__name__} - Error: {e}")
+            logging.error(f"{__class__} {__class__.run.__name__} - Error: {e}")
         
 class ValidateDrinksForm(FormValidationAction):
     def name(self) -> Text:
@@ -147,9 +152,14 @@ class ValidateDrinksForm(FormValidationAction):
             return {"drinks_type": None}
         
         users_pizza = tracker.get_slot('total_order')['1']['pizza_type']
-        drinks_type = PIZZA_DRINK_MAPPINGS[users_pizza]
         
-        dispatcher.utter_message(text=f"OK! For your {users_pizza} we have our special selfmade icetea '{drinks_type}'.")
+        if slot_value == "Icetea":
+            drinks_type = PIZZA_DRINK_MAPPINGS[users_pizza]
+            dispatcher.utter_message(text=f"OK! For your {users_pizza} we have our special selfmade icetea '{drinks_type}'.")
+        else:
+            drinks_type = slot_value
+            dispatcher.utter_message(text=f"Alright, for your {users_pizza}, I added a {drinks_type}.")
+
         return {"drinks_type": drinks_type}
         
     
@@ -198,7 +208,7 @@ class ValidatePizzaOrderForm(FormValidationAction):
                     SharedVariables.is_pizza_amount_number_set = False
                     return {"pizza_size": None}
             except AttributeError as e:
-                logging.error(f'{__class__} {ValidatePizzaOrderForm.validate_pizza_size.__name__} - Error: {e}')
+                logging.error(f'{__class__} {__class__.validate_pizza_size.__name__} - Error: {e}')
 
     def validate_pizza_type(
         self,
@@ -227,11 +237,9 @@ class ValidatePizzaOrderForm(FormValidationAction):
                         return {"pizza_type": slot_value}
                     else:
                         dispatcher.utter_message(text=f"Unfortunately we do not offer this pizza type. We serve {', '.join(ALLOWED_PIZZA_TYPES)}.")
-                        return {"pizza_type": None}
-                else:
-                    return {"pizza_type": None}
+                return {"pizza_type": None}
             except AttributeError as e:
-                logging.error(f'{__class__} {ValidatePizzaOrderForm.validate_pizza_type.__name__} - Error: {e}')
+                logging.error(f'{__class__} {__class__.validate_pizza_type.__name__} - Error: {e}')
 
     def validate_pizza_amount(
         self,
@@ -265,7 +273,7 @@ class ValidatePizzaOrderForm(FormValidationAction):
                 else:
                     return {"dough": None}
             except AttributeError as e:
-                logging.error(f'{__class__} {ValidatePizzaOrderForm.validate_dough.__name__} - Error: {e}')
+                logging.error(f'{__class__} {__class__.validate_dough.__name__} - Error: {e}')
 
 class ActionTotalOrderAdd(Action):
     order_str = ""
@@ -289,7 +297,10 @@ class ActionTotalOrderAdd(Action):
             
             if total_orders == 1:
                 order_elements.append(pizza_info)
-                order_elements.append(f"and a {pizza['drinks_type']}({pizza['drinks_size']}ml) with {pizza['drinks_ice']}")
+                try:
+                    order_elements.append(f"and a {pizza['drinks_type']}({pizza['drinks_size']}ml) with {pizza['drinks_ice']}")
+                except KeyError as e:
+                    logging.error(f"{__class__} {__class__.run.__name__} - Error: {e}")
             elif index < total_orders:
                 order_elements.append(pizza_info + ",")
             else:

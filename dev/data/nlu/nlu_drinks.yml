@@ -12,12 +12,15 @@ nlu:
 
 - intent: inform_drinks
   examples: |
+    - i want [coke](drinks_type)
     - i want the [coke](drinks_type)
-    - i want the [cola](drinks_type)
-    - i want the [water](drinks_type)
-    - i want the [aqua](drinks_type)
-    - i want the [icetea](drinks_type)
-    - i want the [tea](drinks_type)
+    - i want [cola](drinks_type)
+    - i want [water](drinks_type)
+    - i want [aqua](drinks_type)
+    - i want [icetea](drinks_type)
+    - i want [tea](drinks_type)
+    - i'll take the [tea](drinks_type)
+    - i'll take a [tea](drinks_type)
 
     - [ice](drinks_ice) please
     - [no ice](drinks_ice)
@@ -33,7 +36,12 @@ nlu:
     - [500ml](drinks_size)
     - i want the [330ml](drinks_size)
     - i want the [500ml](drinks_size)
+    - i'll take [five hundred milliliters](drinks_size)
     - [0.3](drinks_size)
     - [0.5](drinks_size)
     - [threehundred](drinks_size)
+    - [three hundred](drinks_size)
+    - [three hundred milliliters](drinks_size)
     - [fivehundred](drinks_size)
+    - [five hundred](drinks_size)
+    - [five hundred milliliters](drinks_size)
