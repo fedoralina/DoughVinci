@@ -1,0 +1,60 @@
+[
+  {
+    "text": "for 2 people",
+    "entities": [
+      {
+        "text": "for 2 people",
+        "start": 4,
+        "end": 5,
+        "entity": "num_people",
+        "value": "2"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "friday in two weeks at eight p.m.",
+    "entities": [
+      {
+        "text": "friday in two weeks at eight p.m.",
+        "start": 0,
+        "end": 33,
+        "entity": "time",
+        "value": "2024-02-23T20:00:00.000+01:00"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "i want to sit inside please",
+    "entities": [
+      {
+        "start": 14,
+        "end": 20,
+        "value": "inside",
+        "entity": "inside_outside"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "i want a large funghi pizza",
+    "entities": [
+      {
+        "text": "i want a large funghi pizza",
+        "start": 9,
+        "end": 14,
+        "entity": "pizza_size",
+        "value": "large"
+      },
+      {
+        "text": "i want a large funghi pizza",
+        "start": 15,
+        "end": 21,
+        "entity": "pizza_type",
+        "value": "funghi"
+      }
+    ],
+    "predicted_entities": []
+  }
+]

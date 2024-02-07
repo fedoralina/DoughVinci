@@ -1,0 +1,66 @@
+[
+  {
+    "text": "what's your name",
+    "intent_response_key_target": "faq/bot_challenge",
+    "intent_response_key_prediction": {
+      "name": "faq/ask_bot_tasks",
+      "confidence": 0.6892218589782715
+    }
+  },
+  {
+    "text": "what's your address?",
+    "intent_response_key_target": "faq/request_restaurant_location",
+    "intent_response_key_prediction": {
+      "name": "faq/ask_bot_tasks",
+      "confidence": 0.6499015092849731
+    }
+  },
+  {
+    "text": "what is your biggest table",
+    "intent_response_key_target": "faq/how_many_people",
+    "intent_response_key_prediction": {
+      "name": "faq/ask_bot_tasks",
+      "confidence": 0.5760526061058044
+    }
+  },
+  {
+    "text": "when can i book a table",
+    "intent_response_key_target": "faq/opening_hours",
+    "intent_response_key_prediction": {
+      "name": "faq/bot_challenge",
+      "confidence": 0.3848266005516052
+    }
+  },
+  {
+    "text": "what are you",
+    "intent_response_key_target": "faq/bot_challenge",
+    "intent_response_key_prediction": {
+      "name": "faq/ask_bot_tasks",
+      "confidence": 0.9949578642845154
+    }
+  },
+  {
+    "text": "how far are you?",
+    "intent_response_key_target": "faq/request_restaurant_location",
+    "intent_response_key_prediction": {
+      "name": "faq/bot_challenge",
+      "confidence": 0.8431087136268616
+    }
+  },
+  {
+    "text": "are you closed",
+    "intent_response_key_target": "faq/opening_hours",
+    "intent_response_key_prediction": {
+      "name": "faq/bot_challenge",
+      "confidence": 0.5945131182670593
+    }
+  },
+  {
+    "text": "what are your opening hours",
+    "intent_response_key_target": "faq/opening_hours",
+    "intent_response_key_prediction": {
+      "name": "faq/bot_challenge",
+      "confidence": 0.6004657745361328
+    }
+  }
+]
