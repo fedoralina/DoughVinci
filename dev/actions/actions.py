@@ -152,9 +152,14 @@ class ValidateDrinksForm(FormValidationAction):
             return {"drinks_type": None}
         
         users_pizza = tracker.get_slot('total_order')['1']['pizza_type']
-        drinks_type = PIZZA_DRINK_MAPPINGS[users_pizza]
         
-        dispatcher.utter_message(text=f"OK! For your {users_pizza} we have our special selfmade icetea '{drinks_type}'.")
+        if slot_value == "Icetea":
+            drinks_type = PIZZA_DRINK_MAPPINGS[users_pizza]
+            dispatcher.utter_message(text=f"OK! For your {users_pizza} we have our special selfmade icetea '{drinks_type}'.")
+        else:
+            drinks_type = slot_value
+            dispatcher.utter_message(text=f"Alright, for your {users_pizza}, I added a {drinks_type}.")
+
         return {"drinks_type": drinks_type}
         
     

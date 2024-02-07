@@ -84,7 +84,7 @@ nlu:
     - for how many people can we book
     - how many seats do you have
     - what is the maximum capacity
-    - how many people can sit on one table
+    - how many people can sit at one table
     - how many people can sit
     - how many seats
 
@@ -129,7 +129,7 @@ nlu:
 
 - intent: whats_my_order
   examples: |
-    - can you repeat my order so far?
+    - can you repeat my order so far
     - whats my order
     - what's my order
     - summarize order
