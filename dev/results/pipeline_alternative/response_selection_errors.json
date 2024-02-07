@@ -1,0 +1,90 @@
+[
+  {
+    "text": "what's your name",
+    "intent_response_key_target": "faq/bot_challenge",
+    "intent_response_key_prediction": {
+      "name": "faq/how_many_people",
+      "confidence": 0.4263385832309723
+    }
+  },
+  {
+    "text": "what iceteas do you have",
+    "intent_response_key_target": "faq/what_ice_teas",
+    "intent_response_key_prediction": {
+      "name": "faq/sugarfree",
+      "confidence": 0.35853445529937744
+    }
+  },
+  {
+    "text": "what are you",
+    "intent_response_key_target": "faq/bot_challenge",
+    "intent_response_key_prediction": {
+      "name": "faq/what_ice_teas",
+      "confidence": 0.9507277011871338
+    }
+  },
+  {
+    "text": "how far are you?",
+    "intent_response_key_target": "faq/request_restaurant_location",
+    "intent_response_key_prediction": {
+      "name": "faq/bot_challenge",
+      "confidence": 0.851648211479187
+    }
+  },
+  {
+    "text": "are dogs allowed",
+    "intent_response_key_target": "faq/dogs_allowed",
+    "intent_response_key_prediction": {
+      "name": "faq/bot_challenge",
+      "confidence": 0.38675761222839355
+    }
+  },
+  {
+    "text": "what are your tasks",
+    "intent_response_key_target": "faq/ask_bot_tasks",
+    "intent_response_key_prediction": {
+      "name": "faq/bot_challenge",
+      "confidence": 0.9841019511222839
+    }
+  },
+  {
+    "text": "Where do i need to go to get my pizza?",
+    "intent_response_key_target": "faq/request_restaurant_location",
+    "intent_response_key_prediction": {
+      "name": "faq/ask_bot_tasks",
+      "confidence": 0.2978222072124481
+    }
+  },
+  {
+    "text": "what is your biggest table",
+    "intent_response_key_target": "faq/how_many_people",
+    "intent_response_key_prediction": {
+      "name": "faq/bot_challenge",
+      "confidence": 0.48293882608413696
+    }
+  },
+  {
+    "text": "what is the maximum capacity",
+    "intent_response_key_target": "faq/how_many_people",
+    "intent_response_key_prediction": {
+      "name": "faq/what_ice_teas",
+      "confidence": 0.3747522234916687
+    }
+  },
+  {
+    "text": "when can i book a table",
+    "intent_response_key_target": "faq/opening_hours",
+    "intent_response_key_prediction": {
+      "name": "faq/how_many_people",
+      "confidence": 0.20659781992435455
+    }
+  },
+  {
+    "text": "what are those iceteas",
+    "intent_response_key_target": "faq/what_ice_teas",
+    "intent_response_key_prediction": {
+      "name": "faq/bot_challenge",
+      "confidence": 0.9884662628173828
+    }
+  }
+]

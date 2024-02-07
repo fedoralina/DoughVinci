@@ -1,0 +1,50 @@
+version: "3.1"
+stories:
+- story: s5 (./data/test_stories.yml)
+  steps:
+  - intent: inform_table_booking
+    entities:
+    - num_people: '2'  # predicted: number: 2
+    - num_people: '2'
+  - slot_was_set:
+    - num_people: '2'
+  - slot_was_set:
+    - num_people: '2'
+  - slot_was_set:
+    - num_people: '2'
+  - action: table_booking_form
+  - action: utter_table_slots
+- story: s6 (./data/test_stories.yml)
+  steps:
+  - intent: inform_table_booking
+    entities:
+    - time: '2024-02-23T20:00:00.000+01:00'
+    - time: '2024-02-23T20:00:00.000+01:00'
+  - slot_was_set:
+    - time: '2024-02-23T20:00:00.000+01:00'
+  - slot_was_set:
+    - time: '2024-02-23T20:00:00.000+01:00'
+  - slot_was_set:
+    - time: '2024-02-23T20:00:00.000+01:00'
+  - action: table_booking_form
+  - action: utter_table_slots
+- story: s8 (./data/test_stories.yml)
+  steps:
+  - intent: inform_pizza_order
+    entities:
+    - pizza_size: large
+    - pizza_type: funghi
+  - slot_was_set:
+    - pizza_type: funghi
+  - slot_was_set:
+    - pizza_size: large
+  - slot_was_set:
+    - pizza_amount: 1
+  - slot_was_set:
+    - pizza_type: Funghi
+  - slot_was_set:
+    - pizza_size: large
+  - action: pizza_order_form
+  - action: action_total_order_add
+  - action: action_reset_slots
+  - action: utter_anything_else

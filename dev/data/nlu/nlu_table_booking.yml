@@ -217,7 +217,7 @@ nlu:
     - please change the table size to [6](num_people) people
 
     - we are only [4](num_people) people, please change it
-    - sorry I got the time wrong, please change to tomorrow 8 p.m.
+    - sorry I got the time wrong, please change to tomorrow [8 p.m.](time)
     - our amount of people has changed, we are now [6](num_people) people
 
     - can we sit [outside](inside_outside) instead
@@ -228,4 +228,5 @@ nlu:
     - please change the table location to [inside](inside_outside)
 
     - oh actually we are [4](num_people) people, please change the amount
-    - oh please change the time to tomorrow half past [7 p.m.](pizza_size)
+    - oh please change the time to tomorrow half past [7 p.m.](time)
+    - oh please change the time to Saturday at half past [8 p.m.](time)
