@@ -15,7 +15,7 @@ Preconditions: Make sure that you have a **Rasa** setup (verion 3.6.16) with **P
 
 3. Train model (run interactive or shell mode)
 
-## Collaborators
+## Contributors
 
-<!-- readme: collaborators -start -->
-<!-- readme: collaborators -end -->
+<!-- readme: contributors -start -->
+<!-- readme: contributors -end -->
